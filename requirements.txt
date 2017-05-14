@@ -1,0 +1,14 @@
+Abjad==2.20
+appdirs==1.4.3
+enum34==1.1.6
+funcsigs==1.0.2
+mingus==0.5.1
+mock==2.0.0
+music21==3.1.0
+packaging==16.8
+pathlib2==2.2.1
+pbr==3.0.0
+ply==3.10
+pyparsing==2.2.0
+scandir==1.5
+six==1.10.0

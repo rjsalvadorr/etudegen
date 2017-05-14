@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>musicworkbook.workbookutils &#8212; musicworkbook 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">musicworkbook 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for musicworkbook.workbookutils</h1><div class="highlight"><pre>
+<span></span><span class="c1"># TODO: This may need a cleanup. Remove any unused imports</span>
+
+<span class="kn">import</span> <span class="nn">mingus.core.notes</span> <span class="k">as</span> <span class="nn">notes</span>
+<span class="kn">import</span> <span class="nn">mingus.core.keys</span> <span class="k">as</span> <span class="nn">keys</span>
+<span class="kn">import</span> <span class="nn">mingus.core.chords</span> <span class="k">as</span> <span class="nn">chords</span>
+<span class="kn">import</span> <span class="nn">mingus.core.scales</span> <span class="k">as</span> <span class="nn">scales</span>
+<span class="kn">import</span> <span class="nn">mingus.core.progressions</span> <span class="k">as</span> <span class="nn">progressions</span>
+
+<span class="kn">from</span> <span class="nn">mingus.containers.note</span> <span class="k">import</span> <span class="n">Note</span>
+
+<span class="kn">from</span> <span class="nn">musicworkbookerror</span> <span class="k">import</span> <span class="n">MusicWorkbookError</span>
+
+<div class="viewcode-block" id="WorkbookUtils"><a class="viewcode-back" href="../../workbookutils.html#musicworkbook.WorkbookUtils">[docs]</a><span class="k">class</span> <span class="nc">WorkbookUtils</span><span class="p">:</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progressions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progressions</span><span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="s2">&quot;VII&quot;</span><span class="p">,</span> <span class="s2">&quot;IV&quot;</span><span class="p">,</span> <span class="s2">&quot;II&quot;</span><span class="p">,</span> <span class="s2">&quot;VI&quot;</span><span class="p">,</span> <span class="s2">&quot;III&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progressions</span><span class="p">[</span><span class="s2">&quot;minor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Im&quot;</span><span class="p">,</span> <span class="s2">&quot;Vm&quot;</span><span class="p">,</span> <span class="s2">&quot;bVIIM&quot;</span><span class="p">,</span> <span class="s2">&quot;IVm&quot;</span><span class="p">,</span> <span class="s2">&quot;IIdim&quot;</span><span class="p">,</span> <span class="s2">&quot;bVIM&quot;</span><span class="p">,</span> <span class="s2">&quot;bIIIM&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progressions</span><span class="p">[</span><span class="s2">&quot;harmonicMinor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Im&quot;</span><span class="p">,</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="s2">&quot;VII&quot;</span><span class="p">,</span> <span class="s2">&quot;IVm&quot;</span><span class="p">,</span> <span class="s2">&quot;IIdim&quot;</span><span class="p">,</span> <span class="s2">&quot;bVIM&quot;</span><span class="p">,</span> <span class="s2">&quot;bIIIM&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="WorkbookUtils.getDefaultLowerLimit"><a class="viewcode-back" href="../../workbookutils.html#musicworkbook.WorkbookUtils.getDefaultLowerLimit">[docs]</a>    <span class="k">def</span> <span class="nf">getDefaultLowerLimit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Docstring for a thing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Note</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WorkbookUtils.getDefaultUpperLimit"><a class="viewcode-back" href="../../workbookutils.html#musicworkbook.WorkbookUtils.getDefaultUpperLimit">[docs]</a>    <span class="k">def</span> <span class="nf">getDefaultUpperLimit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stuff</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Note</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WorkbookUtils.getNextNoteUp"><a class="viewcode-back" href="../../workbookutils.html#musicworkbook.WorkbookUtils.getNextNoteUp">[docs]</a>    <span class="k">def</span> <span class="nf">getNextNoteUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">,</span> <span class="n">pivotNote</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wheeee!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">currentOctave</span> <span class="o">=</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">octave</span>
+        <span class="n">testNotes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span><span class="p">))</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">testNote</span> <span class="ow">in</span> <span class="n">testNotes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">testNote</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">testNote</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">testNote</span></div>
+
+
+<div class="viewcode-block" id="WorkbookUtils.getNextNoteDown"><a class="viewcode-back" href="../../workbookutils.html#musicworkbook.WorkbookUtils.getNextNoteDown">[docs]</a>    <span class="k">def</span> <span class="nf">getNextNoteDown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">,</span> <span class="n">pivotNote</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Not sure if I&#39;ll ever use this one...</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">currentOctave</span> <span class="o">=</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">octave</span>
+        <span class="n">testNotes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span><span class="p">))</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">testNote</span> <span class="ow">in</span> <span class="n">testNotes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">testNote</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">testNote</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">12</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">testNote</span></div>
+
+
+<div class="viewcode-block" id="WorkbookUtils.getClosestChordToneUp"><a class="viewcode-back" href="../../workbookutils.html#musicworkbook.WorkbookUtils.getClosestChordToneUp">[docs]</a>    <span class="k">def</span> <span class="nf">getClosestChordToneUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordTones</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Yea boi</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ctDict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">minDiff</span> <span class="o">=</span> <span class="mi">999</span> <span class="c1"># I just need an absurdly high number greater than a few octaves</span>
+
+        <span class="k">for</span> <span class="n">chordTone</span> <span class="ow">in</span> <span class="n">chordTones</span><span class="p">:</span>
+            <span class="n">currentNote</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNextNoteUp</span><span class="p">(</span><span class="n">chordTone</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">)</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">targetNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">currentNote</span><span class="p">)</span>
+            <span class="n">ctDict</span><span class="p">[</span><span class="n">diff</span><span class="p">]</span> <span class="o">=</span> <span class="n">currentNote</span>
+            <span class="k">if</span> <span class="n">diff</span> <span class="o">&lt;</span> <span class="n">minDiff</span><span class="p">:</span>
+                <span class="n">minDiff</span> <span class="o">=</span> <span class="n">diff</span>
+
+        <span class="k">return</span> <span class="n">ctDict</span><span class="p">[</span><span class="n">minDiff</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="WorkbookUtils.getChordTonesInRange"><a class="viewcode-back" href="../../workbookutils.html#musicworkbook.WorkbookUtils.getChordTonesInRange">[docs]</a>    <span class="k">def</span> <span class="nf">getChordTonesInRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordTones</span><span class="p">,</span> <span class="n">lowerLimit</span><span class="p">,</span> <span class="n">upperLimit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Starting from the lowerLimit, crawl up the chord tones until we pass the upperLimit</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">returnNotes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">continueLoop</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">lowerLimit</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">chordTones</span><span class="p">:</span>
+            <span class="n">startingNote</span> <span class="o">=</span> <span class="n">lowerLimit</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">startingNote</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getClosestChordToneUp</span><span class="p">(</span><span class="n">chordTones</span><span class="p">,</span> <span class="n">lowerLimit</span><span class="p">)</span>
+
+        <span class="n">returnNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">startingNote</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">continueLoop</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">chordTone</span> <span class="ow">in</span> <span class="n">chordTones</span><span class="p">:</span>
+                <span class="n">currentNote</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNextNoteUp</span><span class="p">(</span><span class="n">chordTone</span><span class="p">,</span> <span class="n">startingNote</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">currentNote</span> <span class="o">&lt;</span> <span class="n">upperLimit</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">currentNote</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">returnNotes</span><span class="p">:</span>
+                        <span class="n">returnNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">currentNote</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">continueLoop</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">startingNote</span> <span class="o">=</span> <span class="n">returnNotes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">returnNotes</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">returnNotes</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_getScaleExerciseForLilypond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From a given scale, return a Lilypond string representing an exercise for that scale.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_getArpeggioExerciseForLilypond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From a given scale, return a Lilypond string representing an exercise for that scale.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="WorkbookUtils.buildKeyData"><a class="viewcode-back" href="../../workbookutils.html#musicworkbook.WorkbookUtils.buildKeyData">[docs]</a>    <span class="k">def</span> <span class="nf">buildKeyData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">progType</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From a given key, build and return the KeyData for that key.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">prog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressions</span><span class="p">[</span><span class="n">progType</span><span class="p">]</span>
+        <span class="n">diatonicChords</span> <span class="o">=</span> <span class="n">progressions</span><span class="o">.</span><span class="n">to_chords</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="n">diatonicChords</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">musicworkbook 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, RJ Salvador.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>
