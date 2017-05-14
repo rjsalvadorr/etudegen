@@ -4,5 +4,8 @@ Lib/
 Scripts/
 Include/
 tcl/
+mingus_examples/
 
 **.pyc
+pip-selfcheck.json
+make.bat

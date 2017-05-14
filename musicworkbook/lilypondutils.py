@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad import *
 import os
 import shutil
 import subprocess
@@ -128,11 +127,16 @@ class LilypondUtils:
         inputPath = os.path.join(dir_path, "header.ly")
         outputPath = os.path.join(dir_path, "result.ly")
 
-        # TODO - wrap these filesystem commands under trycatch blocks
-        shutil.copyfile(inputPath, outputPath)
-        with open(outputPath, 'a') as outFile:
-            for lilyBlock in self.lilypondBlocks:
-                lilyBlock = lilyBlock.encode('utf-8')
-                outFile.write(lilyBlock)
+        try:
+            shutil.copyfile(inputPath, outputPath)
+            with open(outputPath, 'a') as outFile:
+                for lilyBlock in self.lilypondBlocks:
+                    lilyBlock = lilyBlock.encode('utf-8')
+                    outFile.write(lilyBlock)
+        except:
+            print "ERROR! Something went wrong with Lilypond file generation."
 
-        stuff = subprocess.call(["lilypond", "--output=" + docFilename, "--pdf", outputPath])
+        try:
+            stuff = subprocess.call(["lilypond", "--output=" + docFilename, "--pdf", outputPath])
+        except:
+            print "ERROR! Something went wrong with Lilypond document generation. Check if you have Lilypond installed and available on the path!"

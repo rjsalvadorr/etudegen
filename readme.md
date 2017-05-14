@@ -3,17 +3,17 @@ This project generates a scale/arpeggio book for a variety of instruments. The g
 
 The displayed arpeggios will be **major**, **minor**, and **diminished** triads. I feel like these triads are the fundamental building blocks for harmony, and focusing on these exclusively should yield good results for whoever reads this.
 
-#### Intended use
+## Intended use
 Say you're working on a piece in an unfamiliar key. Simply reading through a few arpeggios in that key will make your work a lot more comfortable. Perhaps even enjoyable. :)
 
-#### Configurable parameters
+## Configurable parameters
 
 - **Instrument details** - such as:
     + **Information** - Explain some stuff about possible ways to use it. (see section below)
     + **Instrument range** - (lowest note and highest note)
 - **Registers**? - Some instruments switch clefs at some point. For example, cello music is written mostly in bass clef, but the tenor and treble clefs are used at the higher registers.
 
-#### Instrument-specific nightmares
+## Instrument-specific nightmares
 Since you're creating one of these for each instrument, you can probably have a preface. This can let your users know how to use your book. Or how not to use it.
 
 *Or you could sidestep the issue and **just make two books**: one for treble clef, and one for bass clef. Look for various instrument ranges, and just choose a range that works for plenty of instruments on each clef!*
@@ -21,10 +21,10 @@ Since you're creating one of these for each instrument, you can probably have a 
 - **Piano** - Ah, the piano. This is read in two staves, which may be using the treble or bass clef. Probably not wise to make one for this (at first)
 - **Strings** - Most notes can be played in multiple positions. Do we address this at all? Or just tell the user something like, *"Fam, you should already know how to do this."*
 
-#### Organization
+## Organization
 The content will be divided by musical keys. There will be the **main content** in the book, plus an **appendix**.
 
-#### Main Content
+## Main Content
 We'll have 39 key/scale sections in total. There will be 13 each for:
 
 - Major keys
@@ -41,7 +41,7 @@ Why 13? If you look at a diagram of the circle of fifths, the _6 o'clock_ positi
 6. Submediant (vi)
 7. Mediant (iii)
 
-#### Appendix
+## Appendix
 The appendix will contain some helpful tidbits about constructing more complicated chords from the triads. For example:
 
 - maj7 = major triad + major 7th
