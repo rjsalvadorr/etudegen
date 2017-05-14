@@ -27,17 +27,13 @@ class WorkbookUtils:
     chordNames["major"] = ["", "", "dim", "", "m", "m", "m"]
     chordNames["minor"] = ["m", "m", "", "m", "m", "", ""]
     chordNames["harmonicMinor"] = ["m", "", "dim", "m", "m", "", "aug"]
+    chordNames["fused"] = ["m", "", "m", 'dim', "", "m", "dim", "", "aug", ""]
 
     romanChordNames = dict()
     romanChordNames["major"] = ["I", "V", u'vii°', "IV", "ii", "vi", "iii"]
     romanChordNames["minor"] = ["i", "v", "VII", "iv", u"ii°", "VI", "III"]
     romanChordNames["harmonicMinor"] = ["i", "V", u'vii°', "iv", u"ii°", "VI", "III+"]
-
-    def __init__(self):
-        self.progressions = dict()
-        self.progressions["major"] = ["I", "V", "VII", "IV", "II", "VI", "III"]
-        self.progressions["minor"] = ["Im", "Vm", "bVIIM", "IVm", "IIdim", "bVIM", "bIIIM"]
-        self.progressions["harmonicMinor"] = ["Im", "V", "VII", "IVm", "IIdim", "bVIM", "bIIIaug"]
+    romanChordNames["fused"] = ["i", "V", "v", u'vii°', "VII", "iv", u"ii°", "VI", "III+", "III"]
 
 
     def getDefaultLowerLimit(self):
@@ -200,41 +196,61 @@ class WorkbookUtils:
         From a given key, build and return the KeyData for that key.
         """
 
-        if keyType == 'minor':
-            rawScale = scales.NaturalMinor(root).ascending()
-        elif keyType == 'harmonicMinor':
-            rawScale = scales.HarmonicMinor(root).ascending()
-        else:
-            keyType = 'major'
-            rawScale = scales.Major(root).ascending()
-
-
-
-        prog = self.progressions[keyType]
-        # diatonicChords = progressions.to_chords(prog, root)
-        diatonicChords = self.buildDiatonicChords(rawScale)
-        mingusScale = self._getScaleExercise(rawScale)
+        mScales = []
         diatonicChordTones = []
         mArpeggios = []
         cNames = []
 
-        for index, chord in enumerate(diatonicChords):
-            dcInRange = self.getChordTonesInRange(chord, self.getDefaultLowerLimit(), self.getDefaultUpperLimit())
-            chordTitle = chord[0] + WorkbookUtils.chordNames[keyType][index] + " (" + WorkbookUtils.romanChordNames[keyType][index] + ")"
-            cNames.append(chordTitle)
-            diatonicChordTones.append(dcInRange)
+        if keyType == 'minor':
+            # We'll be using a natural and harmonic minor scale/chords together
+            natScale = scales.NaturalMinor(root).ascending()
+            harmScale = scales.HarmonicMinor(root).ascending()
+
+            mScales.append(self._getScaleExercise(natScale))
+            mScales.append(self._getScaleExercise(harmScale))
+
+            natDiatonicChords = self.buildDiatonicChords(natScale)
+            harmDiatonicChords = self.buildDiatonicChords(harmScale)
+
+            fusedDiatonicChords = []
+            fusedDiatonicChords.append(natDiatonicChords[0])
+            fusedDiatonicChords.append(harmDiatonicChords[1])
+            fusedDiatonicChords.append(natDiatonicChords[1])
+            fusedDiatonicChords.append(harmDiatonicChords[2])
+            fusedDiatonicChords.append(natDiatonicChords[2])
+            fusedDiatonicChords.append(natDiatonicChords[3])
+            fusedDiatonicChords.append(natDiatonicChords[4])
+            fusedDiatonicChords.append(natDiatonicChords[5])
+            fusedDiatonicChords.append(harmDiatonicChords[6])
+            fusedDiatonicChords.append(natDiatonicChords[6])
+
+            print fusedDiatonicChords
+
+            for index, chord in enumerate(fusedDiatonicChords):
+                dcInRange = self.getChordTonesInRange(chord, self.getDefaultLowerLimit(), self.getDefaultUpperLimit())
+                chordTitle = chord[0] + WorkbookUtils.chordNames["fused"][index] + " (" + WorkbookUtils.romanChordNames["fused"][index] + ")"
+                cNames.append(chordTitle)
+                diatonicChordTones.append(dcInRange)
+        else:
+            # Major key. Fairly straightforward
+            rawScale = scales.Major(root).ascending()
+
+            mScales.append(self._getScaleExercise(rawScale))
+
+            diatonicChords = self.buildDiatonicChords(rawScale)
+
+            for index, chord in enumerate(diatonicChords):
+                dcInRange = self.getChordTonesInRange(chord, self.getDefaultLowerLimit(), self.getDefaultUpperLimit())
+                chordTitle = chord[0] + WorkbookUtils.chordNames["major"][index] + " (" + WorkbookUtils.romanChordNames["major"][index] + ")"
+                cNames.append(chordTitle)
+                diatonicChordTones.append(dcInRange)
 
         for chordToneSet in diatonicChordTones:
             mArpeggios.append(self._getArpeggioExercise(chordToneSet))
 
-        print "  Building key data..."
-        print mingusScale
-        print diatonicChords
-
-
         keyName = root + " " + WorkbookUtils.keyTypes[keyType]
 
-        returnKeyData = KeyData(keyName, cNames, mingusScale, mArpeggios)
+        returnKeyData = KeyData(keyName, keyType, cNames, mScales, mArpeggios)
         return returnKeyData
 
     #TODO - implement arpeggiation strategies!

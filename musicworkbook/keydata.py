@@ -1,9 +1,8 @@
 class KeyData:
-    def __init__(self, keyName, chordNames, mingusScale, mingusArpeggios):
+    def __init__(self, keyName, keyType, chordNames, mingusScales, mingusArpeggios):
         self.keyName = keyName
+        self.keyType = keyType
         self.chordNames = chordNames
 
-        self.mingusScale = mingusScale
+        self.mingusScales = mingusScales
         self.mingusArpeggios = mingusArpeggios
-        self.lilypondScale = None
-        self.lilypondArpeggios = None

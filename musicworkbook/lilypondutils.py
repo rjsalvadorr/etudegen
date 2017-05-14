@@ -55,12 +55,13 @@ class LilypondUtils:
         """
         newBlock = "\n"
 
-        headerBlock = self._buildLilypondHeadingBlock(keyData.keyName)
-        newBlock += self._buildLilypondScaleBlock(keyData.mingusScale, headerBlock) + "\n"
+        for scale in keyData.mingusScales:
+            headerBlock = self._buildLilypondHeadingBlock(keyData.keyName)
+            newBlock += self._buildLilypondScaleBlock(scale, headerBlock) + "\n"
 
-        for i in range(5):
-            headerBlock = self._buildLilypondSubheadingBlock(keyData.chordNames[i])
-            newBlock += self._buildLilypondArpeggioBlock(keyData.mingusArpeggios[i], headerBlock) + "\n"
+        for index, arpeggio in enumerate(keyData.mingusArpeggios):
+            headerBlock = self._buildLilypondSubheadingBlock(keyData.chordNames[index])
+            newBlock += self._buildLilypondArpeggioBlock(arpeggio, headerBlock) + "\n"
 
         newBlock += "\pageBreak\n"
 
