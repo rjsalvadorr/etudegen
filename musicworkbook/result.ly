@@ -574,7 +574,7 @@
 
 \score {
     {\clef treble \time 4/4 c'4 d'4 e'4 f'4 gs'4 a'4 b'4 c''4 d''4 e''4 f''4 gs''4 a''4 b''4 }
-    \header {title = "A Minor" piece = "A Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "A Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -636,7 +636,7 @@
 
 \score {
     {\clef treble \time 4/4 c'4 ds'4 e'4 fs'4 g'4 a'4 b'4 c''4 ds''4 e''4 fs''4 g''4 a''4 b''4 }
-    \header {title = "E Minor" piece = "E Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "E Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -698,7 +698,7 @@
 
 \score {
     {\clef treble \time 4/4 cs'4 d'4 e'4 fs'4 g'4 as'4 b'4 cs''4 d''4 e''4 fs''4 g''4 as''4 b''4 }
-    \header {title = "B Minor" piece = "B Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "B Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -760,7 +760,7 @@
 
 \score {
     {\clef treble \time 4/4 cs'4 d'4 es'4 fs'4 gs'4 a'4 b'4 cs''4 d''4 es''4 fs''4 gs''4 a''4 b''4 }
-    \header {title = "F# Minor" piece = "F# Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "F# Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -822,7 +822,7 @@
 
 \score {
     {\clef treble \time 4/4 cs'4 ds'4 e'4 fs'4 gs'4 a'4 bs'4 cs''4 ds''4 e''4 fs''4 gs''4 a''4 }
-    \header {title = "C# Minor" piece = "C# Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "C# Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -884,7 +884,7 @@
 
 \score {
     {\clef treble \time 4/4 cs'4 ds'4 e'4 fss'4 gs'4 as'4 b'4 cs''4 ds''4 e''4 fss''4 gs''4 as''4 b''4 }
-    \header {title = "G# Minor" piece = "G# Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "G# Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -946,7 +946,7 @@
 
 \score {
     {\clef treble \time 4/4 css'4 ds'4 es'4 fs'4 gs'4 as'4 b'4 css''4 ds''4 es''4 fs''4 gs''4 as''4 b''4 }
-    \header {title = "D# Minor" piece = "D# Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "D# Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1008,7 +1008,7 @@
 
 \score {
     {\clef treble \time 4/4 cs'4 d'4 e'4 f'4 g'4 a'4 bf'4 cs''4 d''4 e''4 f''4 g''4 a''4 bf''4 }
-    \header {title = "D Minor" piece = "D Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "D Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1070,7 +1070,7 @@
 
 \score {
     {\clef treble \time 4/4 c'4 d'4 ef'4 fs'4 g'4 a'4 bf'4 c''4 d''4 ef''4 fs''4 g''4 a''4 bf''4 }
-    \header {title = "G Minor" piece = "G Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "G Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1132,7 +1132,7 @@
 
 \score {
     {\clef treble \time 4/4 c'4 d'4 ef'4 f'4 g'4 af'4 b'4 c''4 d''4 ef''4 f''4 g''4 af''4 b''4 }
-    \header {title = "C Minor" piece = "C Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "C Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1194,7 +1194,7 @@
 
 \score {
     {\clef treble \time 4/4 c'4 df'4 e'4 f'4 g'4 af'4 bf'4 c''4 df''4 e''4 f''4 g''4 af''4 bf''4 }
-    \header {title = "F Minor" piece = "F Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "F Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1256,7 +1256,7 @@
 
 \score {
     {\clef treble \time 4/4 c'4 df'4 ef'4 f'4 gf'4 a'4 bf'4 c''4 df''4 ef''4 f''4 gf''4 a''4 bf''4 }
-    \header {title = "Bb Minor" piece = "Bb Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "Bb Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1318,7 +1318,7 @@
 
 \score {
     {\clef treble \time 4/4 d'4 ef'4 f'4 gf'4 af'4 bf'4 cf''4 d''4 ef''4 f''4 gf''4 af''4 bf''4 cf'''4 }
-    \header {title = "Eb Minor" piece = "Eb Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {piece = "Eb Minor" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {

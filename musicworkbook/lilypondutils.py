@@ -55,9 +55,15 @@ class LilypondUtils:
         """
         newBlock = "\n"
 
-        for scale in keyData.mingusScales:
+        if keyData.keyType == "major":
             headerBlock = self._buildLilypondHeadingBlock(keyData.keyName)
-            newBlock += self._buildLilypondScaleBlock(scale, headerBlock) + "\n"
+            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], headerBlock) + "\n"
+        else:
+            headerBlock = self._buildLilypondHeadingBlock(keyData.keyName)
+            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], headerBlock) + "\n"
+
+            headerBlock = self._buildLilypondSubheadingBlock(keyData.keyName)
+            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[1], headerBlock) + "\n"
 
         for index, arpeggio in enumerate(keyData.mingusArpeggios):
             headerBlock = self._buildLilypondSubheadingBlock(keyData.chordNames[index])
