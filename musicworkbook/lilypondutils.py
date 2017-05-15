@@ -117,9 +117,7 @@ class LilypondUtils:
             remainingBars = totalBars - barCtr
 
             if index % noteDuration == 0:
-                print str(remainingBars)
                 if barCtr % barsPerLine == 0 and remainingBars >= barsPerLine - 1:
-                    print "    breaking"
                     newBlock += "\\break "
                 barCtr += 1
 

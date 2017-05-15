@@ -1,3 +1,5 @@
+import sys
+
 from musicworkbook.workbookutils import WorkbookUtils
 from musicworkbook.lilypondutils import LilypondUtils
 from musicworkbook.instrumentdata import InstrumentData
@@ -10,8 +12,17 @@ instrumentInfo.append(InstrumentData("guitar", "\"treble_8\"", "E-2", "E-5"))
 instrumentInfo.append(InstrumentData("bass", "\"bass_8\"", "E-1", "G-3"))
 instrumentInfo.append(InstrumentData("violin", "treble", "G-3", "C-6"))
 
-# TODO - flip this to False once we're done. Or if the testing requires the whole document.
-testMode = True
+testMode = False
+
+if len(sys.argv) > 0:
+    for arg in sys.argv:
+        if(arg.lower() == "test"):
+            print "  Creating documents in Test mode..."
+            testMode = True
+            break
+
+if testMode == False:
+    print "  Creating documents in Normal mode..."
 
 # Define the list of keys
 majorKeyListFull = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb']
