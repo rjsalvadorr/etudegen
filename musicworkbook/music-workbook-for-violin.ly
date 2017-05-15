@@ -1371,5 +1371,5 @@
 
 \pageBreak
 \header {
-    composer = \markup {"RJ Salvador"} subtitle = \markup {"violin"} title = \markup {"Scales and Arpeggios"}
+    composer = \markup {"RJ Salvador"} subtitle = \markup {"for violin"} title = \markup {"Scales and Arpeggios"}
 }

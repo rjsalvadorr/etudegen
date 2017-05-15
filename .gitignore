@@ -1,5 +1,3 @@
-##### Python on Windows
-
 Lib/
 Scripts/
 Include/
@@ -9,3 +7,6 @@ mingus_examples/
 **.pyc
 pip-selfcheck.json
 make.bat
+
+# Should I keep the output away from the repo?
+**.pdf

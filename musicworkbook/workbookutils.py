@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # TODO: This may need a cleanup. Remove any unused imports
+# TODO: change class name to WorkbookBuilder
 
 import pprint # for console printing
 
@@ -13,6 +14,7 @@ from mingus.containers.note import Note
 
 from musicworkbookerror import MusicWorkbookError
 from keydata import KeyData
+from instrumentdata import InstrumentData
 
 class WorkbookUtils:
 
@@ -36,18 +38,9 @@ class WorkbookUtils:
     romanChordNames["fused"] = ["i", "V", "v", u'vii°', "VII", "iv", u"ii°", "VI", "III+", "III"]
 
 
-    def getDefaultLowerLimit(self):
-        """
-        Docstring for a thing
-        """
-        return Note('C', 4)
-
-
-    def getDefaultUpperLimit(self):
-        """
-        Stuff
-        """
-        return Note('C', 6)
+    def __init__(self, lowerLimit=None, upperLimit=None):
+        self.lowerLimit = lowerLimit if lowerLimit is not None else Note('C', 4)
+        self.upperLimit = upperLimit if upperLimit is not None else Note('C', 6)
 
 
     def getNextNoteUp(self, targetNote, pivotNote):
@@ -114,7 +107,7 @@ class WorkbookUtils:
         while continueLoop:
             for chordTone in chordTones:
                 currentNote = self.getNextNoteUp(chordTone, startingNote)
-                if currentNote < upperLimit:
+                if currentNote <= upperLimit:
                     if currentNote not in returnNotes:
                         returnNotes.append(currentNote)
                 else:
@@ -148,7 +141,7 @@ class WorkbookUtils:
         """
         From a given scale, return a Note array representing an exercise for that scale.
         """
-        returnScale = self.getChordTonesInRange(rawScale, self.getDefaultLowerLimit(), self.getDefaultUpperLimit())
+        returnScale = self.getChordTonesInRange(rawScale, self.lowerLimit, self.upperLimit)
         return returnScale
 
 
@@ -224,10 +217,8 @@ class WorkbookUtils:
             fusedDiatonicChords.append(harmDiatonicChords[6])
             fusedDiatonicChords.append(natDiatonicChords[6])
 
-            print fusedDiatonicChords
-
             for index, chord in enumerate(fusedDiatonicChords):
-                dcInRange = self.getChordTonesInRange(chord, self.getDefaultLowerLimit(), self.getDefaultUpperLimit())
+                dcInRange = self.getChordTonesInRange(chord, self.lowerLimit, self.upperLimit)
                 chordTitle = chord[0] + WorkbookUtils.chordNames["fused"][index] + " (" + WorkbookUtils.romanChordNames["fused"][index] + ")"
                 cNames.append(chordTitle)
                 diatonicChordTones.append(dcInRange)
@@ -240,7 +231,7 @@ class WorkbookUtils:
             diatonicChords = self.buildDiatonicChords(rawScale)
 
             for index, chord in enumerate(diatonicChords):
-                dcInRange = self.getChordTonesInRange(chord, self.getDefaultLowerLimit(), self.getDefaultUpperLimit())
+                dcInRange = self.getChordTonesInRange(chord, self.lowerLimit, self.upperLimit)
                 chordTitle = chord[0] + WorkbookUtils.chordNames["major"][index] + " (" + WorkbookUtils.romanChordNames["major"][index] + ")"
                 cNames.append(chordTitle)
                 diatonicChordTones.append(dcInRange)

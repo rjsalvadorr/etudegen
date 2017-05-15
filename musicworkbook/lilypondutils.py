@@ -4,6 +4,9 @@ import shutil
 import subprocess
 
 # TODO - rename to LilypondFileBuilder
+# TODO - add metadata to the generated files. Build version, and possibly date.
+#        Look into semantic versioning through this stuff.
+
 class LilypondUtils:
     """
     Gradually builds up content for a Lilypond file.
@@ -29,12 +32,15 @@ class LilypondUtils:
     accidentalMarking[1] = "s"
     accidentalMarking[2] = "ss"
 
-    def __init__(self, clef=None, instrument=None):
+    def __init__(self, clef=None, instrument=None, filename=None):
         self.lilypondBlocks = []
         self.clef = clef if clef is not None else "treble"
         self.instrument = instrument if instrument is not None else ""
+        self.filename = filename if filename is not None else "result"
 
-        self.lilypondBlocks.append(self._buildLilypondMainHeaderBlock())
+
+    def resetData(self):
+        self.lilypondBlocks = []
 
 
     def _convertMingusNoteToLilypond(self, note, duration):
@@ -75,7 +81,8 @@ class LilypondUtils:
 
 
     def _buildLilypondMainHeaderBlock(self):
-        headerBlock = "\header {\n    composer = \markup {\"RJ Salvador\"} subtitle = \markup {\"" + self.instrument + "\"} title = \markup {\"Scales and Arpeggios\"}\n}"
+        subTitle = "for " + self.instrument if self.instrument else ""
+        headerBlock = "\header {\n    composer = \markup {\"RJ Salvador\"} subtitle = \markup {\"" + subTitle + "\"} title = \markup {\"Scales and Arpeggios\"}\n}"
         return headerBlock
 
 
@@ -124,7 +131,7 @@ class LilypondUtils:
         return newBlock
 
 
-    def writeLilypondFile(self, docFilename):
+    def writeLilypondFile(self):
         """
         Writes the content to a Lilypond file.
         If Lilypond is available for use, creates a PDF and shows it to the user.
@@ -132,7 +139,11 @@ class LilypondUtils:
 
         dir_path = os.path.dirname(os.path.realpath(__file__))
         inputPath = os.path.join(dir_path, "header.ly")
-        outputPath = os.path.join(dir_path, "result.ly")
+        outputPath = os.path.join(dir_path, self.filename + ".ly")
+
+        self.lilypondBlocks.append(self._buildLilypondMainHeaderBlock())
+
+        print "  Creating workbook for " + self.instrument + "..."
 
         try:
             shutil.copyfile(inputPath, outputPath)
@@ -140,10 +151,12 @@ class LilypondUtils:
                 for lilyBlock in self.lilypondBlocks:
                     lilyBlock = lilyBlock.encode('utf-8')
                     outFile.write(lilyBlock)
+
+            self.lilypondBlocks = []
         except:
             print "ERROR! Something went wrong with Lilypond file generation."
 
         try:
-            stuff = subprocess.call(["lilypond", "--output=" + docFilename, "--pdf", outputPath])
+            stuff = subprocess.call(["lilypond", "--loglevel=BASIC_PROGRESS", "--output=" + self.filename, "--pdf", outputPath])
         except:
             print "ERROR! Something went wrong with Lilypond document generation. Check if you have Lilypond installed and available on the path!"
