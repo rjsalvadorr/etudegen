@@ -6,7 +6,9 @@
 #(set-global-staff-size 20)
 
 \layout {
-  indent = 0\cm
+    indent = 0\cm
+    \override Staff.TimeSignature #'stencil = ##f
+    \override Score.BarNumber.break-visibility = ##(#f #f #f)
 }
 
 \paper {
@@ -17,11 +19,12 @@
     left-margin = 0.5\in
 
     print-all-headers = ##t
+    ragged-right = ##f
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 f,4 g,4 a,4 b,4 c4 d4 e4 f4 g4 a4 b4 c'4 d'4 e'4 f'4 g'4 a'4 b'4 c''4 d''4 e''4 }
-    \header {title = "C Major" piece = "C Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "C major" piece = "C major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -63,7 +66,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 g,4 a,4 b,4 c4 d4 e4 fs4 g4 a4 b4 c'4 d'4 e'4 fs'4 g'4 a'4 b'4 c''4 d''4 e''4 }
-    \header {title = "G Major" piece = "G Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "G major" piece = "G major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -78,7 +81,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 c8 a,8 c8 a,8 fs,8 c8 a,8 c8 fs8 c8 fs8 c8 a,8 fs8 c8 fs8 a8 fs8 a8 fs8 c8 a8 fs8 a8 c'8 a8 c'8 a8 fs8 c'8 a8 c'8 fs'8 c'8 fs'8 c'8 a8 fs'8 c'8 fs'8 a'8 fs'8 a'8 fs'8 c'8 a'8 fs'8 a'8 c''8 a'8 c''8 a'8 fs'8 c''8 }
-    \header {piece = "F#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -105,7 +108,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 g,4 a,4 b,4 cs4 d4 e4 fs4 g4 a4 b4 cs'4 d'4 e'4 fs'4 g'4 a'4 b'4 cs''4 d''4 e''4 }
-    \header {title = "D Major" piece = "D Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "D major" piece = "D major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -120,7 +123,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 g,8 cs8 g,8 cs8 g,8 e,8 cs8 g,8 cs8 e8 cs8 e8 cs8 g,8 e8 cs8 e8 g8 e8 g8 e8 cs8 g8 e8 g8 cs'8 g8 cs'8 g8 e8 cs'8 g8 cs'8 e'8 cs'8 e'8 cs'8 g8 e'8 cs'8 e'8 g'8 e'8 g'8 e'8 cs'8 g'8 e'8 g'8 cs''8 g'8 cs''8 g'8 e'8 cs''8 g'8 cs''8 e''8 cs''8 e''8 cs''8 g'8 e''8 }
-    \header {piece = "C#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -140,14 +143,14 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 cs8 a,8 cs8 a,8 fs,8 cs8 a,8 cs8 fs8 cs8 fs8 cs8 a,8 fs8 cs8 fs8 a8 fs8 a8 fs8 cs8 a8 fs8 a8 cs'8 a8 cs'8 a8 fs8 cs'8 a8 cs'8 fs'8 cs'8 fs'8 cs'8 a8 fs'8 cs'8 fs'8 a'8 fs'8 a'8 fs'8 cs'8 a'8 fs'8 a'8 cs''8 a'8 cs''8 a'8 fs'8 cs''8 }
-    \header {piece = "F#m (iii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯m (iii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 gs,4 a,4 b,4 cs4 d4 e4 fs4 gs4 a4 b4 cs'4 d'4 e'4 fs'4 gs'4 a'4 b'4 cs''4 d''4 e''4 }
-    \header {title = "A Major" piece = "A Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "A major" piece = "A major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -162,7 +165,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 gs,8 b,8 d8 b,8 d8 b,8 gs,8 d8 b,8 d8 gs8 d8 gs8 d8 b,8 gs8 d8 gs8 b8 gs8 b8 gs8 d8 b8 gs8 b8 d'8 b8 d'8 b8 gs8 d'8 b8 d'8 gs'8 d'8 gs'8 d'8 b8 gs'8 d'8 gs'8 b'8 gs'8 b'8 gs'8 d'8 b'8 gs'8 b'8 d''8 b'8 d''8 b'8 gs'8 d''8 }
-    \header {piece = "G#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -177,19 +180,19 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 cs8 a,8 cs8 a,8 fs,8 cs8 a,8 cs8 fs8 cs8 fs8 cs8 a,8 fs8 cs8 fs8 a8 fs8 a8 fs8 cs8 a8 fs8 a8 cs'8 a8 cs'8 a8 fs8 cs'8 a8 cs'8 fs'8 cs'8 fs'8 cs'8 a8 fs'8 cs'8 fs'8 a'8 fs'8 a'8 fs'8 cs'8 a'8 fs'8 a'8 cs''8 a'8 cs''8 a'8 fs'8 cs''8 }
-    \header {piece = "F#m (vi)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯m (vi)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 gs,8 cs8 gs,8 cs8 gs,8 e,8 cs8 gs,8 cs8 e8 cs8 e8 cs8 gs,8 e8 cs8 e8 gs8 e8 gs8 e8 cs8 gs8 e8 gs8 cs'8 gs8 cs'8 gs8 e8 cs'8 gs8 cs'8 e'8 cs'8 e'8 cs'8 gs8 e'8 cs'8 e'8 gs'8 e'8 gs'8 e'8 cs'8 gs'8 e'8 gs'8 cs''8 gs'8 cs''8 gs'8 e'8 cs''8 gs'8 cs''8 e''8 cs''8 e''8 cs''8 gs'8 e''8 }
-    \header {piece = "C#m (iii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯m (iii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 gs,4 a,4 b,4 cs4 ds4 e4 fs4 gs4 a4 b4 cs'4 ds'4 e'4 fs'4 gs'4 a'4 b'4 cs''4 ds''4 e''4 }
-    \header {title = "E Major" piece = "E Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "E major" piece = "E major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -204,7 +207,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 ds8 a,8 ds8 a,8 fs,8 ds8 a,8 ds8 fs8 ds8 fs8 ds8 a,8 fs8 ds8 fs8 a8 fs8 a8 fs8 ds8 a8 fs8 a8 ds'8 a8 ds'8 a8 fs8 ds'8 a8 ds'8 fs'8 ds'8 fs'8 ds'8 a8 fs'8 ds'8 fs'8 a'8 fs'8 a'8 fs'8 ds'8 a'8 fs'8 a'8 ds''8 a'8 ds''8 a'8 fs'8 ds''8 }
-    \header {piece = "D#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -214,24 +217,24 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 cs8 a,8 cs8 a,8 fs,8 cs8 a,8 cs8 fs8 cs8 fs8 cs8 a,8 fs8 cs8 fs8 a8 fs8 a8 fs8 cs8 a8 fs8 a8 cs'8 a8 cs'8 a8 fs8 cs'8 a8 cs'8 fs'8 cs'8 fs'8 cs'8 a8 fs'8 cs'8 fs'8 a'8 fs'8 a'8 fs'8 cs'8 a'8 fs'8 a'8 cs''8 a'8 cs''8 a'8 fs'8 cs''8 }
-    \header {piece = "F#m (ii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯m (ii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 gs,8 cs8 gs,8 cs8 gs,8 e,8 cs8 gs,8 cs8 e8 cs8 e8 cs8 gs,8 e8 cs8 e8 gs8 e8 gs8 e8 cs8 gs8 e8 gs8 cs'8 gs8 cs'8 gs8 e8 cs'8 gs8 cs'8 e'8 cs'8 e'8 cs'8 gs8 e'8 cs'8 e'8 gs'8 e'8 gs'8 e'8 cs'8 gs'8 e'8 gs'8 cs''8 gs'8 cs''8 gs'8 e'8 cs''8 gs'8 cs''8 e''8 cs''8 e''8 cs''8 gs'8 e''8 }
-    \header {piece = "C#m (vi)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯m (vi)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gs,8 b,8 ds8 b,8 ds8 b,8 gs,8 ds8 b,8 ds8 gs8 ds8 gs8 ds8 b,8 gs8 ds8 gs8 b8 gs8 b8 gs8 ds8 b8 gs8 b8 ds'8 b8 ds'8 b8 gs8 ds'8 b8 ds'8 gs'8 ds'8 gs'8 ds'8 b8 gs'8 ds'8 gs'8 b'8 gs'8 b'8 gs'8 ds'8 b'8 gs'8 b'8 ds''8 b'8 ds''8 b'8 gs'8 ds''8 }
-    \header {piece = "G#m (iii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯m (iii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 gs,4 as,4 b,4 cs4 ds4 e4 fs4 gs4 as4 b4 cs'4 ds'4 e'4 fs'4 gs'4 as'4 b'4 cs''4 ds''4 e''4 }
-    \header {title = "B Major" piece = "B Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "B major" piece = "B major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -241,12 +244,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 cs8 as,8 cs8 as,8 fs,8 cs8 as,8 cs8 fs8 cs8 fs8 cs8 as,8 fs8 cs8 fs8 as8 fs8 as8 fs8 cs8 as8 fs8 as8 cs'8 as8 cs'8 as8 fs8 cs'8 as8 cs'8 fs'8 cs'8 fs'8 cs'8 as8 fs'8 cs'8 fs'8 as'8 fs'8 as'8 fs'8 cs'8 as'8 fs'8 as'8 cs''8 as'8 cs''8 as'8 fs'8 cs''8 }
-    \header {piece = "F# (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 as,8 cs8 as,8 cs8 as,8 e,8 cs8 as,8 cs8 e8 cs8 e8 cs8 as,8 e8 cs8 e8 as8 e8 as8 e8 cs8 as8 e8 as8 cs'8 as8 cs'8 as8 e8 cs'8 as8 cs'8 e'8 cs'8 e'8 cs'8 as8 e'8 cs'8 e'8 as'8 e'8 as'8 e'8 cs'8 as'8 e'8 as'8 cs''8 as'8 cs''8 as'8 e'8 cs''8 as'8 cs''8 e''8 cs''8 e''8 cs''8 as'8 e''8 }
-    \header {piece = "A#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -256,39 +259,39 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 gs,8 cs8 gs,8 cs8 gs,8 e,8 cs8 gs,8 cs8 e8 cs8 e8 cs8 gs,8 e8 cs8 e8 gs8 e8 gs8 e8 cs8 gs8 e8 gs8 cs'8 gs8 cs'8 gs8 e8 cs'8 gs8 cs'8 e'8 cs'8 e'8 cs'8 gs8 e'8 cs'8 e'8 gs'8 e'8 gs'8 e'8 cs'8 gs'8 e'8 gs'8 cs''8 gs'8 cs''8 gs'8 e'8 cs''8 gs'8 cs''8 e''8 cs''8 e''8 cs''8 gs'8 e''8 }
-    \header {piece = "C#m (ii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯m (ii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gs,8 b,8 ds8 b,8 ds8 b,8 gs,8 ds8 b,8 ds8 gs8 ds8 gs8 ds8 b,8 gs8 ds8 gs8 b8 gs8 b8 gs8 ds8 b8 gs8 b8 ds'8 b8 ds'8 b8 gs8 ds'8 b8 ds'8 gs'8 ds'8 gs'8 ds'8 b8 gs'8 ds'8 gs'8 b'8 gs'8 b'8 gs'8 ds'8 b'8 gs'8 b'8 ds''8 b'8 ds''8 b'8 gs'8 ds''8 }
-    \header {piece = "G#m (vi)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯m (vi)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 ds8 as,8 ds8 as,8 fs,8 ds8 as,8 ds8 fs8 ds8 fs8 ds8 as,8 fs8 ds8 fs8 as8 fs8 as8 fs8 ds8 as8 fs8 as8 ds'8 as8 ds'8 as8 fs8 ds'8 as8 ds'8 fs'8 ds'8 fs'8 ds'8 as8 fs'8 ds'8 fs'8 as'8 fs'8 as'8 fs'8 ds'8 as'8 fs'8 as'8 ds''8 as'8 ds''8 as'8 fs'8 ds''8 }
-    \header {piece = "D#m (iii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♯m (iii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 es,4 fs,4 gs,4 as,4 b,4 cs4 ds4 es4 fs4 gs4 as4 b4 cs'4 ds'4 es'4 fs'4 gs'4 as'4 b'4 cs''4 ds''4 }
-    \header {title = "F# Major" piece = "F# Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "F♯ major" piece = "F♯ major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 cs8 as,8 cs8 as,8 fs,8 cs8 as,8 cs8 fs8 cs8 fs8 cs8 as,8 fs8 cs8 fs8 as8 fs8 as8 fs8 cs8 as8 fs8 as8 cs'8 as8 cs'8 as8 fs8 cs'8 as8 cs'8 fs'8 cs'8 fs'8 cs'8 as8 fs'8 cs'8 fs'8 as'8 fs'8 as'8 fs'8 cs'8 as'8 fs'8 as'8 cs''8 as'8 cs''8 as'8 fs'8 cs''8 }
-    \header {piece = "F# (I)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯ (I)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 gs,8 cs8 gs,8 cs8 gs,8 es,8 cs8 gs,8 cs8 es8 cs8 es8 cs8 gs,8 es8 cs8 es8 gs8 es8 gs8 es8 cs8 gs8 es8 gs8 cs'8 gs8 cs'8 gs8 es8 cs'8 gs8 cs'8 es'8 cs'8 es'8 cs'8 gs8 es'8 cs'8 es'8 gs'8 es'8 gs'8 es'8 cs'8 gs'8 es'8 gs'8 cs''8 gs'8 cs''8 gs'8 es'8 cs''8 }
-    \header {piece = "C# (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 gs,8 b,8 gs,8 b,8 gs,8 es,8 b,8 gs,8 b,8 es8 b,8 es8 b,8 gs,8 es8 b,8 es8 gs8 es8 gs8 es8 b,8 gs8 es8 gs8 b8 gs8 b8 gs8 es8 b8 gs8 b8 es'8 b8 es'8 b8 gs8 es'8 b8 es'8 gs'8 es'8 gs'8 es'8 b8 gs'8 es'8 gs'8 b'8 gs'8 b'8 gs'8 es'8 b'8 }
-    \header {piece = "E#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -298,24 +301,24 @@
 
 \score {
     {\clef "treble_8" \time 4/4 gs,8 b,8 ds8 b,8 ds8 b,8 gs,8 ds8 b,8 ds8 gs8 ds8 gs8 ds8 b,8 gs8 ds8 gs8 b8 gs8 b8 gs8 ds8 b8 gs8 b8 ds'8 b8 ds'8 b8 gs8 ds'8 b8 ds'8 gs'8 ds'8 gs'8 ds'8 b8 gs'8 ds'8 gs'8 b'8 gs'8 b'8 gs'8 ds'8 b'8 gs'8 b'8 ds''8 b'8 ds''8 b'8 gs'8 ds''8 }
-    \header {piece = "G#m (ii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯m (ii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 ds8 as,8 ds8 as,8 fs,8 ds8 as,8 ds8 fs8 ds8 fs8 ds8 as,8 fs8 ds8 fs8 as8 fs8 as8 fs8 ds8 as8 fs8 as8 ds'8 as8 ds'8 as8 fs8 ds'8 as8 ds'8 fs'8 ds'8 fs'8 ds'8 as8 fs'8 ds'8 fs'8 as'8 fs'8 as'8 fs'8 ds'8 as'8 fs'8 as'8 ds''8 as'8 ds''8 as'8 fs'8 ds''8 }
-    \header {piece = "D#m (vi)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♯m (vi)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 as,8 cs8 as,8 cs8 as,8 es,8 cs8 as,8 cs8 es8 cs8 es8 cs8 as,8 es8 cs8 es8 as8 es8 as8 es8 cs8 as8 es8 as8 cs'8 as8 cs'8 as8 es8 cs'8 as8 cs'8 es'8 cs'8 es'8 cs'8 as8 es'8 cs'8 es'8 as'8 es'8 as'8 es'8 cs'8 as'8 es'8 as'8 cs''8 as'8 cs''8 as'8 es'8 cs''8 }
-    \header {piece = "A#m (iii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♯m (iii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 f,4 g,4 a,4 bf,4 c4 d4 e4 f4 g4 a4 bf4 c'4 d'4 e'4 f'4 g'4 a'4 bf'4 c''4 d''4 e''4 }
-    \header {title = "F Major" piece = "F Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "F major" piece = "F major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -335,7 +338,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 d8 bf,8 d8 bf,8 f,8 d8 bf,8 d8 f8 d8 f8 d8 bf,8 f8 d8 f8 bf8 f8 bf8 f8 d8 bf8 f8 bf8 d'8 bf8 d'8 bf8 f8 d'8 bf8 d'8 f'8 d'8 f'8 d'8 bf8 f'8 d'8 f'8 bf'8 f'8 bf'8 f'8 d'8 bf'8 f'8 bf'8 d''8 bf'8 d''8 bf'8 f'8 d''8 }
-    \header {piece = "Bb (IV)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭ (IV)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -357,12 +360,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 g,4 a,4 bf,4 c4 d4 ef4 f4 g4 a4 bf4 c'4 d'4 ef'4 f'4 g'4 a'4 bf'4 c''4 d''4 ef''4 }
-    \header {title = "Bb Major" piece = "Bb Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "B♭ major" piece = "B♭ major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 d8 bf,8 d8 bf,8 f,8 d8 bf,8 d8 f8 d8 f8 d8 bf,8 f8 d8 f8 bf8 f8 bf8 f8 d8 bf8 f8 bf8 d'8 bf8 d'8 bf8 f8 d'8 bf8 d'8 f'8 d'8 f'8 d'8 bf8 f'8 d'8 f'8 bf'8 f'8 bf'8 f'8 d'8 bf'8 f'8 bf'8 d''8 bf'8 d''8 bf'8 f'8 d''8 }
-    \header {piece = "Bb (I)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭ (I)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -377,7 +380,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 g,8 bf,8 ef8 bf,8 ef8 bf,8 g,8 ef8 bf,8 ef8 g8 ef8 g8 ef8 bf,8 g8 ef8 g8 bf8 g8 bf8 g8 ef8 bf8 g8 bf8 ef'8 bf8 ef'8 bf8 g8 ef'8 bf8 ef'8 g'8 ef'8 g'8 ef'8 bf8 g'8 ef'8 g'8 bf'8 g'8 bf'8 g'8 ef'8 bf'8 g'8 bf'8 ef''8 bf'8 ef''8 bf'8 g'8 ef''8 }
-    \header {piece = "Eb (IV)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭ (IV)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -399,17 +402,17 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 g,4 af,4 bf,4 c4 d4 ef4 f4 g4 af4 bf4 c'4 d'4 ef'4 f'4 g'4 af'4 bf'4 c''4 d''4 ef''4 }
-    \header {title = "Eb Major" piece = "Eb Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "E♭ major" piece = "E♭ major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 g,8 bf,8 ef8 bf,8 ef8 bf,8 g,8 ef8 bf,8 ef8 g8 ef8 g8 ef8 bf,8 g8 ef8 g8 bf8 g8 bf8 g8 ef8 bf8 g8 bf8 ef'8 bf8 ef'8 bf8 g8 ef'8 bf8 ef'8 g'8 ef'8 g'8 ef'8 bf8 g'8 ef'8 g'8 bf'8 g'8 bf'8 g'8 ef'8 bf'8 g'8 bf'8 ef''8 bf'8 ef''8 bf'8 g'8 ef''8 }
-    \header {piece = "Eb (I)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭ (I)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 d8 bf,8 d8 bf,8 f,8 d8 bf,8 d8 f8 d8 f8 d8 bf,8 f8 d8 f8 bf8 f8 bf8 f8 d8 bf8 f8 bf8 d'8 bf8 d'8 bf8 f8 d'8 bf8 d'8 f'8 d'8 f'8 d'8 bf8 f'8 d'8 f'8 bf'8 f'8 bf'8 f'8 d'8 bf'8 f'8 bf'8 d''8 bf'8 d''8 bf'8 f'8 d''8 }
-    \header {piece = "Bb (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -419,7 +422,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 af,8 c8 ef8 c8 ef8 c8 af,8 ef8 c8 ef8 af8 ef8 af8 ef8 c8 af8 ef8 af8 c'8 af8 c'8 af8 ef8 c'8 af8 c'8 ef'8 c'8 ef'8 c'8 af8 ef'8 c'8 ef'8 af'8 ef'8 af'8 ef'8 c'8 af'8 ef'8 af'8 c''8 af'8 c''8 af'8 ef'8 c''8 af'8 c''8 ef''8 c''8 ef''8 c''8 af'8 ef''8 }
-    \header {piece = "Ab (IV)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♭ (IV)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -441,17 +444,17 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 g,4 af,4 bf,4 c4 df4 ef4 f4 g4 af4 bf4 c'4 df'4 ef'4 f'4 g'4 af'4 bf'4 c''4 df''4 ef''4 }
-    \header {title = "Ab Major" piece = "Ab Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "A♭ major" piece = "A♭ major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 af,8 c8 ef8 c8 ef8 c8 af,8 ef8 c8 ef8 af8 ef8 af8 ef8 c8 af8 ef8 af8 c'8 af8 c'8 af8 ef8 c'8 af8 c'8 ef'8 c'8 ef'8 c'8 af8 ef'8 c'8 ef'8 af'8 ef'8 af'8 ef'8 c'8 af'8 ef'8 af'8 c''8 af'8 c''8 af'8 ef'8 c''8 af'8 c''8 ef''8 c''8 ef''8 c''8 af'8 ef''8 }
-    \header {piece = "Ab (I)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♭ (I)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 g,8 bf,8 ef8 bf,8 ef8 bf,8 g,8 ef8 bf,8 ef8 g8 ef8 g8 ef8 bf,8 g8 ef8 g8 bf8 g8 bf8 g8 ef8 bf8 g8 bf8 ef'8 bf8 ef'8 bf8 g8 ef'8 bf8 ef'8 g'8 ef'8 g'8 ef'8 bf8 g'8 ef'8 g'8 bf'8 g'8 bf'8 g'8 ef'8 bf'8 g'8 bf'8 ef''8 bf'8 ef''8 bf'8 g'8 ef''8 }
-    \header {piece = "Eb (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -461,12 +464,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 af,8 df8 af,8 df8 af,8 f,8 df8 af,8 df8 f8 df8 f8 df8 af,8 f8 df8 f8 af8 f8 af8 f8 df8 af8 f8 af8 df'8 af8 df'8 af8 f8 df'8 af8 df'8 f'8 df'8 f'8 df'8 af8 f'8 df'8 f'8 af'8 f'8 af'8 f'8 df'8 af'8 f'8 af'8 df''8 af'8 df''8 af'8 f'8 df''8 }
-    \header {piece = "Db (IV)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♭ (IV)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 df8 bf,8 df8 bf,8 f,8 df8 bf,8 df8 f8 df8 f8 df8 bf,8 f8 df8 f8 bf8 f8 bf8 f8 df8 bf8 f8 bf8 df'8 bf8 df'8 bf8 f8 df'8 bf8 df'8 f'8 df'8 f'8 df'8 bf8 f'8 df'8 f'8 bf'8 f'8 bf'8 f'8 df'8 bf'8 f'8 bf'8 df''8 bf'8 df''8 bf'8 f'8 df''8 }
-    \header {piece = "Bbm (ii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭m (ii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -483,17 +486,17 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 gf,4 af,4 bf,4 c4 df4 ef4 f4 gf4 af4 bf4 c'4 df'4 ef'4 f'4 gf'4 af'4 bf'4 c''4 df''4 ef''4 }
-    \header {title = "Db Major" piece = "Db Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "D♭ major" piece = "D♭ major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 af,8 df8 af,8 df8 af,8 f,8 df8 af,8 df8 f8 df8 f8 df8 af,8 f8 df8 f8 af8 f8 af8 f8 df8 af8 f8 af8 df'8 af8 df'8 af8 f8 df'8 af8 df'8 f'8 df'8 f'8 df'8 af8 f'8 df'8 f'8 af'8 f'8 af'8 f'8 df'8 af'8 f'8 af'8 df''8 af'8 df''8 af'8 f'8 df''8 }
-    \header {piece = "Db (I)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♭ (I)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 af,8 c8 ef8 c8 ef8 c8 af,8 ef8 c8 ef8 af8 ef8 af8 ef8 c8 af8 ef8 af8 c'8 af8 c'8 af8 ef8 c'8 af8 c'8 ef'8 c'8 ef'8 c'8 af8 ef'8 c'8 ef'8 af'8 ef'8 af'8 ef'8 c'8 af'8 ef'8 af'8 c''8 af'8 c''8 af'8 ef'8 c''8 af'8 c''8 ef''8 c''8 ef''8 c''8 af'8 ef''8 }
-    \header {piece = "Ab (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♭ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -503,17 +506,17 @@
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 bf,8 df8 bf,8 df8 bf,8 gf,8 df8 bf,8 df8 gf8 df8 gf8 df8 bf,8 gf8 df8 gf8 bf8 gf8 bf8 gf8 df8 bf8 gf8 bf8 df'8 bf8 df'8 bf8 gf8 df'8 bf8 df'8 gf'8 df'8 gf'8 df'8 bf8 gf'8 df'8 gf'8 bf'8 gf'8 bf'8 gf'8 df'8 bf'8 gf'8 bf'8 df''8 bf'8 df''8 bf'8 gf'8 df''8 }
-    \header {piece = "Gb (IV)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♭ (IV)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 bf,8 ef8 bf,8 ef8 bf,8 gf,8 ef8 bf,8 ef8 gf8 ef8 gf8 ef8 bf,8 gf8 ef8 gf8 bf8 gf8 bf8 gf8 ef8 bf8 gf8 bf8 ef'8 bf8 ef'8 bf8 gf8 ef'8 bf8 ef'8 gf'8 ef'8 gf'8 ef'8 bf8 gf'8 ef'8 gf'8 bf'8 gf'8 bf'8 gf'8 ef'8 bf'8 gf'8 bf'8 ef''8 bf'8 ef''8 bf'8 gf'8 ef''8 }
-    \header {piece = "Ebm (ii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭m (ii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 df8 bf,8 df8 bf,8 f,8 df8 bf,8 df8 f8 df8 f8 df8 bf,8 f8 df8 f8 bf8 f8 bf8 f8 df8 bf8 f8 bf8 df'8 bf8 df'8 bf8 f8 df'8 bf8 df'8 f'8 df'8 f'8 df'8 bf8 f'8 df'8 f'8 bf'8 f'8 bf'8 f'8 df'8 bf'8 f'8 bf'8 df''8 bf'8 df''8 bf'8 f'8 df''8 }
-    \header {piece = "Bbm (vi)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭m (vi)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -525,17 +528,17 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 gf,4 af,4 bf,4 cf4 df4 ef4 f4 gf4 af4 bf4 cf'4 df'4 ef'4 f'4 gf'4 af'4 bf'4 cf''4 df''4 ef''4 }
-    \header {title = "Gb Major" piece = "Gb Major scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "G♭ major" piece = "G♭ major scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 bf,8 df8 bf,8 df8 bf,8 gf,8 df8 bf,8 df8 gf8 df8 gf8 df8 bf,8 gf8 df8 gf8 bf8 gf8 bf8 gf8 df8 bf8 gf8 bf8 df'8 bf8 df'8 bf8 gf8 df'8 bf8 df'8 gf'8 df'8 gf'8 df'8 bf8 gf'8 df'8 gf'8 bf'8 gf'8 bf'8 gf'8 df'8 bf'8 gf'8 bf'8 df''8 bf'8 df''8 bf'8 gf'8 df''8 }
-    \header {piece = "Gb (I)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♭ (I)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 af,8 df8 af,8 df8 af,8 f,8 df8 af,8 df8 f8 df8 f8 df8 af,8 f8 df8 f8 af8 f8 af8 f8 df8 af8 f8 af8 df'8 af8 df'8 af8 f8 df'8 af8 df'8 f'8 df'8 f'8 df'8 af8 f'8 df'8 f'8 af'8 f'8 af'8 f'8 df'8 af'8 f'8 af'8 df''8 af'8 df''8 af'8 f'8 df''8 }
-    \header {piece = "Db (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♭ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -545,34 +548,34 @@
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 cf8 ef8 cf8 ef8 cf8 gf,8 ef8 cf8 ef8 gf8 ef8 gf8 ef8 cf8 gf8 ef8 gf8 cf'8 gf8 cf'8 gf8 ef8 cf'8 gf8 cf'8 ef'8 cf'8 ef'8 cf'8 gf8 ef'8 cf'8 ef'8 gf'8 ef'8 gf'8 ef'8 cf'8 gf'8 ef'8 gf'8 cf''8 gf'8 cf''8 gf'8 ef'8 cf''8 gf'8 cf''8 ef''8 cf''8 ef''8 cf''8 gf'8 ef''8 }
-    \header {piece = "Cb (IV)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♭ (IV)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 af,8 cf8 ef8 cf8 ef8 cf8 af,8 ef8 cf8 ef8 af8 ef8 af8 ef8 cf8 af8 ef8 af8 cf'8 af8 cf'8 af8 ef8 cf'8 af8 cf'8 ef'8 cf'8 ef'8 cf'8 af8 ef'8 cf'8 ef'8 af'8 ef'8 af'8 ef'8 cf'8 af'8 ef'8 af'8 cf''8 af'8 cf''8 af'8 ef'8 cf''8 af'8 cf''8 ef''8 cf''8 ef''8 cf''8 af'8 ef''8 }
-    \header {piece = "Abm (ii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♭m (ii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 bf,8 ef8 bf,8 ef8 bf,8 gf,8 ef8 bf,8 ef8 gf8 ef8 gf8 ef8 bf,8 gf8 ef8 gf8 bf8 gf8 bf8 gf8 ef8 bf8 gf8 bf8 ef'8 bf8 ef'8 bf8 gf8 ef'8 bf8 ef'8 gf'8 ef'8 gf'8 ef'8 bf8 gf'8 ef'8 gf'8 bf'8 gf'8 bf'8 gf'8 ef'8 bf'8 gf'8 bf'8 ef''8 bf'8 ef''8 bf'8 gf'8 ef''8 }
-    \header {piece = "Ebm (vi)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭m (vi)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 df8 bf,8 df8 bf,8 f,8 df8 bf,8 df8 f8 df8 f8 df8 bf,8 f8 df8 f8 bf8 f8 bf8 f8 df8 bf8 f8 bf8 df'8 bf8 df'8 bf8 f8 df'8 bf8 df'8 f'8 df'8 f'8 df'8 bf8 f'8 df'8 f'8 bf'8 f'8 bf'8 f'8 df'8 bf'8 f'8 bf'8 df''8 bf'8 df''8 bf'8 f'8 df''8 }
-    \header {piece = "Bbm (iii)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭m (iii)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 f,4 g,4 a,4 b,4 c4 d4 e4 f4 g4 a4 b4 c'4 d'4 e'4 f'4 g'4 a'4 b'4 c''4 d''4 e''4 }
-    \header {title = "A Minor" piece = "A Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "A minor" piece = "A minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 f,4 gs,4 a,4 b,4 c4 d4 e4 f4 gs4 a4 b4 c'4 d'4 e'4 f'4 gs'4 a'4 b'4 c''4 d''4 e''4 }
-    \header {piece = "A Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -592,7 +595,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 gs,8 b,8 d8 b,8 d8 b,8 gs,8 d8 b,8 d8 gs8 d8 gs8 d8 b,8 gs8 d8 gs8 b8 gs8 b8 gs8 d8 b8 gs8 b8 d'8 b8 d'8 b8 gs8 d'8 b8 d'8 gs'8 d'8 gs'8 d'8 b8 gs'8 d'8 gs'8 b'8 gs'8 b'8 gs'8 d'8 b'8 gs'8 b'8 d''8 b'8 d''8 b'8 gs'8 d''8 }
-    \header {piece = "G#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -617,7 +620,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 gs,8 c8 gs,8 c8 gs,8 e,8 c8 gs,8 c8 e8 c8 e8 c8 gs,8 e8 c8 e8 gs8 e8 gs8 e8 c8 gs8 e8 gs8 c'8 gs8 c'8 gs8 e8 c'8 gs8 c'8 e'8 c'8 e'8 c'8 gs8 e'8 c'8 e'8 gs'8 e'8 gs'8 e'8 c'8 gs'8 e'8 gs'8 c''8 gs'8 c''8 gs'8 e'8 c''8 gs'8 c''8 e''8 c''8 e''8 c''8 gs'8 e''8 }
-    \header {piece = "Caug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -629,12 +632,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 g,4 a,4 b,4 c4 d4 e4 fs4 g4 a4 b4 c'4 d'4 e'4 fs'4 g'4 a'4 b'4 c''4 d''4 e''4 }
-    \header {title = "E Minor" piece = "E Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "E minor" piece = "E minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 g,4 a,4 b,4 c4 ds4 e4 fs4 g4 a4 b4 c'4 ds'4 e'4 fs'4 g'4 a'4 b'4 c''4 ds''4 e''4 }
-    \header {piece = "E Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -654,7 +657,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 ds8 a,8 ds8 a,8 fs,8 ds8 a,8 ds8 fs8 ds8 fs8 ds8 a,8 fs8 ds8 fs8 a8 fs8 a8 fs8 ds8 a8 fs8 a8 ds'8 a8 ds'8 a8 fs8 ds'8 a8 ds'8 fs'8 ds'8 fs'8 ds'8 a8 fs'8 ds'8 fs'8 a'8 fs'8 a'8 fs'8 ds'8 a'8 fs'8 a'8 ds''8 a'8 ds''8 a'8 fs'8 ds''8 }
-    \header {piece = "D#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -669,7 +672,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 c8 a,8 c8 a,8 fs,8 c8 a,8 c8 fs8 c8 fs8 c8 a,8 fs8 c8 fs8 a8 fs8 a8 fs8 c8 a8 fs8 a8 c'8 a8 c'8 a8 fs8 c'8 a8 c'8 fs'8 c'8 fs'8 c'8 a8 fs'8 c'8 fs'8 a'8 fs'8 a'8 fs'8 c'8 a'8 fs'8 a'8 c''8 a'8 c''8 a'8 fs'8 c''8 }
-    \header {piece = "F#dim (ii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯dim (ii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -679,7 +682,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 g,8 b,8 ds8 b,8 ds8 b,8 g,8 ds8 b,8 ds8 g8 ds8 g8 ds8 b,8 g8 ds8 g8 b8 g8 b8 g8 ds8 b8 g8 b8 ds'8 b8 ds'8 b8 g8 ds'8 b8 ds'8 g'8 ds'8 g'8 ds'8 b8 g'8 ds'8 g'8 b'8 g'8 b'8 g'8 ds'8 b'8 g'8 b'8 ds''8 b'8 ds''8 b'8 g'8 ds''8 }
-    \header {piece = "Gaug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -691,12 +694,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 g,4 a,4 b,4 cs4 d4 e4 fs4 g4 a4 b4 cs'4 d'4 e'4 fs'4 g'4 a'4 b'4 cs''4 d''4 e''4 }
-    \header {title = "B Minor" piece = "B Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "B minor" piece = "B minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 g,4 as,4 b,4 cs4 d4 e4 fs4 g4 as4 b4 cs'4 d'4 e'4 fs'4 g'4 as'4 b'4 cs''4 d''4 e''4 }
-    \header {piece = "B Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -706,17 +709,17 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 cs8 as,8 cs8 as,8 fs,8 cs8 as,8 cs8 fs8 cs8 fs8 cs8 as,8 fs8 cs8 fs8 as8 fs8 as8 fs8 cs8 as8 fs8 as8 cs'8 as8 cs'8 as8 fs8 cs'8 as8 cs'8 fs'8 cs'8 fs'8 cs'8 as8 fs'8 cs'8 fs'8 as'8 fs'8 as'8 fs'8 cs'8 as'8 fs'8 as'8 cs''8 as'8 cs''8 as'8 fs'8 cs''8 }
-    \header {piece = "F# (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 cs8 a,8 cs8 a,8 fs,8 cs8 a,8 cs8 fs8 cs8 fs8 cs8 a,8 fs8 cs8 fs8 a8 fs8 a8 fs8 cs8 a8 fs8 a8 cs'8 a8 cs'8 a8 fs8 cs'8 a8 cs'8 fs'8 cs'8 fs'8 cs'8 a8 fs'8 cs'8 fs'8 a'8 fs'8 a'8 fs'8 cs'8 a'8 fs'8 a'8 cs''8 a'8 cs''8 a'8 fs'8 cs''8 }
-    \header {piece = "F#m (v)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯m (v)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 as,8 cs8 as,8 cs8 as,8 e,8 cs8 as,8 cs8 e8 cs8 e8 cs8 as,8 e8 cs8 e8 as8 e8 as8 e8 cs8 as8 e8 as8 cs'8 as8 cs'8 as8 e8 cs'8 as8 cs'8 e'8 cs'8 e'8 cs'8 as8 e'8 cs'8 e'8 as'8 e'8 as'8 e'8 cs'8 as'8 e'8 as'8 cs''8 as'8 cs''8 as'8 e'8 cs''8 as'8 cs''8 e''8 cs''8 e''8 cs''8 as'8 e''8 }
-    \header {piece = "A#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -731,7 +734,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 g,8 cs8 g,8 cs8 g,8 e,8 cs8 g,8 cs8 e8 cs8 e8 cs8 g,8 e8 cs8 e8 g8 e8 g8 e8 cs8 g8 e8 g8 cs'8 g8 cs'8 g8 e8 cs'8 g8 cs'8 e'8 cs'8 e'8 cs'8 g8 e'8 cs'8 e'8 g'8 e'8 g'8 e'8 cs'8 g'8 e'8 g'8 cs''8 g'8 cs''8 g'8 e'8 cs''8 g'8 cs''8 e''8 cs''8 e''8 cs''8 g'8 e''8 }
-    \header {piece = "C#dim (ii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯dim (ii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -741,7 +744,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 d8 as,8 d8 as,8 fs,8 d8 as,8 d8 fs8 d8 fs8 d8 as,8 fs8 d8 fs8 as8 fs8 as8 fs8 d8 as8 fs8 as8 d'8 as8 d'8 as8 fs8 d'8 as8 d'8 fs'8 d'8 fs'8 d'8 as8 fs'8 d'8 fs'8 as'8 fs'8 as'8 fs'8 d'8 as'8 fs'8 as'8 d''8 as'8 d''8 as'8 fs'8 d''8 }
-    \header {piece = "Daug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -753,32 +756,32 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 gs,4 a,4 b,4 cs4 d4 e4 fs4 gs4 a4 b4 cs'4 d'4 e'4 fs'4 gs'4 a'4 b'4 cs''4 d''4 e''4 }
-    \header {title = "F# Minor" piece = "F# Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "F♯ minor" piece = "F♯ minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,4 fs,4 gs,4 a,4 b,4 cs4 d4 es4 fs4 gs4 a4 b4 cs'4 d'4 es'4 fs'4 gs'4 a'4 b'4 cs''4 d''4 }
-    \header {piece = "F# Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯ harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 cs8 a,8 cs8 a,8 fs,8 cs8 a,8 cs8 fs8 cs8 fs8 cs8 a,8 fs8 cs8 fs8 a8 fs8 a8 fs8 cs8 a8 fs8 a8 cs'8 a8 cs'8 a8 fs8 cs'8 a8 cs'8 fs'8 cs'8 fs'8 cs'8 a8 fs'8 cs'8 fs'8 a'8 fs'8 a'8 fs'8 cs'8 a'8 fs'8 a'8 cs''8 a'8 cs''8 a'8 fs'8 cs''8 }
-    \header {piece = "F#m (i)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯m (i)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 gs,8 cs8 gs,8 cs8 gs,8 es,8 cs8 gs,8 cs8 es8 cs8 es8 cs8 gs,8 es8 cs8 es8 gs8 es8 gs8 es8 cs8 gs8 es8 gs8 cs'8 gs8 cs'8 gs8 es8 cs'8 gs8 cs'8 es'8 cs'8 es'8 cs'8 gs8 es'8 cs'8 es'8 gs'8 es'8 gs'8 es'8 cs'8 gs'8 es'8 gs'8 cs''8 gs'8 cs''8 gs'8 es'8 cs''8 }
-    \header {piece = "C# (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 gs,8 cs8 gs,8 cs8 gs,8 e,8 cs8 gs,8 cs8 e8 cs8 e8 cs8 gs,8 e8 cs8 e8 gs8 e8 gs8 e8 cs8 gs8 e8 gs8 cs'8 gs8 cs'8 gs8 e8 cs'8 gs8 cs'8 e'8 cs'8 e'8 cs'8 gs8 e'8 cs'8 e'8 gs'8 e'8 gs'8 e'8 cs'8 gs'8 e'8 gs'8 cs''8 gs'8 cs''8 gs'8 e'8 cs''8 gs'8 cs''8 e''8 cs''8 e''8 cs''8 gs'8 e''8 }
-    \header {piece = "C#m (v)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯m (v)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 gs,8 b,8 gs,8 b,8 gs,8 es,8 b,8 gs,8 b,8 es8 b,8 es8 b,8 gs,8 es8 b,8 es8 gs8 es8 gs8 es8 b,8 gs8 es8 gs8 b8 gs8 b8 gs8 es8 b8 gs8 b8 es'8 b8 es'8 b8 gs8 es'8 b8 es'8 gs'8 es'8 gs'8 es'8 b8 gs'8 es'8 gs'8 b'8 gs'8 b'8 gs'8 es'8 b'8 }
-    \header {piece = "E#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -793,7 +796,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 gs,8 b,8 d8 b,8 d8 b,8 gs,8 d8 b,8 d8 gs8 d8 gs8 d8 b,8 gs8 d8 gs8 b8 gs8 b8 gs8 d8 b8 gs8 b8 d'8 b8 d'8 b8 gs8 d'8 b8 d'8 gs'8 d'8 gs'8 d'8 b8 gs'8 d'8 gs'8 b'8 gs'8 b'8 gs'8 d'8 b'8 gs'8 b'8 d''8 b'8 d''8 b'8 gs'8 d''8 }
-    \header {piece = "G#dim (ii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯dim (ii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -803,7 +806,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 a,8 cs8 a,8 cs8 a,8 es,8 cs8 a,8 cs8 es8 cs8 es8 cs8 a,8 es8 cs8 es8 a8 es8 a8 es8 cs8 a8 es8 a8 cs'8 a8 cs'8 a8 es8 cs'8 a8 cs'8 es'8 cs'8 es'8 cs'8 a8 es'8 cs'8 es'8 a'8 es'8 a'8 es'8 cs'8 a'8 es'8 a'8 cs''8 a'8 cs''8 a'8 es'8 cs''8 }
-    \header {piece = "Aaug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -815,32 +818,32 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 gs,4 a,4 b,4 cs4 ds4 e4 fs4 gs4 a4 b4 cs'4 ds'4 e'4 fs'4 gs'4 a'4 b'4 cs''4 ds''4 e''4 }
-    \header {title = "C# Minor" piece = "C# Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "C♯ minor" piece = "C♯ minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 gs,4 a,4 bs,4 cs4 ds4 e4 fs4 gs4 a4 bs4 cs'4 ds'4 e'4 fs'4 gs'4 a'4 bs'4 cs''4 ds''4 e''4 }
-    \header {piece = "C# Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯ harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 gs,8 cs8 gs,8 cs8 gs,8 e,8 cs8 gs,8 cs8 e8 cs8 e8 cs8 gs,8 e8 cs8 e8 gs8 e8 gs8 e8 cs8 gs8 e8 gs8 cs'8 gs8 cs'8 gs8 e8 cs'8 gs8 cs'8 e'8 cs'8 e'8 cs'8 gs8 e'8 cs'8 e'8 gs'8 e'8 gs'8 e'8 cs'8 gs'8 e'8 gs'8 cs''8 gs'8 cs''8 gs'8 e'8 cs''8 gs'8 cs''8 e''8 cs''8 e''8 cs''8 gs'8 e''8 }
-    \header {piece = "C#m (i)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯m (i)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gs,8 bs,8 ds8 bs,8 ds8 bs,8 gs,8 ds8 bs,8 ds8 gs8 ds8 gs8 ds8 bs,8 gs8 ds8 gs8 bs8 gs8 bs8 gs8 ds8 bs8 gs8 bs8 ds'8 bs8 ds'8 bs8 gs8 ds'8 bs8 ds'8 gs'8 ds'8 gs'8 ds'8 bs8 gs'8 ds'8 gs'8 bs'8 gs'8 bs'8 gs'8 ds'8 bs'8 gs'8 bs'8 ds''8 bs'8 ds''8 bs'8 gs'8 ds''8 }
-    \header {piece = "G# (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gs,8 b,8 ds8 b,8 ds8 b,8 gs,8 ds8 b,8 ds8 gs8 ds8 gs8 ds8 b,8 gs8 ds8 gs8 b8 gs8 b8 gs8 ds8 b8 gs8 b8 ds'8 b8 ds'8 b8 gs8 ds'8 b8 ds'8 gs'8 ds'8 gs'8 ds'8 b8 gs'8 ds'8 gs'8 b'8 gs'8 b'8 gs'8 ds'8 b'8 gs'8 b'8 ds''8 b'8 ds''8 b'8 gs'8 ds''8 }
-    \header {piece = "G#m (v)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯m (v)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 bs,8 ds8 bs,8 ds8 bs,8 fs,8 ds8 bs,8 ds8 fs8 ds8 fs8 ds8 bs,8 fs8 ds8 fs8 bs8 fs8 bs8 fs8 ds8 bs8 fs8 bs8 ds'8 bs8 ds'8 bs8 fs8 ds'8 bs8 ds'8 fs'8 ds'8 fs'8 ds'8 bs8 fs'8 ds'8 fs'8 bs'8 fs'8 bs'8 fs'8 ds'8 bs'8 fs'8 bs'8 ds''8 bs'8 ds''8 bs'8 fs'8 ds''8 }
-    \header {piece = "B#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -850,12 +853,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 cs8 a,8 cs8 a,8 fs,8 cs8 a,8 cs8 fs8 cs8 fs8 cs8 a,8 fs8 cs8 fs8 a8 fs8 a8 fs8 cs8 a8 fs8 a8 cs'8 a8 cs'8 a8 fs8 cs'8 a8 cs'8 fs'8 cs'8 fs'8 cs'8 a8 fs'8 cs'8 fs'8 a'8 fs'8 a'8 fs'8 cs'8 a'8 fs'8 a'8 cs''8 a'8 cs''8 a'8 fs'8 cs''8 }
-    \header {piece = "F#m (iv)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯m (iv)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 ds8 a,8 ds8 a,8 fs,8 ds8 a,8 ds8 fs8 ds8 fs8 ds8 a,8 fs8 ds8 fs8 a8 fs8 a8 fs8 ds8 a8 fs8 a8 ds'8 a8 ds'8 a8 fs8 ds'8 a8 ds'8 fs'8 ds'8 fs'8 ds'8 a8 fs'8 ds'8 fs'8 a'8 fs'8 a'8 fs'8 ds'8 a'8 fs'8 a'8 ds''8 a'8 ds''8 a'8 fs'8 ds''8 }
-    \header {piece = "D#dim (ii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♯dim (ii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -865,7 +868,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 gs,8 bs,8 gs,8 bs,8 gs,8 e,8 bs,8 gs,8 bs,8 e8 bs,8 e8 bs,8 gs,8 e8 bs,8 e8 gs8 e8 gs8 e8 bs,8 gs8 e8 gs8 bs8 gs8 bs8 gs8 e8 bs8 gs8 bs8 e'8 bs8 e'8 bs8 gs8 e'8 bs8 e'8 gs'8 e'8 gs'8 e'8 bs8 gs'8 e'8 gs'8 bs'8 gs'8 bs'8 gs'8 e'8 bs'8 gs'8 bs'8 e''8 bs'8 e''8 bs'8 gs'8 e''8 }
-    \header {piece = "Eaug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -877,47 +880,47 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fs,4 gs,4 as,4 b,4 cs4 ds4 e4 fs4 gs4 as4 b4 cs'4 ds'4 e'4 fs'4 gs'4 as'4 b'4 cs''4 ds''4 e''4 }
-    \header {title = "G# Minor" piece = "G# Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "G♯ minor" piece = "G♯ minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 fss,4 gs,4 as,4 b,4 cs4 ds4 e4 fss4 gs4 as4 b4 cs'4 ds'4 e'4 fss'4 gs'4 as'4 b'4 cs''4 ds''4 e''4 }
-    \header {piece = "G# Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯ harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gs,8 b,8 ds8 b,8 ds8 b,8 gs,8 ds8 b,8 ds8 gs8 ds8 gs8 ds8 b,8 gs8 ds8 gs8 b8 gs8 b8 gs8 ds8 b8 gs8 b8 ds'8 b8 ds'8 b8 gs8 ds'8 b8 ds'8 gs'8 ds'8 gs'8 ds'8 b8 gs'8 ds'8 gs'8 b'8 gs'8 b'8 gs'8 ds'8 b'8 gs'8 b'8 ds''8 b'8 ds''8 b'8 gs'8 ds''8 }
-    \header {piece = "G#m (i)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯m (i)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fss,8 as,8 ds8 as,8 ds8 as,8 fss,8 ds8 as,8 ds8 fss8 ds8 fss8 ds8 as,8 fss8 ds8 fss8 as8 fss8 as8 fss8 ds8 as8 fss8 as8 ds'8 as8 ds'8 as8 fss8 ds'8 as8 ds'8 fss'8 ds'8 fss'8 ds'8 as8 fss'8 ds'8 fss'8 as'8 fss'8 as'8 fss'8 ds'8 as'8 fss'8 as'8 ds''8 as'8 ds''8 as'8 fss'8 ds''8 }
-    \header {piece = "D# (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♯ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 ds8 as,8 ds8 as,8 fs,8 ds8 as,8 ds8 fs8 ds8 fs8 ds8 as,8 fs8 ds8 fs8 as8 fs8 as8 fs8 ds8 as8 fs8 as8 ds'8 as8 ds'8 as8 fs8 ds'8 as8 ds'8 fs'8 ds'8 fs'8 ds'8 as8 fs'8 ds'8 fs'8 as'8 fs'8 as'8 fs'8 ds'8 as'8 fs'8 as'8 ds''8 as'8 ds''8 as'8 fs'8 ds''8 }
-    \header {piece = "D#m (v)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♯m (v)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fss,8 as,8 cs8 as,8 cs8 as,8 fss,8 cs8 as,8 cs8 fss8 cs8 fss8 cs8 as,8 fss8 cs8 fss8 as8 fss8 as8 fss8 cs8 as8 fss8 as8 cs'8 as8 cs'8 as8 fss8 cs'8 as8 cs'8 fss'8 cs'8 fss'8 cs'8 as8 fss'8 cs'8 fss'8 as'8 fss'8 as'8 fss'8 cs'8 as'8 fss'8 as'8 cs''8 as'8 cs''8 as'8 fss'8 cs''8 }
-    \header {piece = "F##dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F𝄪dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 cs8 as,8 cs8 as,8 fs,8 cs8 as,8 cs8 fs8 cs8 fs8 cs8 as,8 fs8 cs8 fs8 as8 fs8 as8 fs8 cs8 as8 fs8 as8 cs'8 as8 cs'8 as8 fs8 cs'8 as8 cs'8 fs'8 cs'8 fs'8 cs'8 as8 fs'8 cs'8 fs'8 as'8 fs'8 as'8 fs'8 cs'8 as'8 fs'8 as'8 cs''8 as'8 cs''8 as'8 fs'8 cs''8 }
-    \header {piece = "F# (VII)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯ (VII)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 gs,8 cs8 gs,8 cs8 gs,8 e,8 cs8 gs,8 cs8 e8 cs8 e8 cs8 gs,8 e8 cs8 e8 gs8 e8 gs8 e8 cs8 gs8 e8 gs8 cs'8 gs8 cs'8 gs8 e8 cs'8 gs8 cs'8 e'8 cs'8 e'8 cs'8 gs8 e'8 cs'8 e'8 gs'8 e'8 gs'8 e'8 cs'8 gs'8 e'8 gs'8 cs''8 gs'8 cs''8 gs'8 e'8 cs''8 gs'8 cs''8 e''8 cs''8 e''8 cs''8 gs'8 e''8 }
-    \header {piece = "C#m (iv)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯m (iv)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 as,8 cs8 as,8 cs8 as,8 e,8 cs8 as,8 cs8 e8 cs8 e8 cs8 as,8 e8 cs8 e8 as8 e8 as8 e8 cs8 as8 e8 as8 cs'8 as8 cs'8 as8 e8 cs'8 as8 cs'8 e'8 cs'8 e'8 cs'8 as8 e'8 cs'8 e'8 as'8 e'8 as'8 e'8 cs'8 as'8 e'8 as'8 cs''8 as'8 cs''8 as'8 e'8 cs''8 as'8 cs''8 e''8 cs''8 e''8 cs''8 as'8 e''8 }
-    \header {piece = "A#dim (ii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♯dim (ii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -927,7 +930,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fss,8 b,8 ds8 b,8 ds8 b,8 fss,8 ds8 b,8 ds8 fss8 ds8 fss8 ds8 b,8 fss8 ds8 fss8 b8 fss8 b8 fss8 ds8 b8 fss8 b8 ds'8 b8 ds'8 b8 fss8 ds'8 b8 ds'8 fss'8 ds'8 fss'8 ds'8 b8 fss'8 ds'8 fss'8 b'8 fss'8 b'8 fss'8 ds'8 b'8 fss'8 b'8 ds''8 b'8 ds''8 b'8 fss'8 ds''8 }
-    \header {piece = "Baug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -939,47 +942,47 @@
 
 \score {
     {\clef "treble_8" \time 4/4 es,4 fs,4 gs,4 as,4 b,4 cs4 ds4 es4 fs4 gs4 as4 b4 cs'4 ds'4 es'4 fs'4 gs'4 as'4 b'4 cs''4 ds''4 }
-    \header {title = "D# Minor" piece = "D# Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "D♯ minor" piece = "D♯ minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,4 fs,4 gs,4 as,4 b,4 css4 ds4 es4 fs4 gs4 as4 b4 css'4 ds'4 es'4 fs'4 gs'4 as'4 b'4 css''4 ds''4 }
-    \header {piece = "D# Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♯ harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 ds8 as,8 ds8 as,8 fs,8 ds8 as,8 ds8 fs8 ds8 fs8 ds8 as,8 fs8 ds8 fs8 as8 fs8 as8 fs8 ds8 as8 fs8 as8 ds'8 as8 ds'8 as8 fs8 ds'8 as8 ds'8 fs'8 ds'8 fs'8 ds'8 as8 fs'8 ds'8 fs'8 as'8 fs'8 as'8 fs'8 ds'8 as'8 fs'8 as'8 ds''8 as'8 ds''8 as'8 fs'8 ds''8 }
-    \header {piece = "D#m (i)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♯m (i)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 as,8 css8 as,8 css8 as,8 es,8 css8 as,8 css8 es8 css8 es8 css8 as,8 es8 css8 es8 as8 es8 as8 es8 css8 as8 es8 as8 css'8 as8 css'8 as8 es8 css'8 as8 css'8 es'8 css'8 es'8 css'8 as8 es'8 css'8 es'8 as'8 es'8 as'8 es'8 css'8 as'8 es'8 as'8 css''8 as'8 css''8 as'8 es'8 css''8 }
-    \header {piece = "A# (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♯ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 as,8 cs8 as,8 cs8 as,8 es,8 cs8 as,8 cs8 es8 cs8 es8 cs8 as,8 es8 cs8 es8 as8 es8 as8 es8 cs8 as8 es8 as8 cs'8 as8 cs'8 as8 es8 cs'8 as8 cs'8 es'8 cs'8 es'8 cs'8 as8 es'8 cs'8 es'8 as'8 es'8 as'8 es'8 cs'8 as'8 es'8 as'8 cs''8 as'8 cs''8 as'8 es'8 cs''8 }
-    \header {piece = "A#m (v)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♯m (v)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 gs,8 css8 gs,8 css8 gs,8 es,8 css8 gs,8 css8 es8 css8 es8 css8 gs,8 es8 css8 es8 gs8 es8 gs8 es8 css8 gs8 es8 gs8 css'8 gs8 css'8 gs8 es8 css'8 gs8 css'8 es'8 css'8 es'8 css'8 gs8 es'8 css'8 es'8 gs'8 es'8 gs'8 es'8 css'8 gs'8 es'8 gs'8 css''8 gs'8 css''8 gs'8 es'8 css''8 }
-    \header {piece = "C##dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C𝄪dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 gs,8 cs8 gs,8 cs8 gs,8 es,8 cs8 gs,8 cs8 es8 cs8 es8 cs8 gs,8 es8 cs8 es8 gs8 es8 gs8 es8 cs8 gs8 es8 gs8 cs'8 gs8 cs'8 gs8 es8 cs'8 gs8 cs'8 es'8 cs'8 es'8 cs'8 gs8 es'8 cs'8 es'8 gs'8 es'8 gs'8 es'8 cs'8 gs'8 es'8 gs'8 cs''8 gs'8 cs''8 gs'8 es'8 cs''8 }
-    \header {piece = "C# (VII)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯ (VII)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gs,8 b,8 ds8 b,8 ds8 b,8 gs,8 ds8 b,8 ds8 gs8 ds8 gs8 ds8 b,8 gs8 ds8 gs8 b8 gs8 b8 gs8 ds8 b8 gs8 b8 ds'8 b8 ds'8 b8 gs8 ds'8 b8 ds'8 gs'8 ds'8 gs'8 ds'8 b8 gs'8 ds'8 gs'8 b'8 gs'8 b'8 gs'8 ds'8 b'8 gs'8 b'8 ds''8 b'8 ds''8 b'8 gs'8 ds''8 }
-    \header {piece = "G#m (iv)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♯m (iv)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 es,8 gs,8 b,8 gs,8 b,8 gs,8 es,8 b,8 gs,8 b,8 es8 b,8 es8 b,8 gs,8 es8 b,8 es8 gs8 es8 gs8 es8 b,8 gs8 es8 gs8 b8 gs8 b8 gs8 es8 b8 gs8 b8 es'8 b8 es'8 b8 gs8 es'8 b8 es'8 gs'8 es'8 gs'8 es'8 b8 gs'8 es'8 gs'8 b'8 gs'8 b'8 gs'8 es'8 b'8 }
-    \header {piece = "E#dim (ii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♯dim (ii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -989,24 +992,24 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 css8 as,8 css8 as,8 fs,8 css8 as,8 css8 fs8 css8 fs8 css8 as,8 fs8 css8 fs8 as8 fs8 as8 fs8 css8 as8 fs8 as8 css'8 as8 css'8 as8 fs8 css'8 as8 css'8 fs'8 css'8 fs'8 css'8 as8 fs'8 css'8 fs'8 as'8 fs'8 as'8 fs'8 css'8 as'8 fs'8 as'8 css''8 as'8 css''8 as'8 fs'8 css''8 }
-    \header {piece = "F#aug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 as,8 cs8 as,8 cs8 as,8 fs,8 cs8 as,8 cs8 fs8 cs8 fs8 cs8 as,8 fs8 cs8 fs8 as8 fs8 as8 fs8 cs8 as8 fs8 as8 cs'8 as8 cs'8 as8 fs8 cs'8 as8 cs'8 fs'8 cs'8 fs'8 cs'8 as8 fs'8 cs'8 fs'8 as'8 fs'8 as'8 fs'8 cs'8 as'8 fs'8 as'8 cs''8 as'8 cs''8 as'8 fs'8 cs''8 }
-    \header {piece = "F# (III)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯ (III)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 f,4 g,4 a,4 bf,4 c4 d4 e4 f4 g4 a4 bf4 c'4 d'4 e'4 f'4 g'4 a'4 bf'4 c''4 d''4 e''4 }
-    \header {title = "D Minor" piece = "D Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "D minor" piece = "D minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 f,4 g,4 a,4 bf,4 cs4 d4 e4 f4 g4 a4 bf4 cs'4 d'4 e'4 f'4 g'4 a'4 bf'4 cs''4 d''4 e''4 }
-    \header {piece = "D Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1026,7 +1029,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 g,8 cs8 g,8 cs8 g,8 e,8 cs8 g,8 cs8 e8 cs8 e8 cs8 g,8 e8 cs8 e8 g8 e8 g8 e8 cs8 g8 e8 g8 cs'8 g8 cs'8 g8 e8 cs'8 g8 cs'8 e'8 cs'8 e'8 cs'8 g8 e'8 cs'8 e'8 g'8 e'8 g'8 e'8 cs'8 g'8 e'8 g'8 cs''8 g'8 cs''8 g'8 e'8 cs''8 g'8 cs''8 e''8 cs''8 e''8 cs''8 g'8 e''8 }
-    \header {piece = "C#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1046,12 +1049,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 d8 bf,8 d8 bf,8 f,8 d8 bf,8 d8 f8 d8 f8 d8 bf,8 f8 d8 f8 bf8 f8 bf8 f8 d8 bf8 f8 bf8 d'8 bf8 d'8 bf8 f8 d'8 bf8 d'8 f'8 d'8 f'8 d'8 bf8 f'8 d'8 f'8 bf'8 f'8 bf'8 f'8 d'8 bf'8 f'8 bf'8 d''8 bf'8 d''8 bf'8 f'8 d''8 }
-    \header {piece = "Bb (VI)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭ (VI)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 a,8 cs8 a,8 cs8 a,8 f,8 cs8 a,8 cs8 f8 cs8 f8 cs8 a,8 f8 cs8 f8 a8 f8 a8 f8 cs8 a8 f8 a8 cs'8 a8 cs'8 a8 f8 cs'8 a8 cs'8 f'8 cs'8 f'8 cs'8 a8 f'8 cs'8 f'8 a'8 f'8 a'8 f'8 cs'8 a'8 f'8 a'8 cs''8 a'8 cs''8 a'8 f'8 cs''8 }
-    \header {piece = "Faug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1063,12 +1066,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 g,4 a,4 bf,4 c4 d4 ef4 f4 g4 a4 bf4 c'4 d'4 ef'4 f'4 g'4 a'4 bf'4 c''4 d''4 ef''4 }
-    \header {title = "G Minor" piece = "G Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "G minor" piece = "G minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,4 g,4 a,4 bf,4 c4 d4 ef4 fs4 g4 a4 bf4 c'4 d'4 ef'4 fs'4 g'4 a'4 bf'4 c''4 d''4 ef''4 }
-    \header {piece = "G Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1088,7 +1091,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 a,8 c8 a,8 c8 a,8 fs,8 c8 a,8 c8 fs8 c8 fs8 c8 a,8 fs8 c8 fs8 a8 fs8 a8 fs8 c8 a8 fs8 a8 c'8 a8 c'8 a8 fs8 c'8 a8 c'8 fs'8 c'8 fs'8 c'8 a8 fs'8 c'8 fs'8 a'8 fs'8 a'8 fs'8 c'8 a'8 fs'8 a'8 c''8 a'8 c''8 a'8 fs'8 c''8 }
-    \header {piece = "F#dim (vii°)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F♯dim (vii°)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1108,29 +1111,29 @@
 
 \score {
     {\clef "treble_8" \time 4/4 g,8 bf,8 ef8 bf,8 ef8 bf,8 g,8 ef8 bf,8 ef8 g8 ef8 g8 ef8 bf,8 g8 ef8 g8 bf8 g8 bf8 g8 ef8 bf8 g8 bf8 ef'8 bf8 ef'8 bf8 g8 ef'8 bf8 ef'8 g'8 ef'8 g'8 ef'8 bf8 g'8 ef'8 g'8 bf'8 g'8 bf'8 g'8 ef'8 bf'8 g'8 bf'8 ef''8 bf'8 ef''8 bf'8 g'8 ef''8 }
-    \header {piece = "Eb (VI)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭ (VI)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 fs,8 bf,8 d8 bf,8 d8 bf,8 fs,8 d8 bf,8 d8 fs8 d8 fs8 d8 bf,8 fs8 d8 fs8 bf8 fs8 bf8 fs8 d8 bf8 fs8 bf8 d'8 bf8 d'8 bf8 fs8 d'8 bf8 d'8 fs'8 d'8 fs'8 d'8 bf8 fs'8 d'8 fs'8 bf'8 fs'8 bf'8 fs'8 d'8 bf'8 fs'8 bf'8 d''8 bf'8 d''8 bf'8 fs'8 d''8 }
-    \header {piece = "Bbaug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 d8 bf,8 d8 bf,8 f,8 d8 bf,8 d8 f8 d8 f8 d8 bf,8 f8 d8 f8 bf8 f8 bf8 f8 d8 bf8 f8 bf8 d'8 bf8 d'8 bf8 f8 d'8 bf8 d'8 f'8 d'8 f'8 d'8 bf8 f'8 d'8 f'8 bf'8 f'8 bf'8 f'8 d'8 bf'8 f'8 bf'8 d''8 bf'8 d''8 bf'8 f'8 d''8 }
-    \header {piece = "Bb (III)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭ (III)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 g,4 af,4 bf,4 c4 d4 ef4 f4 g4 af4 bf4 c'4 d'4 ef'4 f'4 g'4 af'4 bf'4 c''4 d''4 ef''4 }
-    \header {title = "C Minor" piece = "C Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "C minor" piece = "C minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 g,4 af,4 b,4 c4 d4 ef4 f4 g4 af4 b4 c'4 d'4 ef'4 f'4 g'4 af'4 b'4 c''4 d''4 ef''4 }
-    \header {piece = "C Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1155,7 +1158,7 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 d8 bf,8 d8 bf,8 f,8 d8 bf,8 d8 f8 d8 f8 d8 bf,8 f8 d8 f8 bf8 f8 bf8 f8 d8 bf8 f8 bf8 d'8 bf8 d'8 bf8 f8 d'8 bf8 d'8 f'8 d'8 f'8 d'8 bf8 f'8 d'8 f'8 bf'8 f'8 bf'8 f'8 d'8 bf'8 f'8 bf'8 d''8 bf'8 d''8 bf'8 f'8 d''8 }
-    \header {piece = "Bb (VII)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭ (VII)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1170,29 +1173,29 @@
 
 \score {
     {\clef "treble_8" \time 4/4 af,8 c8 ef8 c8 ef8 c8 af,8 ef8 c8 ef8 af8 ef8 af8 ef8 c8 af8 ef8 af8 c'8 af8 c'8 af8 ef8 c'8 af8 c'8 ef'8 c'8 ef'8 c'8 af8 ef'8 c'8 ef'8 af'8 ef'8 af'8 ef'8 c'8 af'8 ef'8 af'8 c''8 af'8 c''8 af'8 ef'8 c''8 af'8 c''8 ef''8 c''8 ef''8 c''8 af'8 ef''8 }
-    \header {piece = "Ab (VI)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♭ (VI)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 g,8 b,8 ef8 b,8 ef8 b,8 g,8 ef8 b,8 ef8 g8 ef8 g8 ef8 b,8 g8 ef8 g8 b8 g8 b8 g8 ef8 b8 g8 b8 ef'8 b8 ef'8 b8 g8 ef'8 b8 ef'8 g'8 ef'8 g'8 ef'8 b8 g'8 ef'8 g'8 b'8 g'8 b'8 g'8 ef'8 b'8 g'8 b'8 ef''8 b'8 ef''8 b'8 g'8 ef''8 }
-    \header {piece = "Ebaug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 g,8 bf,8 ef8 bf,8 ef8 bf,8 g,8 ef8 bf,8 ef8 g8 ef8 g8 ef8 bf,8 g8 ef8 g8 bf8 g8 bf8 g8 ef8 bf8 g8 bf8 ef'8 bf8 ef'8 bf8 g8 ef'8 bf8 ef'8 g'8 ef'8 g'8 ef'8 bf8 g'8 ef'8 g'8 bf'8 g'8 bf'8 g'8 ef'8 bf'8 g'8 bf'8 ef''8 bf'8 ef''8 bf'8 g'8 ef''8 }
-    \header {piece = "Eb (III)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭ (III)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 g,4 af,4 bf,4 c4 df4 ef4 f4 g4 af4 bf4 c'4 df'4 ef'4 f'4 g'4 af'4 bf'4 c''4 df''4 ef''4 }
-    \header {title = "F Minor" piece = "F Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "F minor" piece = "F minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,4 f,4 g,4 af,4 bf,4 c4 df4 e4 f4 g4 af4 bf4 c'4 df'4 e'4 f'4 g'4 af'4 bf'4 c''4 df''4 e''4 }
-    \header {piece = "F Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "F harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1217,12 +1220,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 g,8 bf,8 ef8 bf,8 ef8 bf,8 g,8 ef8 bf,8 ef8 g8 ef8 g8 ef8 bf,8 g8 ef8 g8 bf8 g8 bf8 g8 ef8 bf8 g8 bf8 ef'8 bf8 ef'8 bf8 g8 ef'8 bf8 ef'8 g'8 ef'8 g'8 ef'8 bf8 g'8 ef'8 g'8 bf'8 g'8 bf'8 g'8 ef'8 bf'8 g'8 bf'8 ef''8 bf'8 ef''8 bf'8 g'8 ef''8 }
-    \header {piece = "Eb (VII)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭ (VII)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 df8 bf,8 df8 bf,8 f,8 df8 bf,8 df8 f8 df8 f8 df8 bf,8 f8 df8 f8 bf8 f8 bf8 f8 df8 bf8 f8 bf8 df'8 bf8 df'8 bf8 f8 df'8 bf8 df'8 f'8 df'8 f'8 df'8 bf8 f'8 df'8 f'8 bf'8 f'8 bf'8 f'8 df'8 bf'8 f'8 bf'8 df''8 bf'8 df''8 bf'8 f'8 df''8 }
-    \header {piece = "Bbm (iv)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭m (iv)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1232,34 +1235,34 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 af,8 df8 af,8 df8 af,8 f,8 df8 af,8 df8 f8 df8 f8 df8 af,8 f8 df8 f8 af8 f8 af8 f8 df8 af8 f8 af8 df'8 af8 df'8 af8 f8 df'8 af8 df'8 f'8 df'8 f'8 df'8 af8 f'8 df'8 f'8 af'8 f'8 af'8 f'8 df'8 af'8 f'8 af'8 df''8 af'8 df''8 af'8 f'8 df''8 }
-    \header {piece = "Db (VI)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♭ (VI)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 e,8 af,8 c8 af,8 c8 af,8 e,8 c8 af,8 c8 e8 c8 e8 c8 af,8 e8 c8 e8 af8 e8 af8 e8 c8 af8 e8 af8 c'8 af8 c'8 af8 e8 c'8 af8 c'8 e'8 c'8 e'8 c'8 af8 e'8 c'8 e'8 af'8 e'8 af'8 e'8 c'8 af'8 e'8 af'8 c''8 af'8 c''8 af'8 e'8 c''8 af'8 c''8 e''8 c''8 e''8 c''8 af'8 e''8 }
-    \header {piece = "Abaug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♭+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 af,8 c8 ef8 c8 ef8 c8 af,8 ef8 c8 ef8 af8 ef8 af8 ef8 c8 af8 ef8 af8 c'8 af8 c'8 af8 ef8 c'8 af8 c'8 ef'8 c'8 ef'8 c'8 af8 ef'8 c'8 ef'8 af'8 ef'8 af'8 ef'8 c'8 af'8 ef'8 af'8 c''8 af'8 c''8 af'8 ef'8 c''8 af'8 c''8 ef''8 c''8 ef''8 c''8 af'8 ef''8 }
-    \header {piece = "Ab (III)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♭ (III)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 gf,4 af,4 bf,4 c4 df4 ef4 f4 gf4 af4 bf4 c'4 df'4 ef'4 f'4 gf'4 af'4 bf'4 c''4 df''4 ef''4 }
-    \header {title = "Bb Minor" piece = "Bb Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "B♭ minor" piece = "B♭ minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 gf,4 a,4 bf,4 c4 df4 ef4 f4 gf4 a4 bf4 c'4 df'4 ef'4 f'4 gf'4 a'4 bf'4 c''4 df''4 ef''4 }
-    \header {piece = "Bb Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭ harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 df8 bf,8 df8 bf,8 f,8 df8 bf,8 df8 f8 df8 f8 df8 bf,8 f8 df8 f8 bf8 f8 bf8 f8 df8 bf8 f8 bf8 df'8 bf8 df'8 bf8 f8 df'8 bf8 df'8 f'8 df'8 f'8 df'8 bf8 f'8 df'8 f'8 bf'8 f'8 bf'8 f'8 df'8 bf'8 f'8 bf'8 df''8 bf'8 df''8 bf'8 f'8 df''8 }
-    \header {piece = "Bbm (i)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭m (i)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1279,12 +1282,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 af,8 c8 ef8 c8 ef8 c8 af,8 ef8 c8 ef8 af8 ef8 af8 ef8 c8 af8 ef8 af8 c'8 af8 c'8 af8 ef8 c'8 af8 c'8 ef'8 c'8 ef'8 c'8 af8 ef'8 c'8 ef'8 af'8 ef'8 af'8 ef'8 c'8 af'8 ef'8 af'8 c''8 af'8 c''8 af'8 ef'8 c''8 af'8 c''8 ef''8 c''8 ef''8 c''8 af'8 ef''8 }
-    \header {piece = "Ab (VII)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♭ (VII)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 bf,8 ef8 bf,8 ef8 bf,8 gf,8 ef8 bf,8 ef8 gf8 ef8 gf8 ef8 bf,8 gf8 ef8 gf8 bf8 gf8 bf8 gf8 ef8 bf8 gf8 bf8 ef'8 bf8 ef'8 bf8 gf8 ef'8 bf8 ef'8 gf'8 ef'8 gf'8 ef'8 bf8 gf'8 ef'8 gf'8 bf'8 gf'8 bf'8 gf'8 ef'8 bf'8 gf'8 bf'8 ef''8 bf'8 ef''8 bf'8 gf'8 ef''8 }
-    \header {piece = "Ebm (iv)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭m (iv)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1294,44 +1297,44 @@
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 bf,8 df8 bf,8 df8 bf,8 gf,8 df8 bf,8 df8 gf8 df8 gf8 df8 bf,8 gf8 df8 gf8 bf8 gf8 bf8 gf8 df8 bf8 gf8 bf8 df'8 bf8 df'8 bf8 gf8 df'8 bf8 df'8 gf'8 df'8 gf'8 df'8 bf8 gf'8 df'8 gf'8 bf'8 gf'8 bf'8 gf'8 df'8 bf'8 gf'8 bf'8 df''8 bf'8 df''8 bf'8 gf'8 df''8 }
-    \header {piece = "Gb (VI)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♭ (VI)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 a,8 df8 a,8 df8 a,8 f,8 df8 a,8 df8 f8 df8 f8 df8 a,8 f8 df8 f8 a8 f8 a8 f8 df8 a8 f8 a8 df'8 a8 df'8 a8 f8 df'8 a8 df'8 f'8 df'8 f'8 df'8 a8 f'8 df'8 f'8 a'8 f'8 a'8 f'8 df'8 a'8 f'8 a'8 df''8 a'8 df''8 a'8 f'8 df''8 }
-    \header {piece = "Dbaug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♭+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 af,8 df8 af,8 df8 af,8 f,8 df8 af,8 df8 f8 df8 f8 df8 af,8 f8 df8 f8 af8 f8 af8 f8 df8 af8 f8 af8 df'8 af8 df'8 af8 f8 df'8 af8 df'8 f'8 df'8 f'8 df'8 af8 f'8 df'8 f'8 af'8 f'8 af'8 f'8 df'8 af'8 f'8 af'8 df''8 af'8 df''8 af'8 f'8 df''8 }
-    \header {piece = "Db (III)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♭ (III)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 gf,4 af,4 bf,4 cf4 df4 ef4 f4 gf4 af4 bf4 cf'4 df'4 ef'4 f'4 gf'4 af'4 bf'4 cf''4 df''4 ef''4 }
-    \header {title = "Eb Minor" piece = "Eb Minor scale" ##f subtitle = ##f composer = ##f}
+    \header {title = "E♭ minor" piece = "E♭ minor scale" ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,4 gf,4 af,4 bf,4 cf4 d4 ef4 f4 gf4 af4 bf4 cf'4 d'4 ef'4 f'4 gf'4 af'4 bf'4 cf''4 d''4 ef''4 }
-    \header {piece = "Eb Minor" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭ harmonic minor scale" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 bf,8 ef8 bf,8 ef8 bf,8 gf,8 ef8 bf,8 ef8 gf8 ef8 gf8 ef8 bf,8 gf8 ef8 gf8 bf8 gf8 bf8 gf8 ef8 bf8 gf8 bf8 ef'8 bf8 ef'8 bf8 gf8 ef'8 bf8 ef'8 gf'8 ef'8 gf'8 ef'8 bf8 gf'8 ef'8 gf'8 bf'8 gf'8 bf'8 gf'8 ef'8 bf'8 gf'8 bf'8 ef''8 bf'8 ef''8 bf'8 gf'8 ef''8 }
-    \header {piece = "Ebm (i)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "E♭m (i)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 d8 bf,8 d8 bf,8 f,8 d8 bf,8 d8 f8 d8 f8 d8 bf,8 f8 d8 f8 bf8 f8 bf8 f8 d8 bf8 f8 bf8 d'8 bf8 d'8 bf8 f8 d'8 bf8 d'8 f'8 d'8 f'8 d'8 bf8 f'8 d'8 f'8 bf'8 f'8 bf'8 f'8 d'8 bf'8 f'8 bf'8 d''8 bf'8 d''8 bf'8 f'8 d''8 }
-    \header {piece = "Bb (V)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭ (V)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 bf,8 df8 bf,8 df8 bf,8 f,8 df8 bf,8 df8 f8 df8 f8 df8 bf,8 f8 df8 f8 bf8 f8 bf8 f8 df8 bf8 f8 bf8 df'8 bf8 df'8 bf8 f8 df'8 bf8 df'8 f'8 df'8 f'8 df'8 bf8 f'8 df'8 f'8 bf'8 f'8 bf'8 f'8 df'8 bf'8 f'8 bf'8 df''8 bf'8 df''8 bf'8 f'8 df''8 }
-    \header {piece = "Bbm (v)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "B♭m (v)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1341,12 +1344,12 @@
 
 \score {
     {\clef "treble_8" \time 4/4 f,8 af,8 df8 af,8 df8 af,8 f,8 df8 af,8 df8 f8 df8 f8 df8 af,8 f8 df8 f8 af8 f8 af8 f8 df8 af8 f8 af8 df'8 af8 df'8 af8 f8 df'8 af8 df'8 f'8 df'8 f'8 df'8 af8 f'8 df'8 f'8 af'8 f'8 af'8 f'8 df'8 af'8 f'8 af'8 df''8 af'8 df''8 af'8 f'8 df''8 }
-    \header {piece = "Db (VII)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "D♭ (VII)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 af,8 cf8 ef8 cf8 ef8 cf8 af,8 ef8 cf8 ef8 af8 ef8 af8 ef8 cf8 af8 ef8 af8 cf'8 af8 cf'8 af8 ef8 cf'8 af8 cf'8 ef'8 cf'8 ef'8 cf'8 af8 ef'8 cf'8 ef'8 af'8 ef'8 af'8 ef'8 cf'8 af'8 ef'8 af'8 cf''8 af'8 cf''8 af'8 ef'8 cf''8 af'8 cf''8 ef''8 cf''8 ef''8 cf''8 af'8 ef''8 }
-    \header {piece = "Abm (iv)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "A♭m (iv)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
@@ -1356,17 +1359,17 @@
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 cf8 ef8 cf8 ef8 cf8 gf,8 ef8 cf8 ef8 gf8 ef8 gf8 ef8 cf8 gf8 ef8 gf8 cf'8 gf8 cf'8 gf8 ef8 cf'8 gf8 cf'8 ef'8 cf'8 ef'8 cf'8 gf8 ef'8 cf'8 ef'8 gf'8 ef'8 gf'8 ef'8 cf'8 gf'8 ef'8 gf'8 cf''8 gf'8 cf''8 gf'8 ef'8 cf''8 gf'8 cf''8 ef''8 cf''8 ef''8 cf''8 gf'8 ef''8 }
-    \header {piece = "Cb (VI)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "C♭ (VI)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 bf,8 d8 bf,8 d8 bf,8 gf,8 d8 bf,8 d8 gf8 d8 gf8 d8 bf,8 gf8 d8 gf8 bf8 gf8 bf8 gf8 d8 bf8 gf8 bf8 d'8 bf8 d'8 bf8 gf8 d'8 bf8 d'8 gf'8 d'8 gf'8 d'8 bf8 gf'8 d'8 gf'8 bf'8 gf'8 bf'8 gf'8 d'8 bf'8 gf'8 bf'8 d''8 bf'8 d''8 bf'8 gf'8 d''8 }
-    \header {piece = "Gbaug (III+)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♭+ (III+)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \score {
     {\clef "treble_8" \time 4/4 gf,8 bf,8 df8 bf,8 df8 bf,8 gf,8 df8 bf,8 df8 gf8 df8 gf8 df8 bf,8 gf8 df8 gf8 bf8 gf8 bf8 gf8 df8 bf8 gf8 bf8 df'8 bf8 df'8 bf8 gf8 df'8 bf8 df'8 gf'8 df'8 gf'8 df'8 bf8 gf'8 df'8 gf'8 bf'8 gf'8 bf'8 gf'8 df'8 bf'8 gf'8 bf'8 df''8 bf'8 df''8 bf'8 gf'8 df''8 }
-    \header {piece = "Gb (III)" title = ##f subtitle = ##f composer = ##f}
+    \header {piece = "G♭ (III)" title = ##f subtitle = ##f composer = ##f}
 }
 
 \pageBreak

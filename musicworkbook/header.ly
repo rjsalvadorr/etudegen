@@ -6,7 +6,9 @@
 #(set-global-staff-size 20)
 
 \layout {
-  indent = 0\cm
+    indent = 0\cm
+    \override Staff.TimeSignature #'stencil = ##f
+    \override Score.BarNumber.break-visibility = ##(#f #f #f)
 }
 
 \paper {
@@ -17,4 +19,5 @@
     left-margin = 0.5\in
 
     print-all-headers = ##t
+    ragged-right = ##f
 }

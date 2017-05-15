@@ -2,8 +2,6 @@ from musicworkbook.workbookutils import WorkbookUtils
 from musicworkbook.lilypondutils import LilypondUtils
 from musicworkbook.instrumentdata import InstrumentData
 
-print WorkbookUtils
-
 workbookUtils = WorkbookUtils()
 lilypondUtils = LilypondUtils()
 
@@ -12,11 +10,11 @@ instrumentInfo.append(InstrumentData("guitar", "\"treble_8\"", "E-2", "E-5"))
 instrumentInfo.append(InstrumentData("bass", "\"bass_8\"", "E-1", "G-3"))
 instrumentInfo.append(InstrumentData("violin", "treble", "G-3", "C-6"))
 
-### Define the list of keys
+# Define the list of keys
 majorKeyList = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb']
 minorKeyList = ['A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'D', 'G', 'C', 'F', 'Bb', 'Eb']
 
-
+# Create the etudes!
 for instrument in instrumentInfo:
     lilypondUtils.filename = "music-workbook-for-" + instrument.name
     lilypondUtils.instrument = instrument.name

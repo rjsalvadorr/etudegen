@@ -21,15 +21,15 @@ class WorkbookUtils:
     pPrinter = pprint.PrettyPrinter(indent=2, width=120)
 
     keyTypes = dict()
-    keyTypes["major"] = "Major"
-    keyTypes["minor"] = "Minor"
-    keyTypes["harmonicMinor"] = "Harmonic Minor"
+    keyTypes["major"] = "major"
+    keyTypes["minor"] = "minor"
+    keyTypes["harmonicMinor"] = "harmonic Minor"
 
     chordNames = dict()
     chordNames["major"] = ["", "", "dim", "", "m", "m", "m"]
     chordNames["minor"] = ["m", "m", "", "m", "m", "", ""]
-    chordNames["harmonicMinor"] = ["m", "", "dim", "m", "m", "", "aug"]
-    chordNames["fused"] = ["m", "", "m", 'dim', "", "m", "dim", "", "aug", ""]
+    chordNames["harmonicMinor"] = ["m", "", "dim", "m", "m", "", "+"]
+    chordNames["fused"] = ["m", "", "m", 'dim', "", "m", "dim", "", "+", ""]
 
     romanChordNames = dict()
     romanChordNames["major"] = ["I", "V", u'vii°', "IV", "ii", "vi", "iii"]

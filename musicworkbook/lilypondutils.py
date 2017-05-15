@@ -68,7 +68,9 @@ class LilypondUtils:
             headerBlock = self._buildLilypondHeadingBlock(keyData.keyName)
             newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], headerBlock) + "\n"
 
-            headerBlock = self._buildLilypondSubheadingBlock(keyData.keyName)
+            harmonicScaleName = keyData.keyName.replace("minor", "harmonic minor") + " scale"
+
+            headerBlock = self._buildLilypondSubheadingBlock(harmonicScaleName)
             newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[1], headerBlock) + "\n"
 
         for index, arpeggio in enumerate(keyData.mingusArpeggios):
@@ -115,11 +117,30 @@ class LilypondUtils:
         return newBlock
 
 
+    def _getCleanString(self, text):
+        dubSharp = u'𝄪'
+        dubFlat = u'♭♭'
+        sharpSign = u'♯'
+        flatSign = u'♭'
+
+        uglyDubSharp = "##"
+        uglyDubFlat = "bb"
+        uglySharpSign = "#"
+        uglyFlatSign = "b"
+
+        cleanStr = text.replace(uglyDubSharp, dubSharp)
+        cleanStr = cleanStr.replace(uglyDubFlat, dubFlat)
+        cleanStr = cleanStr.replace(uglySharpSign, sharpSign)
+        cleanStr = cleanStr.replace(uglyFlatSign, flatSign)
+
+        return cleanStr
+
     def _buildLilypondHeadingBlock(self, text):
         """
         From the given text, build a Lilypond heading block.
         """
-        newBlock = "\header {title = \"" + text + "\" piece = \"" + text + " scale\" ##f subtitle = ##f composer = ##f}"
+        cleanText = self._getCleanString(text)
+        newBlock = "\header {title = \"" + cleanText + "\" piece = \"" + cleanText + " scale\" ##f subtitle = ##f composer = ##f}"
         return newBlock
 
 
@@ -127,7 +148,8 @@ class LilypondUtils:
         """
         From the given text, build a Lilypond heading block.
         """
-        newBlock = "\header {piece = \"" + text + "\" title = ##f subtitle = ##f composer = ##f}"
+        cleanText = self._getCleanString(text)
+        newBlock = "\header {piece = \"" + cleanText + "\" title = ##f subtitle = ##f composer = ##f}"
         return newBlock
 
 

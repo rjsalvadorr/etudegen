@@ -10,3 +10,4 @@ make.bat
 
 # Should I keep the output away from the repo?
 **.pdf
+**.ps
