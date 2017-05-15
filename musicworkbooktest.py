@@ -10,9 +10,18 @@ instrumentInfo.append(InstrumentData("guitar", "\"treble_8\"", "E-2", "E-5"))
 instrumentInfo.append(InstrumentData("bass", "\"bass_8\"", "E-1", "G-3"))
 instrumentInfo.append(InstrumentData("violin", "treble", "G-3", "C-6"))
 
+# TODO - flip this to False once we're done. Or if the testing requires the whole document.
+testMode = True
+
 # Define the list of keys
-majorKeyList = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb']
-minorKeyList = ['A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'D', 'G', 'C', 'F', 'Bb', 'Eb']
+majorKeyListFull = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb']
+minorKeyListFull = ['A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'D', 'G', 'C', 'F', 'Bb', 'Eb']
+
+majorKeyListTest = ['C', 'A', 'Eb']
+minorKeyListTest = ['A', 'F#', 'C',]
+
+majKeyList = majorKeyListTest if testMode else majorKeyListFull
+minKeyList = minorKeyListTest if testMode else minorKeyListFull
 
 # Create the etudes!
 for instrument in instrumentInfo:
@@ -23,11 +32,11 @@ for instrument in instrumentInfo:
     workbookUtils.upperLimit = instrument.upperLimit
 
     # For each key, create the scale and arpeggio exercises
-    for majorKey in majorKeyList:
+    for majorKey in majKeyList:
         keyData = workbookUtils.buildKeyData(majorKey, "major")
         lilypondUtils.addLilypondKeyBlock(keyData)
 
-    for minorKey in minorKeyList:
+    for minorKey in minKeyList:
         keyData = workbookUtils.buildKeyData(minorKey, "minor")
         lilypondUtils.addLilypondKeyBlock(keyData)
 

@@ -8,6 +8,8 @@ mingus_examples/
 pip-selfcheck.json
 make.bat
 
+test*.ly
+
 # Should I keep the output away from the repo?
 **.pdf
 **.ps

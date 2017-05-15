@@ -42,6 +42,21 @@ class LilypondUtils:
     def resetData(self):
         self.lilypondBlocks = []
 
+    def _getTimeSignature(self, melodyLength):
+        mod3 = melodyLength % 3
+        mod4 = melodyLength % 4
+
+        if mod4 == 0:
+            return 4
+        elif mod3 == 0:
+            return 3
+        else:
+            # there's a remainder involved!
+            if mod4 >= mod3:
+                return 4
+            else:
+                return 3
+
 
     def _convertMingusNoteToLilypond(self, note, duration):
         accidentalCount = note.name.count("#")
@@ -92,13 +107,26 @@ class LilypondUtils:
         """
         From a given melody, build a Lilypond block.
         """
+        noteDuration = 8
+        totalBars = len(melody) / 8
+        barsPerLine = 3
+        barCtr = 0
         newBlock = "\score {\n    {\\clef " + self.clef + " \\time 4/4 "
 
-        for note in melody:
-            # I'm using 8th notes here, so I'm passing "8" to this method.
-            newBlock += self._convertMingusNoteToLilypond(note, 8) + " "
+        for index, note in enumerate(melody):
+            remainingBars = totalBars - barCtr
 
-        newBlock += "}\n    " + headerBlock + "\n}\n"
+            if index % noteDuration == 0:
+                print str(remainingBars)
+                if barCtr % barsPerLine == 0 and remainingBars >= barsPerLine - 1:
+                    print "    breaking"
+                    newBlock += "\\break "
+                barCtr += 1
+
+            # I'm using 8th notes here, so I'm passing "8" to this method.
+            newBlock += self._convertMingusNoteToLilypond(note, noteDuration) + " "
+
+        newBlock += "\\bar \"|.\"}\n    " + headerBlock + "\n}\n"
 
         return newBlock
 
@@ -107,13 +135,16 @@ class LilypondUtils:
         """
         From a given scale, build a Lilypond scale block.
         """
-        newBlock = "\score {\n    {\\clef " + self.clef + " \\time 4/4 "
+        timeSignatureVal = self._getTimeSignature(len(scale))
+        timeSignatureText = " \\time " + str(timeSignatureVal) + "/4 "
+
+        newBlock = "\score {\n    {\\clef " + self.clef + timeSignatureText
 
         for note in scale:
             # I'm using quarter notes here, so I'm passing "4" to this method.
             newBlock += self._convertMingusNoteToLilypond(note, 4) + " "
 
-        newBlock += "}\n    " + headerBlock + "\n}\n"
+        newBlock += "\\bar \"|.\"}\n    " + headerBlock + "\n}\n"
         return newBlock
 
 
