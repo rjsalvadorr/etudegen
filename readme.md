@@ -1,4 +1,11 @@
 #  Scale / Arpeggio Book
+
+## Results
+
+- [Guitar](https://drive.google.com/open?id=0B3fsAM7g02UVNWpBd0VQdUMxV2c)
+- [Bass](https://drive.google.com/open?id=0B3fsAM7g02UVVHhOZ2Zjck5MUkE)
+- [Violin](https://drive.google.com/open?id=0B3fsAM7g02UVTTloNV9qUTVOb2M)
+
 This project generates a scale/arpeggio book for a variety of instruments. The goal is to improve musicianship by being comfortable in all the important chords in each key. I think it'd be best to target jammers!
 
 The displayed arpeggios will be **major**, **minor**, and **diminished** triads. I feel like these triads are the fundamental building blocks for harmony, and focusing on these exclusively should yield good results for whoever reads this.
