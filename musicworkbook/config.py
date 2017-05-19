@@ -1,5 +1,7 @@
 """
-Configurable data for the Etude Generator
+Configurable data for the Etude Generator.
+For values that have to conform to a specific format, SHOW THE AVAILABLE
+VALUES!!
 
 Instruments
 - name (String)
@@ -13,6 +15,9 @@ Arpeggio Pattern
   incrementing all the numbers until we've covered the whole range. So for that
   first example, we'll see "1 2 3 2 3 2 1 3", then "2 3 4 3 4 3 2 4", then
   "3 4 5 4 5 4 3 5", and so on.
+
+Key List
+- (String) Two of these, one for major keys, and another for minor keys.
 
 Use key signature?
 - (Boolean) Default is false. This is done to make it easier to remember which
