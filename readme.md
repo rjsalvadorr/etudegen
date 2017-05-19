@@ -20,6 +20,10 @@ Say you're working on a piece in an unfamiliar key. Simply reading through a few
     + **Clef** - The clef that's used for this instrument.
     + **Instrument range** - (lowest note and highest note)
 - **Registers**? - Some instruments switch clefs at some point. For example, cello music is written mostly in bass clef, but the tenor and treble clefs are used at the higher registers.
+- **Arpeggio Patterns**
+- **Major Keys**
+- **Minor Keys**
+- **Displaying Key Signatures**
 
 ## Organization
 The content will be divided by musical keys. There will be the **main content** in the book, plus an **appendix**.
