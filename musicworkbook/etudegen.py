@@ -1,19 +1,17 @@
 import sys
+import os
+import yaml
 
-from musicworkbook.workbookutils import WorkbookUtils
-from musicworkbook.lilypondutils import LilypondUtils
-from musicworkbook.instrumentdata import InstrumentData
+from workbookutils import WorkbookUtils
+from lilypondutils import LilypondUtils
+from instrumentdata import InstrumentData
 
 workbookUtils = WorkbookUtils()
 lilypondUtils = LilypondUtils()
 
-instrumentInfo = []
-instrumentInfo.append(InstrumentData("guitar", "\"treble_8\"", "E-2", "E-5"))
-instrumentInfo.append(InstrumentData("bass", "\"bass_8\"", "E-1", "G-3"))
-instrumentInfo.append(InstrumentData("violin", "treble", "G-3", "C-6"))
 
+# Determine if we're using Test mode
 testMode = False
-
 if len(sys.argv) > 0:
     for arg in sys.argv:
         if(arg.lower() == "test"):
@@ -24,9 +22,22 @@ if len(sys.argv) > 0:
 if testMode == False:
     print "  Creating documents in Normal mode..."
 
+
+# Loading configuration file
+fileDir = os.path.dirname(os.path.realpath(__file__))
+cfgFilePath = os.path.join(fileDir, 'config.yaml')
+try:
+    stream = file(cfgFilePath, 'r')
+    yamlData = yaml.load(stream)
+    print yamlData
+except:
+    print "YAML configuration failed to load!"
+    raise
+
+
 # Define the list of keys
-majorKeyListFull = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb']
-minorKeyListFull = ['A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'D', 'G', 'C', 'F', 'Bb', 'Eb']
+majorKeyListFull = yamlData['majorKeys'].split(' ')
+minorKeyListFull = yamlData['minorKeys'].split(' ')
 
 majorKeyListTest = ['C', 'A', 'Eb']
 minorKeyListTest = ['A', 'F#', 'C',]
@@ -34,8 +45,14 @@ minorKeyListTest = ['A', 'F#', 'C',]
 majKeyList = majorKeyListTest if testMode else majorKeyListFull
 minKeyList = minorKeyListTest if testMode else minorKeyListFull
 
+print majKeyList
+print minKeyList
+
+
 # Create the etudes!
-for instrument in instrumentInfo:
+for rawInstrument in yamlData['instruments']:
+    instrument = InstrumentData(rawInstrument['name'], rawInstrument['clef'], rawInstrument['lowerLimit'], rawInstrument['upperLimit'])
+
     lilypondUtils.filename = "music-workbook-for-" + instrument.name
     lilypondUtils.instrument = instrument.name
     lilypondUtils.clef = instrument.clef
