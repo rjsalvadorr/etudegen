@@ -1,9 +1,16 @@
+# Windows virtualenv folders
 Lib/
 Scripts/
 Include/
 tcl/
-mingus_examples/
 
+# Linux virtualenv folders
+bin/
+lib/
+include/
+local/
+
+mingus_examples/
 **.pyc
 pip-selfcheck.json
 make.bat
