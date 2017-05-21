@@ -1,6 +1,6 @@
 #  EtudeGen
 
-## Results
+## Results!
 
 - [Guitar](https://drive.google.com/open?id=0B3fsAM7g02UVNWpBd0VQdUMxV2c)
 - [Bass](https://drive.google.com/open?id=0B3fsAM7g02UVVHhOZ2Zjck5MUkE)
@@ -10,8 +10,10 @@ This project generates a scale/arpeggio book for a variety of instruments. The g
 
 The displayed arpeggios will be **major**, **minor**, and **diminished** triads. I feel like these triads are the fundamental building blocks for harmony, and focusing on these exclusively should yield good results for whoever reads this.
 
+
 ## Intended use
 Say you're working on a piece in an unfamiliar key. Simply reading through a few arpeggios in that key will make your work a lot more comfortable. Perhaps even enjoyable! Another case would be for learning how to read familiar keys and chords on an unfamiliar instrument.
+
 
 ## Configurable parameters
 
@@ -19,11 +21,15 @@ Say you're working on a piece in an unfamiliar key. Simply reading through a few
     + **Name** - Explain some stuff about possible ways to use it. (see section below)
     + **Clef** - The clef that's used for this instrument.
     + **Instrument range** - (lowest note and highest note)
-- **Registers**? - Some instruments switch clefs at some point. For example, cello music is written mostly in bass clef, but the tenor and treble clefs are used at the higher registers.
-- **Arpeggio Patterns**
 - **Major Keys**
 - **Minor Keys**
+
+### Parameters not yet configurable
+
+- **Registers**? - Some instruments switch clefs at some point. For example, cello music is written mostly in bass clef, but the tenor and treble clefs are used at the higher registers.
+- **Arpeggio Patterns**
 - **Displaying Key Signatures**
+
 
 ## Organization
 The content will be divided by musical keys. There will be the **main content** in the book, plus an **appendix**.
@@ -53,17 +59,22 @@ The appendix will contain some helpful tidbits about constructing more complicat
 
 We can also describe the rationale behind certain design decisions in the etudes (perhaps that information should be displayed at the front?)
 
+
 ## Development
 
-### Virtual Environments
-Fresh setup? On Python 3, run `python -m venv path/to/virtual/env`. In this case, our target folder is `python/` Here's what I did for Python 2: `G:\Programming\Web Projects\code-sketches\python>virtualenv -p C:\Python27\python.exe .`
+### Dependencies
 
-On Windows, just run `python\Scripts\activate.bat` to activate the virtual env. Running `python\Scripts\deactivate.bat` will do the opposite.
+- mingus
+- PyYAML
+- Sphinx (only for documentation)
+
+### Virtual Environments
+Fresh setup? On Python 3, run `python -m venv path/to/virtual/env`. In this case, our target folder is `python/` Here's what I did for Python 2 on Windows: `G:\Programming\Web Projects\code-sketches\python>virtualenv -p C:\Python27\python.exe .`
+
+On Windows, just run `project-root\Scripts\activate.bat` to activate the virtual env. Running `deactivate` while in an active environment will do the opposite.  
+On Linux, run `source project-root/bin/activate`. The `deactivate` command remains the same.
 
 For more info, [read the docs](https://docs.python.org/3/library/venv.html).
-
-### Updating dependency list
-From the python folder, just do `pip freeze > requirements.txt`.
 
 ### Documentation
 This command should do it: `sphinx-build -b html ./source ./docs`. **Remember to run it from the project root!**
