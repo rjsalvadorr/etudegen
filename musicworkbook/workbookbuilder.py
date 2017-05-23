@@ -14,6 +14,9 @@ from keydata import KeyData
 from instrumentdata import InstrumentData
 
 class WorkbookBuilder:
+    """
+    Builds up étude data for a Lilypond file, which is ultimately used by the LilypondFileBuilder to create the document(s).
+    """
 
     keyTypes = dict()
     keyTypes["major"] = "major"
@@ -40,7 +43,8 @@ class WorkbookBuilder:
 
     def getNextNoteUp(self, targetNote, pivotNote):
         """
-        Wheeee!
+        Starting from a pivot note, gets the next instance of the target note above the pivot note.
+        For example, if the pivot nNote is C4 and target note is G, this function would return G4.
         """
         currentOctave = pivotNote.octave
         testNotes = []
@@ -55,7 +59,8 @@ class WorkbookBuilder:
 
     def getNextNoteDown(self, targetNote, pivotNote):
         """
-        Not sure if I'll ever use this one...
+        Starting from a pivot note, gets the next instance of the target note below the pivot note.
+        For example, if the pivot note is C4 and target note is G, this function would return G3.
         """
         currentOctave = pivotNote.octave
         testNotes = []
@@ -70,7 +75,8 @@ class WorkbookBuilder:
 
     def getClosestChordToneUp(self, chordTones, targetNote):
         """
-        Yea boi
+        Starting from a target note, gets the next chord tone above the pivotNote.
+        For example, if the target note is B5 and the chordTones are [C, E, G], this function would return C6
         """
         ctDict = dict()
         minDiff = 999 # I just need an absurdly high number greater than a few octaves
@@ -87,7 +93,7 @@ class WorkbookBuilder:
 
     def getChordTonesInRange(self, chordTones, lowerLimit, upperLimit):
         """
-        Starting from the lowerLimit, crawl up the chord tones until we pass the upperLimit
+        Gets all instances of the specified chord tones within the lower and upper limits.
         """
         returnNotes = []
         continueLoop = True

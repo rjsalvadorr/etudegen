@@ -1,6 +1,6 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -28,7 +28,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="WorkbookBuilder" href="workbookbuilder.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -76,7 +76,14 @@
 <dl class="class">
 <dt id="musicworkbook.KeyData">
 <em class="property">class </em><code class="descclassname">musicworkbook.</code><code class="descname">KeyData</code><span class="sig-paren">(</span><em>keyTonic</em>, <em>keyType</em>, <em>chordNames</em>, <em>mingusScales</em>, <em>mingusArpeggios</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/keydata.html#KeyData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.KeyData" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Encapsulates relevant data for each musical key used by the EtudeGen.</p>
+<dl class="method">
+<dt id="musicworkbook.KeyData._convertToLilypondPitch">
+<code class="descname">_convertToLilypondPitch</code><span class="sig-paren">(</span><em>rawPitch</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/keydata.html#KeyData._convertToLilypondPitch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.KeyData._convertToLilypondPitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a pitch string to the Lilypond format. Turns notes like &#8220;Bb&#8221; to &#8220;bf&#8221;, and &#8220;C#&#8221; to &#8220;cs&#8221;</p>
+</dd></dl>
+
+</dd></dl>
 
 </div>
 
@@ -100,7 +107,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, RJ Salvador.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

@@ -8,8 +8,8 @@ import subprocess
 
 class LilypondFileBuilder:
     """
-    Gradually builds up content for a Lilypond file.
-    When the content is complete, this class can create a Lilypond file.
+    Builds up étude content for a Lilypond file, using data from the WorkbookBuilder.
+    When the content is ready, this class can create a Lilypond file with that content.
     """
 
     octaveMarking = dict()
@@ -32,6 +32,9 @@ class LilypondFileBuilder:
     accidentalMarking[2] = "ss"
 
     def __init__(self, clef=None, instrument=None, filename=None):
+        """
+        Basic Constructor
+        """
         self.lilypondBlocks = []
         self.clef = clef if clef is not None else "treble"
         self.instrument = instrument if instrument is not None else ""
@@ -41,9 +44,15 @@ class LilypondFileBuilder:
 
 
     def resetData(self):
+        """
+        Resets data after a file gets generated.
+        """
         self.lilypondBlocks = []
 
     def _getTimeSignature(self, melodyLength):
+        """
+        Finds the best time signature for displaying scales.
+        """
         mod3 = melodyLength % 3
         mod4 = melodyLength % 4
 
@@ -60,6 +69,9 @@ class LilypondFileBuilder:
 
 
     def _convertMingusNoteToLilypond(self, note, duration):
+        """
+        Converts a Mingus note object to a Lilypond note string.
+        """
         accidentalCount = note.name.count("#")
         accidentalCount -= note.name.count("b")
 
@@ -71,15 +83,11 @@ class LilypondFileBuilder:
 
 
     def addLilypondKeyBlock(self, keyData):
-
-        print keyData
-        # TODO - pass the keyData obj into the "_buildLilypondScaleBlock" and arpeggio equivalent?
-        # We'll need to do some more interesting data tweaks to make the various flags and configs work properly.
-
         """
         From the given key data, build a Lilypond /score block for that key. That block represents
         scale and arpeggio info for a specific key
         """
+
         newBlock = "\n"
 
         if keyData.keyType == "major":
@@ -103,6 +111,10 @@ class LilypondFileBuilder:
 
 
     def _buildLilypondMainHeaderBlock(self):
+        """
+        Builds the main header block for a Lilypond file. This contains information like composer, subtitle, and title.
+        """
+
         subTitle = "for " + self.instrument if self.instrument else ""
         headerBlock = "\header {\n    composer = \markup {\"RJ Salvador\"} subtitle = \markup {\"" + subTitle + "\"} title = \markup {\"Scales and Arpeggios\"}\n}"
         return headerBlock
@@ -165,6 +177,9 @@ class LilypondFileBuilder:
 
 
     def _getCleanString(self, text):
+        """
+        Cleans up accidental signs. Converts "b" and "#" to "♭" and "♯", respectively. Also accounts for double-sharps or double-flats
+        """
         dubSharp = u'𝄪'
         dubFlat = u'♭♭'
         sharpSign = u'♯'
@@ -184,7 +199,7 @@ class LilypondFileBuilder:
 
     def _buildLilypondHeadingBlock(self, text):
         """
-        From the given text, build a Lilypond heading block.
+        Using the given text, build a Lilypond heading block. This heading is for each key.
         """
         cleanText = self._getCleanString(text)
         newBlock = "\header {title = \"" + cleanText + "\" piece = \"" + cleanText + " scale\" ##f subtitle = ##f composer = ##f}"
@@ -193,7 +208,7 @@ class LilypondFileBuilder:
 
     def _buildLilypondSubheadingBlock(self, text):
         """
-        From the given text, build a Lilypond heading block.
+        Using the given text, build a Lilypond subheading block. This subheading will be used for each scale/arpeggio within a key.
         """
         cleanText = self._getCleanString(text)
         newBlock = "\header {piece = \"" + cleanText + "\" title = ##f subtitle = ##f composer = ##f}"

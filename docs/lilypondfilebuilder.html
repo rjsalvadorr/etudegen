@@ -1,6 +1,6 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -29,7 +29,7 @@
     <link rel="next" title="WorkbookBuilder" href="workbookbuilder.html" />
     <link rel="prev" title="Welcome to musicworkbook’s documentation!" href="index.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -49,7 +49,7 @@
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to musicworkbook’s documentation!</a></p>
+                        title="previous chapter">Welcome to musicworkbook&#8217;s documentation!</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="workbookbuilder.html"
                         title="next chapter">WorkbookBuilder</a></p>
@@ -83,8 +83,75 @@
 <dl class="class">
 <dt id="musicworkbook.LilypondFileBuilder">
 <em class="property">class </em><code class="descclassname">musicworkbook.</code><code class="descname">LilypondFileBuilder</code><span class="sig-paren">(</span><em>clef=None</em>, <em>instrument=None</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gradually builds up content for a Lilypond file.
-When the content is complete, this class can create a Lilypond file.</p>
+<dd><p>Builds up étude content for a Lilypond file, using data from the WorkbookBuilder.
+When the content is ready, this class can create a Lilypond file with that content.</p>
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>clef=None</em>, <em>instrument=None</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Basic Constructor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder._buildLilypondArpeggioBlock">
+<code class="descname">_buildLilypondArpeggioBlock</code><span class="sig-paren">(</span><em>melody</em>, <em>keyData</em>, <em>headerBlock=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder._buildLilypondArpeggioBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder._buildLilypondArpeggioBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>From a given melody, build a Lilypond block.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder._buildLilypondHeadingBlock">
+<code class="descname">_buildLilypondHeadingBlock</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder._buildLilypondHeadingBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder._buildLilypondHeadingBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using the given text, build a Lilypond heading block. This heading is for each key.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder._buildLilypondMainHeaderBlock">
+<code class="descname">_buildLilypondMainHeaderBlock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder._buildLilypondMainHeaderBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder._buildLilypondMainHeaderBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the main header block for a Lilypond file. This contains information like composer, subtitle, and title.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder._buildLilypondScaleBlock">
+<code class="descname">_buildLilypondScaleBlock</code><span class="sig-paren">(</span><em>scale</em>, <em>keyData</em>, <em>headerBlock=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder._buildLilypondScaleBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder._buildLilypondScaleBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>From a given scale, build a Lilypond scale block.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder._buildLilypondSubheadingBlock">
+<code class="descname">_buildLilypondSubheadingBlock</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder._buildLilypondSubheadingBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder._buildLilypondSubheadingBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using the given text, build a Lilypond subheading block. This subheading will be used for each scale/arpeggio within a key.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder._convertMingusNoteToLilypond">
+<code class="descname">_convertMingusNoteToLilypond</code><span class="sig-paren">(</span><em>note</em>, <em>duration</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder._convertMingusNoteToLilypond"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder._convertMingusNoteToLilypond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Mingus note object to a Lilypond note string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder._getCleanString">
+<code class="descname">_getCleanString</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder._getCleanString"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder._getCleanString" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleans up accidental signs. Converts &#8220;b&#8221; and &#8220;#&#8221; to &#8220;♭&#8221; and &#8220;♯&#8221;, respectively. Also accounts for double-sharps or double-flats</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder._getTimeSignature">
+<code class="descname">_getTimeSignature</code><span class="sig-paren">(</span><em>melodyLength</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder._getTimeSignature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder._getTimeSignature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the best time signature for displaying scales.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder.addLilypondKeyBlock">
+<code class="descname">addLilypondKeyBlock</code><span class="sig-paren">(</span><em>keyData</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder.addLilypondKeyBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder.addLilypondKeyBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>From the given key data, build a Lilypond /score block for that key. That block represents
+scale and arpeggio info for a specific key</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder.resetData">
+<code class="descname">resetData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder.resetData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder.resetData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets data after a file gets generated.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="musicworkbook.LilypondFileBuilder.writeLilypondFile">
 <code class="descname">writeLilypondFile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder.writeLilypondFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder.writeLilypondFile" title="Permalink to this definition">¶</a></dt>
@@ -119,7 +186,7 @@ If Lilypond is available for use, creates a PDF and shows it to the user.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, RJ Salvador.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

@@ -1,6 +1,6 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -29,7 +29,7 @@
     <link rel="next" title="KeyData" href="keydata.html" />
     <link rel="prev" title="LilypondFileBuilder" href="lilypondfilebuilder.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -83,7 +83,26 @@
 <dl class="class">
 <dt id="musicworkbook.WorkbookBuilder">
 <em class="property">class </em><code class="descclassname">musicworkbook.</code><code class="descname">WorkbookBuilder</code><span class="sig-paren">(</span><em>lowerLimit=None</em>, <em>upperLimit=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><p>Builds up étude data for a Lilypond file, which is ultimately used by the LilypondFileBuilder to create the document(s).</p>
+<dl class="method">
+<dt id="musicworkbook.WorkbookBuilder._buildArpeggioPattern01">
+<code class="descname">_buildArpeggioPattern01</code><span class="sig-paren">(</span><em>threeNotes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder._buildArpeggioPattern01"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder._buildArpeggioPattern01" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds a basic 8 note arpeggio pattern from 3 notes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.WorkbookBuilder._getArpeggioExercise">
+<code class="descname">_getArpeggioExercise</code><span class="sig-paren">(</span><em>chordToneSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder._getArpeggioExercise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder._getArpeggioExercise" title="Permalink to this definition">¶</a></dt>
+<dd><p>From a given scale, return a Note array representing an exercise for that scale.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musicworkbook.WorkbookBuilder._getScaleExercise">
+<code class="descname">_getScaleExercise</code><span class="sig-paren">(</span><em>rawScale</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder._getScaleExercise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder._getScaleExercise" title="Permalink to this definition">¶</a></dt>
+<dd><p>From a given scale, return a Note array representing an exercise for that scale.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="musicworkbook.WorkbookBuilder.buildKeyData">
 <code class="descname">buildKeyData</code><span class="sig-paren">(</span><em>root</em>, <em>keyType</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.buildKeyData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.buildKeyData" title="Permalink to this definition">¶</a></dt>
 <dd><p>From a given key, build and return the KeyData for that key.</p>
@@ -92,25 +111,28 @@
 <dl class="method">
 <dt id="musicworkbook.WorkbookBuilder.getChordTonesInRange">
 <code class="descname">getChordTonesInRange</code><span class="sig-paren">(</span><em>chordTones</em>, <em>lowerLimit</em>, <em>upperLimit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.getChordTonesInRange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.getChordTonesInRange" title="Permalink to this definition">¶</a></dt>
-<dd><p>Starting from the lowerLimit, crawl up the chord tones until we pass the upperLimit</p>
+<dd><p>Gets all instances of the specified chord tones within the lower and upper limits.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="musicworkbook.WorkbookBuilder.getClosestChordToneUp">
 <code class="descname">getClosestChordToneUp</code><span class="sig-paren">(</span><em>chordTones</em>, <em>targetNote</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.getClosestChordToneUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.getClosestChordToneUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Yea boi</p>
+<dd><p>Starting from a target note, gets the next chord tone above the pivotNote.
+For example, if the target note is B5 and the chordTones are [C, E, G], this function would return C6</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="musicworkbook.WorkbookBuilder.getNextNoteDown">
 <code class="descname">getNextNoteDown</code><span class="sig-paren">(</span><em>targetNote</em>, <em>pivotNote</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.getNextNoteDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.getNextNoteDown" title="Permalink to this definition">¶</a></dt>
-<dd><p>Not sure if I’ll ever use this one…</p>
+<dd><p>Starting from a pivot note, gets the next instance of the target note below the pivot note.
+For example, if the pivot note is C4 and target note is G, this function would return G3.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="musicworkbook.WorkbookBuilder.getNextNoteUp">
 <code class="descname">getNextNoteUp</code><span class="sig-paren">(</span><em>targetNote</em>, <em>pivotNote</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.getNextNoteUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.getNextNoteUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wheeee!</p>
+<dd><p>Starting from a pivot note, gets the next instance of the target note above the pivot note.
+For example, if the pivot nNote is C4 and target note is G, this function would return G4.</p>
 </dd></dl>
 
 </dd></dl>
@@ -140,7 +162,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, RJ Salvador.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>
