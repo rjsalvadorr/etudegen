@@ -21,21 +21,21 @@ Say you're working on a piece in an unfamiliar key. Simply reading through a few
     + **Name** - Explain some stuff about possible ways to use it. (see section below)
     + **Clef** - The clef that's used for this instrument.
     + **Instrument range** - (lowest note and highest note)
-- **Major Keys**
-- **Minor Keys**
+- **Major Keys** - The major keys that will be included in the etude book.
+- **Minor Keys** - Similar to above, but for minor keys.
+- **Displaying Key Signatures** - By default, EtudeGen won't show the key signature. In this setting, every accidental will be shown to the reader.
 
 ### Parameters not yet configurable
 
 - **Registers**? - Some instruments switch clefs at some point. For example, cello music is written mostly in bass clef, but the tenor and treble clefs are used at the higher registers.
-- **Arpeggio Patterns**
-- **Displaying Key Signatures**
+- **Arpeggio Patterns** - Coming soon...
 
 
 ## Organization
 The content will be divided by musical keys. There will be the **main content** in the book, plus an **appendix**.
 
 ### Main Content
-We'll have 26 ey/scale sections in total. There will be 13 each for:
+We'll have 26 key/scale sections in total. There will be 13 each for:
 
 - Major keys
 - Minor keys
@@ -50,7 +50,7 @@ Why 13? If you look at a diagram of the circle of fifths, the _6 o'clock_ positi
 6. Submediant (vi)
 7. Mediant (iii)
 
-### Appendix
+### Appendix (Not implemented yet)
 The appendix will contain some helpful tidbits about constructing more complicated chords from the triads. For example:
 
 - maj7 = major triad + major 7th
@@ -62,11 +62,15 @@ We can also describe the rationale behind certain design decisions in the etudes
 
 ## Development
 
-### Dependencies
+### Python Dependencies
 
 - mingus
 - PyYAML
-- Sphinx (only for documentation)
+- Sphinx - Only needed for documentation. The application itself can run without it.
+
+### Other Dependencies
+
+- Lilypond - Required for generating PDFs. Must be installed and usable on the command-line.
 
 ### Virtual Environments
 Fresh setup? On Python 3, run `python -m venv path/to/virtual/env`. In this case, our target folder is `python/` Here's what I did for Python 2 on Windows: `G:\Programming\Web Projects\code-sketches\python>virtualenv -p C:\Python27\python.exe .`
