@@ -1,0 +1,324 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>musicworkbook.workbookbuilder &#8212; musicworkbook 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">musicworkbook 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for musicworkbook.workbookbuilder</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># TODO: This may need a cleanup. Remove any unused imports</span>
+
+<span class="kn">import</span> <span class="nn">mingus.core.notes</span> <span class="k">as</span> <span class="nn">notes</span>
+<span class="kn">import</span> <span class="nn">mingus.core.keys</span> <span class="k">as</span> <span class="nn">keys</span>
+<span class="kn">import</span> <span class="nn">mingus.core.chords</span> <span class="k">as</span> <span class="nn">chords</span>
+<span class="kn">import</span> <span class="nn">mingus.core.scales</span> <span class="k">as</span> <span class="nn">scales</span>
+<span class="kn">import</span> <span class="nn">mingus.core.progressions</span> <span class="k">as</span> <span class="nn">progressions</span>
+
+<span class="kn">from</span> <span class="nn">mingus.containers.note</span> <span class="k">import</span> <span class="n">Note</span>
+
+<span class="kn">from</span> <span class="nn">musicworkbookerror</span> <span class="k">import</span> <span class="n">MusicWorkbookError</span>
+<span class="kn">from</span> <span class="nn">keydata</span> <span class="k">import</span> <span class="n">KeyData</span>
+<span class="kn">from</span> <span class="nn">instrumentdata</span> <span class="k">import</span> <span class="n">InstrumentData</span>
+
+<div class="viewcode-block" id="WorkbookBuilder"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder">[docs]</a><span class="k">class</span> <span class="nc">WorkbookBuilder</span><span class="p">:</span>
+
+    <span class="n">keyTypes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">keyTypes</span><span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;major&quot;</span>
+    <span class="n">keyTypes</span><span class="p">[</span><span class="s2">&quot;minor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;minor&quot;</span>
+    <span class="n">keyTypes</span><span class="p">[</span><span class="s2">&quot;harmonicMinor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;harmonic Minor&quot;</span>
+
+    <span class="n">chordNames</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">chordNames</span><span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;dim&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">]</span>
+    <span class="n">chordNames</span><span class="p">[</span><span class="s2">&quot;minor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+    <span class="n">chordNames</span><span class="p">[</span><span class="s2">&quot;harmonicMinor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;dim&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">]</span>
+    <span class="n">chordNames</span><span class="p">[</span><span class="s2">&quot;fused&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s1">&#39;dim&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;dim&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+
+    <span class="n">romanChordNames</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">romanChordNames</span><span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;vii°&#39;</span><span class="p">,</span> <span class="s2">&quot;IV&quot;</span><span class="p">,</span> <span class="s2">&quot;ii&quot;</span><span class="p">,</span> <span class="s2">&quot;vi&quot;</span><span class="p">,</span> <span class="s2">&quot;iii&quot;</span><span class="p">]</span>
+    <span class="n">romanChordNames</span><span class="p">[</span><span class="s2">&quot;minor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="s2">&quot;VII&quot;</span><span class="p">,</span> <span class="s2">&quot;iv&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;ii°&quot;</span><span class="p">,</span> <span class="s2">&quot;VI&quot;</span><span class="p">,</span> <span class="s2">&quot;III&quot;</span><span class="p">]</span>
+    <span class="n">romanChordNames</span><span class="p">[</span><span class="s2">&quot;harmonicMinor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;vii°&#39;</span><span class="p">,</span> <span class="s2">&quot;iv&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;ii°&quot;</span><span class="p">,</span> <span class="s2">&quot;VI&quot;</span><span class="p">,</span> <span class="s2">&quot;III+&quot;</span><span class="p">]</span>
+    <span class="n">romanChordNames</span><span class="p">[</span><span class="s2">&quot;fused&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;vii°&#39;</span><span class="p">,</span> <span class="s2">&quot;VII&quot;</span><span class="p">,</span> <span class="s2">&quot;iv&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;ii°&quot;</span><span class="p">,</span> <span class="s2">&quot;VI&quot;</span><span class="p">,</span> <span class="s2">&quot;III+&quot;</span><span class="p">,</span> <span class="s2">&quot;III&quot;</span><span class="p">]</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lowerLimit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">upperLimit</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lowerLimit</span> <span class="o">=</span> <span class="n">lowerLimit</span> <span class="k">if</span> <span class="n">lowerLimit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Note</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upperLimit</span> <span class="o">=</span> <span class="n">upperLimit</span> <span class="k">if</span> <span class="n">upperLimit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Note</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="WorkbookBuilder.getNextNoteUp"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.getNextNoteUp">[docs]</a>    <span class="k">def</span> <span class="nf">getNextNoteUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">,</span> <span class="n">pivotNote</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wheeee!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">currentOctave</span> <span class="o">=</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">octave</span>
+        <span class="n">testNotes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span><span class="p">))</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">testNote</span> <span class="ow">in</span> <span class="n">testNotes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">testNote</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">testNote</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">testNote</span></div>
+
+
+<div class="viewcode-block" id="WorkbookBuilder.getNextNoteDown"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.getNextNoteDown">[docs]</a>    <span class="k">def</span> <span class="nf">getNextNoteDown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">,</span> <span class="n">pivotNote</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Not sure if I&#39;ll ever use this one...</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">currentOctave</span> <span class="o">=</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">octave</span>
+        <span class="n">testNotes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span><span class="p">))</span>
+        <span class="n">testNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">targetNote</span><span class="p">,</span> <span class="n">currentOctave</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">testNote</span> <span class="ow">in</span> <span class="n">testNotes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">testNote</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">pivotNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">testNote</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">12</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">testNote</span></div>
+
+
+<div class="viewcode-block" id="WorkbookBuilder.getClosestChordToneUp"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.getClosestChordToneUp">[docs]</a>    <span class="k">def</span> <span class="nf">getClosestChordToneUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordTones</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Yea boi</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ctDict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">minDiff</span> <span class="o">=</span> <span class="mi">999</span> <span class="c1"># I just need an absurdly high number greater than a few octaves</span>
+
+        <span class="k">for</span> <span class="n">chordTone</span> <span class="ow">in</span> <span class="n">chordTones</span><span class="p">:</span>
+            <span class="n">currentNote</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNextNoteUp</span><span class="p">(</span><span class="n">chordTone</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">)</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">targetNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">currentNote</span><span class="p">)</span>
+            <span class="n">ctDict</span><span class="p">[</span><span class="n">diff</span><span class="p">]</span> <span class="o">=</span> <span class="n">currentNote</span>
+            <span class="k">if</span> <span class="n">diff</span> <span class="o">&lt;</span> <span class="n">minDiff</span><span class="p">:</span>
+                <span class="n">minDiff</span> <span class="o">=</span> <span class="n">diff</span>
+
+        <span class="k">return</span> <span class="n">ctDict</span><span class="p">[</span><span class="n">minDiff</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="WorkbookBuilder.getChordTonesInRange"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.getChordTonesInRange">[docs]</a>    <span class="k">def</span> <span class="nf">getChordTonesInRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordTones</span><span class="p">,</span> <span class="n">lowerLimit</span><span class="p">,</span> <span class="n">upperLimit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Starting from the lowerLimit, crawl up the chord tones until we pass the upperLimit</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">returnNotes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">continueLoop</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">lowerLimit</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">chordTones</span><span class="p">:</span>
+            <span class="n">startingNote</span> <span class="o">=</span> <span class="n">lowerLimit</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">startingNote</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getClosestChordToneUp</span><span class="p">(</span><span class="n">chordTones</span><span class="p">,</span> <span class="n">lowerLimit</span><span class="p">)</span>
+
+        <span class="n">returnNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">startingNote</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">continueLoop</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">chordTone</span> <span class="ow">in</span> <span class="n">chordTones</span><span class="p">:</span>
+                <span class="n">currentNote</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNextNoteUp</span><span class="p">(</span><span class="n">chordTone</span><span class="p">,</span> <span class="n">startingNote</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">currentNote</span> <span class="o">&lt;=</span> <span class="n">upperLimit</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">currentNote</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">returnNotes</span><span class="p">:</span>
+                        <span class="n">returnNotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">currentNote</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">continueLoop</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">startingNote</span> <span class="o">=</span> <span class="n">returnNotes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">returnNotes</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">returnNotes</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_buildArpeggioPattern01</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threeNotes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Builds a basic 8 note arpeggio pattern from 3 notes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">noteList</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">noteList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threeNotes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">noteList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threeNotes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">noteList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threeNotes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">noteList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threeNotes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">noteList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threeNotes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">noteList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threeNotes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">noteList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threeNotes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">noteList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threeNotes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">noteList</span>
+
+
+    <span class="k">def</span> <span class="nf">_getScaleExercise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rawScale</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From a given scale, return a Note array representing an exercise for that scale.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">returnScale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChordTonesInRange</span><span class="p">(</span><span class="n">rawScale</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lowerLimit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">upperLimit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">returnScale</span>
+
+
+    <span class="k">def</span> <span class="nf">_getArpeggioExercise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordToneSet</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From a given scale, return a Note array representing an exercise for that scale.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">noteList</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">chordTone</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chordToneSet</span><span class="p">):</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">chordToneSet</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+                <span class="n">threeNotes</span> <span class="o">=</span> <span class="n">chordToneSet</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span>
+                <span class="n">noteList</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buildArpeggioPattern01</span><span class="p">(</span><span class="n">threeNotes</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">noteList</span>
+
+
+    <span class="k">def</span> <span class="nf">buildDiatonicChords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
+        <span class="n">basicChords</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">returnList</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">twoOctaveScale</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
+        <span class="n">twoOctaveScale</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">twoOctaveScale</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">note</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">twoOctaveScale</span><span class="p">):</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">):</span>
+                <span class="n">basicChords</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">note</span><span class="p">,</span> <span class="n">twoOctaveScale</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span> <span class="n">twoOctaveScale</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="n">returnList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">basicChords</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">returnList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">basicChords</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+        <span class="n">returnList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">basicChords</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+        <span class="n">returnList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">basicChords</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+        <span class="n">returnList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">basicChords</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">returnList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">basicChords</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+        <span class="n">returnList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">basicChords</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">returnList</span>
+
+
+<div class="viewcode-block" id="WorkbookBuilder.buildKeyData"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.buildKeyData">[docs]</a>    <span class="k">def</span> <span class="nf">buildKeyData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">keyType</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From a given key, build and return the KeyData for that key.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">mScales</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">diatonicChordTones</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">mArpeggios</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">cNames</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">keyType</span> <span class="o">==</span> <span class="s1">&#39;minor&#39;</span><span class="p">:</span>
+            <span class="c1"># We&#39;ll be using a natural and harmonic minor scale/chords together</span>
+            <span class="n">natScale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">NaturalMinor</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()</span>
+            <span class="n">harmScale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">HarmonicMinor</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()</span>
+
+            <span class="n">mScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_getScaleExercise</span><span class="p">(</span><span class="n">natScale</span><span class="p">))</span>
+            <span class="n">mScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_getScaleExercise</span><span class="p">(</span><span class="n">harmScale</span><span class="p">))</span>
+
+            <span class="n">natDiatonicChords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buildDiatonicChords</span><span class="p">(</span><span class="n">natScale</span><span class="p">)</span>
+            <span class="n">harmDiatonicChords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buildDiatonicChords</span><span class="p">(</span><span class="n">harmScale</span><span class="p">)</span>
+
+            <span class="n">fusedDiatonicChords</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">fusedDiatonicChords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">natDiatonicChords</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">fusedDiatonicChords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">harmDiatonicChords</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">fusedDiatonicChords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">natDiatonicChords</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">fusedDiatonicChords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">harmDiatonicChords</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">fusedDiatonicChords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">natDiatonicChords</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">fusedDiatonicChords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">natDiatonicChords</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">fusedDiatonicChords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">natDiatonicChords</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="n">fusedDiatonicChords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">natDiatonicChords</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+            <span class="n">fusedDiatonicChords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">harmDiatonicChords</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+            <span class="n">fusedDiatonicChords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">natDiatonicChords</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">chord</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fusedDiatonicChords</span><span class="p">):</span>
+                <span class="n">dcInRange</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChordTonesInRange</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lowerLimit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">upperLimit</span><span class="p">)</span>
+                <span class="n">chordTitle</span> <span class="o">=</span> <span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">WorkbookBuilder</span><span class="o">.</span><span class="n">chordNames</span><span class="p">[</span><span class="s2">&quot;fused&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="n">WorkbookBuilder</span><span class="o">.</span><span class="n">romanChordNames</span><span class="p">[</span><span class="s2">&quot;fused&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+                <span class="n">cNames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chordTitle</span><span class="p">)</span>
+                <span class="n">diatonicChordTones</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dcInRange</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Major key. Fairly straightforward</span>
+            <span class="n">rawScale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">Major</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()</span>
+
+            <span class="n">mScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_getScaleExercise</span><span class="p">(</span><span class="n">rawScale</span><span class="p">))</span>
+
+            <span class="n">diatonicChords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buildDiatonicChords</span><span class="p">(</span><span class="n">rawScale</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">chord</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">diatonicChords</span><span class="p">):</span>
+                <span class="n">dcInRange</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChordTonesInRange</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lowerLimit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">upperLimit</span><span class="p">)</span>
+                <span class="n">chordTitle</span> <span class="o">=</span> <span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">WorkbookBuilder</span><span class="o">.</span><span class="n">chordNames</span><span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="n">WorkbookBuilder</span><span class="o">.</span><span class="n">romanChordNames</span><span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+                <span class="n">cNames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chordTitle</span><span class="p">)</span>
+                <span class="n">diatonicChordTones</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dcInRange</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">chordToneSet</span> <span class="ow">in</span> <span class="n">diatonicChordTones</span><span class="p">:</span>
+            <span class="n">mArpeggios</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_getArpeggioExercise</span><span class="p">(</span><span class="n">chordToneSet</span><span class="p">))</span>
+
+        <span class="n">returnKeyData</span> <span class="o">=</span> <span class="n">KeyData</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">keyType</span><span class="p">,</span> <span class="n">cNames</span><span class="p">,</span> <span class="n">mScales</span><span class="p">,</span> <span class="n">mArpeggios</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">returnKeyData</span></div></div>
+
+    <span class="c1">#TODO - implement arpeggiation strategies!</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">musicworkbook 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, RJ Salvador.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+    </div>
+  </body>
+</html>

@@ -10,8 +10,8 @@ Welcome to musicworkbook's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   lilypondutils
-   workbookutils
+   lilypondfilebuilder
+   workbookbuilder
    keydata
 
 

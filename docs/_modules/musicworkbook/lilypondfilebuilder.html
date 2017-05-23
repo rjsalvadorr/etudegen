@@ -1,0 +1,315 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>musicworkbook.lilypondfilebuilder &#8212; musicworkbook 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">musicworkbook 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for musicworkbook.lilypondfilebuilder</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="c1"># TODO - add metadata to the generated files. Build version, and possibly date.</span>
+<span class="c1">#        Look into semantic versioning through this stuff.</span>
+
+<div class="viewcode-block" id="LilypondFileBuilder"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder">[docs]</a><span class="k">class</span> <span class="nc">LilypondFileBuilder</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gradually builds up content for a Lilypond file.</span>
+<span class="sd">    When the content is complete, this class can create a Lilypond file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">octaveMarking</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">octaveMarking</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;,,,,&quot;</span>
+    <span class="n">octaveMarking</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;,,,&quot;</span>
+    <span class="n">octaveMarking</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;,,&quot;</span>
+    <span class="n">octaveMarking</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span>
+    <span class="n">octaveMarking</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">octaveMarking</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&#39;&quot;</span>
+    <span class="n">octaveMarking</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&#39;&#39;&quot;</span>
+    <span class="n">octaveMarking</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&#39;&#39;&#39;&quot;</span>
+    <span class="n">octaveMarking</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&#39;&#39;&#39;&#39;&quot;</span>
+    <span class="n">octaveMarking</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&#39;&#39;&#39;&#39;&#39;&quot;</span>
+
+    <span class="n">accidentalMarking</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">accidentalMarking</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ff&quot;</span>
+    <span class="n">accidentalMarking</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;f&quot;</span>
+    <span class="n">accidentalMarking</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">accidentalMarking</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span>
+    <span class="n">accidentalMarking</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ss&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lilypondBlocks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clef</span> <span class="o">=</span> <span class="n">clef</span> <span class="k">if</span> <span class="n">clef</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;treble&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="n">instrument</span> <span class="k">if</span> <span class="n">instrument</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span> <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;result&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">useKeySignature</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">showSolfege</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+    <span class="k">def</span> <span class="nf">resetData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lilypondBlocks</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">_getTimeSignature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">melodyLength</span><span class="p">):</span>
+        <span class="n">mod3</span> <span class="o">=</span> <span class="n">melodyLength</span> <span class="o">%</span> <span class="mi">3</span>
+        <span class="n">mod4</span> <span class="o">=</span> <span class="n">melodyLength</span> <span class="o">%</span> <span class="mi">4</span>
+
+        <span class="k">if</span> <span class="n">mod4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">4</span>
+        <span class="k">elif</span> <span class="n">mod3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">3</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># there&#39;s a remainder involved!</span>
+            <span class="k">if</span> <span class="n">mod4</span> <span class="o">&gt;=</span> <span class="n">mod3</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">4</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">3</span>
+
+
+    <span class="k">def</span> <span class="nf">_convertMingusNoteToLilypond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+        <span class="n">accidentalCount</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span>
+        <span class="n">accidentalCount</span> <span class="o">-=</span> <span class="n">note</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+
+        <span class="n">noteString</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">noteString</span> <span class="o">+=</span> <span class="n">LilypondFileBuilder</span><span class="o">.</span><span class="n">accidentalMarking</span><span class="p">[</span><span class="n">accidentalCount</span><span class="p">]</span>
+        <span class="n">noteString</span> <span class="o">+=</span> <span class="n">LilypondFileBuilder</span><span class="o">.</span><span class="n">octaveMarking</span><span class="p">[</span><span class="n">note</span><span class="o">.</span><span class="n">octave</span><span class="p">]</span>
+        <span class="n">noteString</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">noteString</span>
+
+
+    <span class="k">def</span> <span class="nf">addLilypondKeyBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyData</span><span class="p">):</span>
+
+        <span class="nb">print</span> <span class="n">keyData</span>
+        <span class="c1"># TODO - pass the keyData obj into the &quot;_buildLilypondScaleBlock&quot; and arpeggio equivalent?</span>
+        <span class="c1"># We&#39;ll need to do some more interesting data tweaks to make the various flags and configs work properly.</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From the given key data, build a Lilypond /score block for that key. That block represents</span>
+<span class="sd">        scale and arpeggio info for a specific key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">newBlock</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="k">if</span> <span class="n">keyData</span><span class="o">.</span><span class="n">keyType</span> <span class="o">==</span> <span class="s2">&quot;major&quot;</span><span class="p">:</span>
+            <span class="n">headerBlock</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildLilypondHeadingBlock</span><span class="p">(</span><span class="n">keyData</span><span class="o">.</span><span class="n">keyName</span><span class="p">)</span>
+            <span class="n">newBlock</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildLilypondScaleBlock</span><span class="p">(</span><span class="n">keyData</span><span class="o">.</span><span class="n">mingusScales</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">keyData</span><span class="p">,</span> <span class="n">headerBlock</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">headerBlock</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildLilypondHeadingBlock</span><span class="p">(</span><span class="n">keyData</span><span class="o">.</span><span class="n">keyName</span><span class="p">)</span>
+            <span class="n">newBlock</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildLilypondScaleBlock</span><span class="p">(</span><span class="n">keyData</span><span class="o">.</span><span class="n">mingusScales</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">keyData</span><span class="p">,</span> <span class="n">headerBlock</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+            <span class="n">harmonicScaleName</span> <span class="o">=</span> <span class="n">keyData</span><span class="o">.</span><span class="n">keyName</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;minor&quot;</span><span class="p">,</span> <span class="s2">&quot;harmonic minor&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; scale&quot;</span>
+            <span class="n">headerBlock</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildLilypondSubheadingBlock</span><span class="p">(</span><span class="n">harmonicScaleName</span><span class="p">)</span>
+            <span class="n">newBlock</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildLilypondScaleBlock</span><span class="p">(</span><span class="n">keyData</span><span class="o">.</span><span class="n">mingusScales</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">keyData</span><span class="p">,</span> <span class="n">headerBlock</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">arpeggio</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keyData</span><span class="o">.</span><span class="n">mingusArpeggios</span><span class="p">):</span>
+            <span class="n">headerBlock</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildLilypondSubheadingBlock</span><span class="p">(</span><span class="n">keyData</span><span class="o">.</span><span class="n">chordNames</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+            <span class="n">newBlock</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildLilypondArpeggioBlock</span><span class="p">(</span><span class="n">arpeggio</span><span class="p">,</span> <span class="n">keyData</span><span class="p">,</span> <span class="n">headerBlock</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="n">newBlock</span> <span class="o">+=</span> <span class="s2">&quot;\pageBreak</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lilypondBlocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newBlock</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_buildLilypondMainHeaderBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">subTitle</span> <span class="o">=</span> <span class="s2">&quot;for &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">headerBlock</span> <span class="o">=</span> <span class="s2">&quot;\header {</span><span class="se">\n</span><span class="s2">    composer = \markup {</span><span class="se">\&quot;</span><span class="s2">RJ Salvador</span><span class="se">\&quot;</span><span class="s2">} subtitle = \markup {</span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">subTitle</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">} title = \markup {</span><span class="se">\&quot;</span><span class="s2">Scales and Arpeggios</span><span class="se">\&quot;</span><span class="s2">}</span><span class="se">\n</span><span class="s2">}&quot;</span>
+        <span class="k">return</span> <span class="n">headerBlock</span>
+
+
+    <span class="k">def</span> <span class="nf">_buildLilypondArpeggioBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">melody</span><span class="p">,</span> <span class="n">keyData</span><span class="p">,</span> <span class="n">headerBlock</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From a given melody, build a Lilypond block.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">noteDuration</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="n">totalBars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">melody</span><span class="p">)</span> <span class="o">/</span> <span class="mi">8</span>
+        <span class="n">barsPerLine</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">barCtr</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Example of key signature text:</span>
+        <span class="c1"># \key d \major</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">useKeySignature</span><span class="p">:</span>
+            <span class="n">keyString</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">key &quot;</span> <span class="o">+</span> <span class="n">keyData</span><span class="o">.</span><span class="n">keyTonicLily</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">keyData</span><span class="o">.</span><span class="n">keyType</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">keyString</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">key c </span><span class="se">\\</span><span class="s2">major &quot;</span>
+
+        <span class="n">newBlock</span> <span class="o">=</span> <span class="s2">&quot;\score {</span><span class="se">\n</span><span class="s2">    {</span><span class="se">\\</span><span class="s2">clef &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">clef</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\\</span><span class="s2">time 4/4 &quot;</span> <span class="o">+</span> <span class="n">keyString</span>
+
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">note</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">melody</span><span class="p">):</span>
+            <span class="n">remainingBars</span> <span class="o">=</span> <span class="n">totalBars</span> <span class="o">-</span> <span class="n">barCtr</span>
+
+            <span class="k">if</span> <span class="n">index</span> <span class="o">%</span> <span class="n">noteDuration</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">barCtr</span> <span class="o">%</span> <span class="n">barsPerLine</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">remainingBars</span> <span class="o">&gt;=</span> <span class="n">barsPerLine</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">newBlock</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">break &quot;</span>
+                <span class="n">barCtr</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># I&#39;m using 8th notes here, so I&#39;m passing &quot;8&quot; to this method.</span>
+            <span class="n">newBlock</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convertMingusNoteToLilypond</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">noteDuration</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+
+        <span class="n">newBlock</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">bar </span><span class="se">\&quot;</span><span class="s2">|.</span><span class="se">\&quot;</span><span class="s2">}</span><span class="se">\n</span><span class="s2">    &quot;</span> <span class="o">+</span> <span class="n">headerBlock</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="k">return</span> <span class="n">newBlock</span>
+
+
+    <span class="k">def</span> <span class="nf">_buildLilypondScaleBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">keyData</span><span class="p">,</span> <span class="n">headerBlock</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From a given scale, build a Lilypond scale block.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">timeSignatureVal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getTimeSignature</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">scale</span><span class="p">))</span>
+        <span class="n">timeSignatureText</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="se">\\</span><span class="s2">time &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">timeSignatureVal</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/4 &quot;</span>
+        <span class="c1"># Example of key signature text:</span>
+        <span class="c1"># \key d \major</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">useKeySignature</span><span class="p">:</span>
+            <span class="n">keyString</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">key &quot;</span> <span class="o">+</span> <span class="n">keyData</span><span class="o">.</span><span class="n">keyTonicLily</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">keyData</span><span class="o">.</span><span class="n">keyType</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">keyString</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">key c </span><span class="se">\\</span><span class="s2">major &quot;</span>
+
+        <span class="n">newBlock</span> <span class="o">=</span> <span class="s2">&quot;\score {</span><span class="se">\n</span><span class="s2">    {</span><span class="se">\\</span><span class="s2">clef &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">clef</span> <span class="o">+</span> <span class="n">timeSignatureText</span> <span class="o">+</span> <span class="n">keyString</span>
+
+        <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">scale</span><span class="p">:</span>
+            <span class="c1"># I&#39;m using quarter notes here, so I&#39;m passing &quot;4&quot; to this method.</span>
+            <span class="n">newBlock</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convertMingusNoteToLilypond</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+
+        <span class="n">newBlock</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">bar </span><span class="se">\&quot;</span><span class="s2">|.</span><span class="se">\&quot;</span><span class="s2">}</span><span class="se">\n</span><span class="s2">    &quot;</span> <span class="o">+</span> <span class="n">headerBlock</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">newBlock</span>
+
+
+    <span class="k">def</span> <span class="nf">_getCleanString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">dubSharp</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;𝄪&#39;</span>
+        <span class="n">dubFlat</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;♭♭&#39;</span>
+        <span class="n">sharpSign</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;♯&#39;</span>
+        <span class="n">flatSign</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;♭&#39;</span>
+
+        <span class="n">uglyDubSharp</span> <span class="o">=</span> <span class="s2">&quot;##&quot;</span>
+        <span class="n">uglyDubFlat</span> <span class="o">=</span> <span class="s2">&quot;bb&quot;</span>
+        <span class="n">uglySharpSign</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span>
+        <span class="n">uglyFlatSign</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span>
+
+        <span class="n">cleanStr</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">uglyDubSharp</span><span class="p">,</span> <span class="n">dubSharp</span><span class="p">)</span>
+        <span class="n">cleanStr</span> <span class="o">=</span> <span class="n">cleanStr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">uglyDubFlat</span><span class="p">,</span> <span class="n">dubFlat</span><span class="p">)</span>
+        <span class="n">cleanStr</span> <span class="o">=</span> <span class="n">cleanStr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">uglySharpSign</span><span class="p">,</span> <span class="n">sharpSign</span><span class="p">)</span>
+        <span class="n">cleanStr</span> <span class="o">=</span> <span class="n">cleanStr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">uglyFlatSign</span><span class="p">,</span> <span class="n">flatSign</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">cleanStr</span>
+
+    <span class="k">def</span> <span class="nf">_buildLilypondHeadingBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From the given text, build a Lilypond heading block.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cleanText</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getCleanString</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">newBlock</span> <span class="o">=</span> <span class="s2">&quot;\header {title = </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">cleanText</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> piece = </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">cleanText</span> <span class="o">+</span> <span class="s2">&quot; scale</span><span class="se">\&quot;</span><span class="s2"> ##f subtitle = ##f composer = ##f}&quot;</span>
+        <span class="k">return</span> <span class="n">newBlock</span>
+
+
+    <span class="k">def</span> <span class="nf">_buildLilypondSubheadingBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From the given text, build a Lilypond heading block.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cleanText</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getCleanString</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">newBlock</span> <span class="o">=</span> <span class="s2">&quot;\header {piece = </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">cleanText</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> title = ##f subtitle = ##f composer = ##f}&quot;</span>
+        <span class="k">return</span> <span class="n">newBlock</span>
+
+
+<div class="viewcode-block" id="LilypondFileBuilder.writeLilypondFile"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder.writeLilypondFile">[docs]</a>    <span class="k">def</span> <span class="nf">writeLilypondFile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Writes the content to a Lilypond file.</span>
+<span class="sd">        If Lilypond is available for use, creates a PDF and shows it to the user.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">dir_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+        <span class="n">inputPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="s2">&quot;header.ly&quot;</span><span class="p">)</span>
+        <span class="n">outputPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.ly&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lilypondBlocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buildLilypondMainHeaderBlock</span><span class="p">())</span>
+
+        <span class="nb">print</span> <span class="s2">&quot;  Creating workbook for &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">inputPath</span><span class="p">,</span> <span class="n">outputPath</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outputPath</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outFile</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">lilyBlock</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lilypondBlocks</span><span class="p">:</span>
+                    <span class="n">lilyBlock</span> <span class="o">=</span> <span class="n">lilyBlock</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+                    <span class="n">outFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">lilyBlock</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">lilypondBlocks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;ERROR! Something went wrong with Lilypond file generation.&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">stuff</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s2">&quot;lilypond&quot;</span><span class="p">,</span> <span class="s2">&quot;--loglevel=BASIC_PROGRESS&quot;</span><span class="p">,</span> <span class="s2">&quot;--output=&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;--pdf&quot;</span><span class="p">,</span> <span class="n">outputPath</span><span class="p">])</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;ERROR! Something went wrong with Lilypond document generation. Check if you have Lilypond installed and available on the path!&quot;</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">musicworkbook 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, RJ Salvador.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+    </div>
+  </body>
+</html>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to musicworkbook’s documentation! &#8212; musicworkbook 0.0.1 documentation</title>
+    <title>LilypondFileBuilder &#8212; musicworkbook 0.0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,7 +26,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="LilypondFileBuilder" href="lilypondfilebuilder.html" /> 
+    <link rel="next" title="WorkbookBuilder" href="workbookbuilder.html" />
+    <link rel="prev" title="Welcome to musicworkbook’s documentation!" href="index.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,26 +37,26 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="lilypondfilebuilder.html" title="LilypondFileBuilder"
+          <a href="workbookbuilder.html" title="WorkbookBuilder"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">musicworkbook 0.0.1 documentation</a> &#187;</li> 
+        <li class="right" >
+          <a href="index.html" title="Welcome to musicworkbook’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">musicworkbook 0.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Welcome to musicworkbook’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
-
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to musicworkbook’s documentation!</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="lilypondfilebuilder.html"
-                        title="next chapter">LilypondFileBuilder</a></p>
+  <p class="topless"><a href="workbookbuilder.html"
+                        title="next chapter">WorkbookBuilder</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
+      <li><a href="_sources/lilypondfilebuilder.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -77,24 +78,22 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-musicworkbook-s-documentation">
-<h1>Welcome to musicworkbook’s documentation!<a class="headerlink" href="#welcome-to-musicworkbook-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="lilypondfilebuilder.html">LilypondFileBuilder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workbookbuilder.html">WorkbookBuilder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="keydata.html">KeyData</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
-</ul>
+  <div class="section" id="lilypondfilebuilder">
+<h1>LilypondFileBuilder<a class="headerlink" href="#lilypondfilebuilder" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="musicworkbook.LilypondFileBuilder">
+<em class="property">class </em><code class="descclassname">musicworkbook.</code><code class="descname">LilypondFileBuilder</code><span class="sig-paren">(</span><em>clef=None</em>, <em>instrument=None</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gradually builds up content for a Lilypond file.
+When the content is complete, this class can create a Lilypond file.</p>
+<dl class="method">
+<dt id="musicworkbook.LilypondFileBuilder.writeLilypondFile">
+<code class="descname">writeLilypondFile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/lilypondfilebuilder.html#LilypondFileBuilder.writeLilypondFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.LilypondFileBuilder.writeLilypondFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the content to a Lilypond file.
+If Lilypond is available for use, creates a PDF and shows it to the user.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -110,9 +109,12 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="lilypondfilebuilder.html" title="LilypondFileBuilder"
+          <a href="workbookbuilder.html" title="WorkbookBuilder"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">musicworkbook 0.0.1 documentation</a> &#187;</li> 
+        <li class="right" >
+          <a href="index.html" title="Welcome to musicworkbook’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">musicworkbook 0.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
