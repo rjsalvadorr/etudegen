@@ -21,7 +21,9 @@ instruments:
     minorKeys: "C A F#"
     # Default is false. This is done to make it easier to remember which
     # notes are sharpened/flattened in various keys.
-    useKeySignatures: false
+    useKeySignature: false
+    # Show solfege syllables over the notes
+    showSolfege: false
 
   - name: bass
     clef: "\"bass_8\""
@@ -30,7 +32,8 @@ instruments:
     arpeggioPattern: "1 2 3 2 3 2 1 3"
     majorKeys: "C G D"
     minorKeys: "A E B"
-    useKeySignatures: false
+    useKeySignature: true
+    showSolfege: false
 
   - name: violin
     clef: treble
@@ -39,4 +42,5 @@ instruments:
     arpeggioPattern: "1 2 3 2 3 2 1 3"
     majorKeys: "Eb Bb F"
     minorKeys: "C G D"
-    useKeySignatures: false
+    useKeySignature: false
+    showSolfege: false

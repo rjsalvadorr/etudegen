@@ -234,9 +234,7 @@ class WorkbookBuilder:
         for chordToneSet in diatonicChordTones:
             mArpeggios.append(self._getArpeggioExercise(chordToneSet))
 
-        keyName = root + " " + WorkbookBuilder.keyTypes[keyType]
-
-        returnKeyData = KeyData(keyName, keyType, cNames, mScales, mArpeggios)
+        returnKeyData = KeyData(root, keyType, cNames, mScales, mArpeggios)
         return returnKeyData
 
     #TODO - implement arpeggiation strategies!

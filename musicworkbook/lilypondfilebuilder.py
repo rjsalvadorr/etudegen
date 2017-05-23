@@ -36,6 +36,8 @@ class LilypondFileBuilder:
         self.clef = clef if clef is not None else "treble"
         self.instrument = instrument if instrument is not None else ""
         self.filename = filename if filename is not None else "result"
+        self.useKeySignature = False
+        self.showSolfege = False
 
 
     def resetData(self):
@@ -69,6 +71,11 @@ class LilypondFileBuilder:
 
 
     def addLilypondKeyBlock(self, keyData):
+
+        print keyData
+        # TODO - pass the keyData obj into the "_buildLilypondScaleBlock" and arpeggio equivalent?
+        # We'll need to do some more interesting data tweaks to make the various flags and configs work properly.
+
         """
         From the given key data, build a Lilypond /score block for that key. That block represents
         scale and arpeggio info for a specific key
@@ -77,19 +84,18 @@ class LilypondFileBuilder:
 
         if keyData.keyType == "major":
             headerBlock = self._buildLilypondHeadingBlock(keyData.keyName)
-            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], headerBlock) + "\n"
+            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], keyData, headerBlock) + "\n"
         else:
             headerBlock = self._buildLilypondHeadingBlock(keyData.keyName)
-            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], headerBlock) + "\n"
+            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], keyData, headerBlock) + "\n"
 
             harmonicScaleName = keyData.keyName.replace("minor", "harmonic minor") + " scale"
-
             headerBlock = self._buildLilypondSubheadingBlock(harmonicScaleName)
-            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[1], headerBlock) + "\n"
+            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[1], keyData, headerBlock) + "\n"
 
         for index, arpeggio in enumerate(keyData.mingusArpeggios):
             headerBlock = self._buildLilypondSubheadingBlock(keyData.chordNames[index])
-            newBlock += self._buildLilypondArpeggioBlock(arpeggio, headerBlock) + "\n"
+            newBlock += self._buildLilypondArpeggioBlock(arpeggio, keyData, headerBlock) + "\n"
 
         newBlock += "\pageBreak\n"
 
@@ -102,7 +108,7 @@ class LilypondFileBuilder:
         return headerBlock
 
 
-    def _buildLilypondArpeggioBlock(self, melody, headerBlock=""):
+    def _buildLilypondArpeggioBlock(self, melody, keyData, headerBlock=""):
         """
         From a given melody, build a Lilypond block.
         """
@@ -110,7 +116,14 @@ class LilypondFileBuilder:
         totalBars = len(melody) / 8
         barsPerLine = 3
         barCtr = 0
-        newBlock = "\score {\n    {\\clef " + self.clef + " \\time 4/4 "
+        # Example of key signature text:
+        # \key d \major
+        if self.useKeySignature:
+            keyString = "\\key " + keyData.keyTonicLily + " \\" + keyData.keyType + " "
+        else:
+            keyString = "\\key c \\major "
+
+        newBlock = "\score {\n    {\\clef " + self.clef + " \\time 4/4 " + keyString
 
         for index, note in enumerate(melody):
             remainingBars = totalBars - barCtr
@@ -128,14 +141,20 @@ class LilypondFileBuilder:
         return newBlock
 
 
-    def _buildLilypondScaleBlock(self, scale, headerBlock=""):
+    def _buildLilypondScaleBlock(self, scale, keyData, headerBlock=""):
         """
         From a given scale, build a Lilypond scale block.
         """
         timeSignatureVal = self._getTimeSignature(len(scale))
         timeSignatureText = " \\time " + str(timeSignatureVal) + "/4 "
+        # Example of key signature text:
+        # \key d \major
+        if self.useKeySignature:
+            keyString = "\\key " + keyData.keyTonicLily + " \\" + keyData.keyType + " "
+        else:
+            keyString = "\\key c \\major "
 
-        newBlock = "\score {\n    {\\clef " + self.clef + timeSignatureText
+        newBlock = "\score {\n    {\\clef " + self.clef + timeSignatureText + keyString
 
         for note in scale:
             # I'm using quarter notes here, so I'm passing "4" to this method.
