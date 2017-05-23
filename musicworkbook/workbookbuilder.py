@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 # TODO: This may need a cleanup. Remove any unused imports
-# TODO: change class name to WorkbookBuilder
-
-import pprint # for console printing
 
 import mingus.core.notes as notes
 import mingus.core.keys as keys
@@ -16,9 +13,7 @@ from musicworkbookerror import MusicWorkbookError
 from keydata import KeyData
 from instrumentdata import InstrumentData
 
-class WorkbookUtils:
-
-    pPrinter = pprint.PrettyPrinter(indent=2, width=120)
+class WorkbookBuilder:
 
     keyTypes = dict()
     keyTypes["major"] = "major"
@@ -219,7 +214,7 @@ class WorkbookUtils:
 
             for index, chord in enumerate(fusedDiatonicChords):
                 dcInRange = self.getChordTonesInRange(chord, self.lowerLimit, self.upperLimit)
-                chordTitle = chord[0] + WorkbookUtils.chordNames["fused"][index] + " (" + WorkbookUtils.romanChordNames["fused"][index] + ")"
+                chordTitle = chord[0] + WorkbookBuilder.chordNames["fused"][index] + " (" + WorkbookBuilder.romanChordNames["fused"][index] + ")"
                 cNames.append(chordTitle)
                 diatonicChordTones.append(dcInRange)
         else:
@@ -232,14 +227,14 @@ class WorkbookUtils:
 
             for index, chord in enumerate(diatonicChords):
                 dcInRange = self.getChordTonesInRange(chord, self.lowerLimit, self.upperLimit)
-                chordTitle = chord[0] + WorkbookUtils.chordNames["major"][index] + " (" + WorkbookUtils.romanChordNames["major"][index] + ")"
+                chordTitle = chord[0] + WorkbookBuilder.chordNames["major"][index] + " (" + WorkbookBuilder.romanChordNames["major"][index] + ")"
                 cNames.append(chordTitle)
                 diatonicChordTones.append(dcInRange)
 
         for chordToneSet in diatonicChordTones:
             mArpeggios.append(self._getArpeggioExercise(chordToneSet))
 
-        keyName = root + " " + WorkbookUtils.keyTypes[keyType]
+        keyName = root + " " + WorkbookBuilder.keyTypes[keyType]
 
         returnKeyData = KeyData(keyName, keyType, cNames, mScales, mArpeggios)
         return returnKeyData

@@ -3,13 +3,13 @@ import os
 import pprint # for console printing
 import yaml
 
-from workbookutils import WorkbookUtils
-from lilypondutils import LilypondUtils
+from workbookbuilder import WorkbookBuilder
+from lilypondfilebuilder import LilypondFileBuilder
 from instrumentdata import InstrumentData
 
 pPrinter = pprint.PrettyPrinter(indent=2, width=120)
-workbookUtils = WorkbookUtils()
-lilypondUtils = LilypondUtils()
+workbookBuilder = WorkbookBuilder()
+lilypondFileBuilder = LilypondFileBuilder()
 
 
 # Determine if we're using Test mode
@@ -46,26 +46,28 @@ minorKeyListTest = ['A', 'F#', 'C',]
 for rawInstrument in yamlData['instruments']:
     instrument = InstrumentData(rawInstrument['name'], rawInstrument['clef'], rawInstrument['lowerLimit'], rawInstrument['upperLimit'])
 
+    # Set up the key list
     majorKeyListFull = rawInstrument['majorKeys'].split(' ')
     minorKeyListFull = rawInstrument['minorKeys'].split(' ')
     majKeyList = majorKeyListTest if testMode else majorKeyListFull
     minKeyList = minorKeyListTest if testMode else minorKeyListFull
 
-    lilypondUtils.filename = "music-workbook-for-" + instrument.name
-    lilypondUtils.instrument = instrument.name
-    lilypondUtils.clef = instrument.clef
-    workbookUtils.lowerLimit = instrument.lowerLimit
-    workbookUtils.upperLimit = instrument.upperLimit
+    # Set up file data
+    lilypondFileBuilder.filename = "music-workbook-for-" + instrument.name
+    lilypondFileBuilder.instrument = instrument.name
+    lilypondFileBuilder.clef = instrument.clef
+    workbookBuilder.lowerLimit = instrument.lowerLimit
+    workbookBuilder.upperLimit = instrument.upperLimit
 
     # For each key, create the scale and arpeggio exercises
     for majorKey in majKeyList:
-        keyData = workbookUtils.buildKeyData(majorKey, "major")
-        lilypondUtils.addLilypondKeyBlock(keyData)
+        keyData = workbookBuilder.buildKeyData(majorKey, "major")
+        lilypondFileBuilder.addLilypondKeyBlock(keyData)
 
     for minorKey in minKeyList:
-        keyData = workbookUtils.buildKeyData(minorKey, "minor")
-        lilypondUtils.addLilypondKeyBlock(keyData)
+        keyData = workbookBuilder.buildKeyData(minorKey, "minor")
+        lilypondFileBuilder.addLilypondKeyBlock(keyData)
 
     # Write the results to files, using Lilypond
     print "  Writing file..."
-    lilypondUtils.writeLilypondFile()
+    lilypondFileBuilder.writeLilypondFile()

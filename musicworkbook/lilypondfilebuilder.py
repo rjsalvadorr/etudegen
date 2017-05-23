@@ -3,11 +3,10 @@ import os
 import shutil
 import subprocess
 
-# TODO - rename to LilypondFileBuilder
 # TODO - add metadata to the generated files. Build version, and possibly date.
 #        Look into semantic versioning through this stuff.
 
-class LilypondUtils:
+class LilypondFileBuilder:
     """
     Gradually builds up content for a Lilypond file.
     When the content is complete, this class can create a Lilypond file.
@@ -63,8 +62,8 @@ class LilypondUtils:
         accidentalCount -= note.name.count("b")
 
         noteString = note.name.replace("b", "").replace("#", "").lower()
-        noteString += LilypondUtils.accidentalMarking[accidentalCount]
-        noteString += LilypondUtils.octaveMarking[note.octave]
+        noteString += LilypondFileBuilder.accidentalMarking[accidentalCount]
+        noteString += LilypondFileBuilder.octaveMarking[note.octave]
         noteString += str(duration)
         return noteString
 
