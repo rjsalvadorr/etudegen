@@ -15,9 +15,11 @@ mingus_examples/
 pip-selfcheck.json
 make.bat
 
-**.ly
+test**.ly
 junk.py
 
 # Should I keep the output away from the repo?
+result.ly
+music-workbook-**.ly
 **.pdf
 **.ps
