@@ -7,29 +7,36 @@ instruments:
     clef: "\"treble_8\""
     lowerLimit: E-2
     upperLimit: E-5
+    # Arpeggio pattern to be used
+    # Numbers correspond to chord tones in range. The program will apply the pattern by
+    # incrementing all the numbers until we've covered the whole range. So for that
+    # first example, we'll see "1 2 3 2 3 2 1 3", then "2 3 4 3 4 3 2 4", then
+    # "3 4 5 4 5 4 3 5", and so on.
+    arpeggioPattern: "1 2 3 2 3 2 1 3"
+    # List of keys to be used
+    # This also determines the order that will be used in the Etude book
+    # Recommended major Keys: "C G D A E B F# F Bb Eb Ab Db Gb"
+    # Recommended minor Keys: "A E B F# C# G# D# D G C F Bb Eb"
+    majorKeys: "Eb C A"
+    minorKeys: "C A F#"
+    # Default is false. This is done to make it easier to remember which
+    # notes are sharpened/flattened in various keys.
+    useKeySignatures: false
+
   - name: bass
     clef: "\"bass_8\""
     lowerLimit: E-1
     upperLimit: G-3
+    arpeggioPattern: "1 2 3 2 3 2 1 3"
+    majorKeys: "C G D"
+    minorKeys: "A E B"
+    useKeySignatures: false
+
   - name: violin
     clef: treble
     lowerLimit: G-3
     upperLimit: C-6
-
-# Arpeggio pattern to be used
-# Numbers correspond to chord tones in range. The program will apply the pattern by
-# incrementing all the numbers until we've covered the whole range. So for that
-# first example, we'll see "1 2 3 2 3 2 1 3", then "2 3 4 3 4 3 2 4", then
-# "3 4 5 4 5 4 3 5", and so on.
-arpeggioPattern: "1 2 3 2 3 2 1 3"
-
-# List of keys to be used
-# This also determines the order that will be used in the Etude book
-# Recommended major Keys: "C G D A E B F# F Bb Eb Ab Db Gb"
-# Recommended minor Keys: "A E B F# C# G# D# D G C F Bb Eb"
-majorKeys: "Eb C A"
-minorKeys: "C A F#"
-
-# Default is false. This is done to make it easier to remember which
-# notes are sharpened/flattened in various keys.
-useKeySignatures: false
+    arpeggioPattern: "1 2 3 2 3 2 1 3"
+    majorKeys: "Eb Bb F"
+    minorKeys: "C G D"
+    useKeySignatures: false

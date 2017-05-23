@@ -1,11 +1,13 @@
 import sys
 import os
+import pprint # for console printing
 import yaml
 
 from workbookutils import WorkbookUtils
 from lilypondutils import LilypondUtils
 from instrumentdata import InstrumentData
 
+pPrinter = pprint.PrettyPrinter(indent=2, width=120)
 workbookUtils = WorkbookUtils()
 lilypondUtils = LilypondUtils()
 
@@ -29,29 +31,25 @@ cfgFilePath = os.path.join(fileDir, 'config.yaml')
 try:
     stream = file(cfgFilePath, 'r')
     yamlData = yaml.load(stream)
-    print yamlData
+    pPrinter.pprint(yamlData)
 except:
     print "YAML configuration failed to load!"
     raise
 
 
 # Define the list of keys
-majorKeyListFull = yamlData['majorKeys'].split(' ')
-minorKeyListFull = yamlData['minorKeys'].split(' ')
-
 majorKeyListTest = ['C', 'A', 'Eb']
 minorKeyListTest = ['A', 'F#', 'C',]
-
-majKeyList = majorKeyListTest if testMode else majorKeyListFull
-minKeyList = minorKeyListTest if testMode else minorKeyListFull
-
-print majKeyList
-print minKeyList
 
 
 # Create the etudes!
 for rawInstrument in yamlData['instruments']:
     instrument = InstrumentData(rawInstrument['name'], rawInstrument['clef'], rawInstrument['lowerLimit'], rawInstrument['upperLimit'])
+
+    majorKeyListFull = rawInstrument['majorKeys'].split(' ')
+    minorKeyListFull = rawInstrument['minorKeys'].split(' ')
+    majKeyList = majorKeyListTest if testMode else majorKeyListFull
+    minKeyList = minorKeyListTest if testMode else minorKeyListFull
 
     lilypondUtils.filename = "music-workbook-for-" + instrument.name
     lilypondUtils.instrument = instrument.name
