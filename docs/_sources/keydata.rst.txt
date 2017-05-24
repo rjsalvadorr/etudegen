@@ -1,6 +1,6 @@
 KeyData
 =======
-.. currentmodule:: musicworkbook
+.. currentmodule:: etudegen
 .. autoclass:: KeyData
   :members:
   :special-members:

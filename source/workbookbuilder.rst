@@ -1,6 +1,6 @@
 WorkbookBuilder
 ===============
-.. currentmodule:: musicworkbook
+.. currentmodule:: etudegen
 .. autoclass:: WorkbookBuilder
   :members:
   :special-members:

@@ -1,6 +1,6 @@
 LilypondFileBuilder
 ===================
-.. currentmodule:: musicworkbook
+.. currentmodule:: etudegen
 .. autoclass:: LilypondFileBuilder
   :members:
   :special-members:

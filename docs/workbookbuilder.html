@@ -1,12 +1,12 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>WorkbookBuilder &#8212; musicworkbook 0.0.1 documentation</title>
+    <title>WorkbookBuilder &#8212; etudegen 0.0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -29,7 +29,7 @@
     <link rel="next" title="KeyData" href="keydata.html" />
     <link rel="prev" title="LilypondFileBuilder" href="lilypondfilebuilder.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -42,7 +42,7 @@
         <li class="right" >
           <a href="lilypondfilebuilder.html" title="LilypondFileBuilder"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">musicworkbook 0.0.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">etudegen 0.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -81,68 +81,68 @@
   <div class="section" id="workbookbuilder">
 <h1>WorkbookBuilder<a class="headerlink" href="#workbookbuilder" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="musicworkbook.WorkbookBuilder">
-<em class="property">class </em><code class="descclassname">musicworkbook.</code><code class="descname">WorkbookBuilder</code><span class="sig-paren">(</span><em>lowerLimit=None</em>, <em>upperLimit=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder">
+<em class="property">class </em><code class="descclassname">etudegen.</code><code class="descname">WorkbookBuilder</code><span class="sig-paren">(</span><em>lowerLimit=None</em>, <em>upperLimit=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds up étude data for a Lilypond file, which is ultimately used by the LilypondFileBuilder to create the document(s).</p>
 <dl class="method">
-<dt id="musicworkbook.WorkbookBuilder._buildArpeggioPattern01">
-<code class="descname">_buildArpeggioPattern01</code><span class="sig-paren">(</span><em>threeNotes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder._buildArpeggioPattern01"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder._buildArpeggioPattern01" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder._buildArpeggioPattern01">
+<code class="descname">_buildArpeggioPattern01</code><span class="sig-paren">(</span><em>threeNotes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder._buildArpeggioPattern01"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder._buildArpeggioPattern01" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds a basic 8 note arpeggio pattern from 3 notes.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="musicworkbook.WorkbookBuilder._getArpeggioExercise">
-<code class="descname">_getArpeggioExercise</code><span class="sig-paren">(</span><em>chordToneSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder._getArpeggioExercise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder._getArpeggioExercise" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder._getArpeggioExercise">
+<code class="descname">_getArpeggioExercise</code><span class="sig-paren">(</span><em>chordToneSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder._getArpeggioExercise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder._getArpeggioExercise" title="Permalink to this definition">¶</a></dt>
 <dd><p>From a given scale, return a Note array representing an exercise for that scale.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="musicworkbook.WorkbookBuilder._getScaleExercise">
-<code class="descname">_getScaleExercise</code><span class="sig-paren">(</span><em>rawScale</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder._getScaleExercise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder._getScaleExercise" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder._getScaleExercise">
+<code class="descname">_getScaleExercise</code><span class="sig-paren">(</span><em>rawScale</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder._getScaleExercise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder._getScaleExercise" title="Permalink to this definition">¶</a></dt>
 <dd><p>From a given scale, return a Note array representing an exercise for that scale.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="musicworkbook.WorkbookBuilder.buildKeyData">
-<code class="descname">buildKeyData</code><span class="sig-paren">(</span><em>root</em>, <em>keyType</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.buildKeyData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.buildKeyData" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder.buildKeyData">
+<code class="descname">buildKeyData</code><span class="sig-paren">(</span><em>root</em>, <em>keyType</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder.buildKeyData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder.buildKeyData" title="Permalink to this definition">¶</a></dt>
 <dd><p>From a given key, build and return the KeyData for that key.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="musicworkbook.WorkbookBuilder.buildSolfegeFromArpeggios">
-<code class="descname">buildSolfegeFromArpeggios</code><span class="sig-paren">(</span><em>tonicNote</em>, <em>mingusArpeggios</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.buildSolfegeFromArpeggios"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.buildSolfegeFromArpeggios" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder.buildSolfegeFromArpeggios">
+<code class="descname">buildSolfegeFromArpeggios</code><span class="sig-paren">(</span><em>tonicNote</em>, <em>mingusArpeggios</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder.buildSolfegeFromArpeggios"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder.buildSolfegeFromArpeggios" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build a parallel list containing the scale degrees for arpeggio exercises</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="musicworkbook.WorkbookBuilder.buildSolfegeFromScales">
-<code class="descname">buildSolfegeFromScales</code><span class="sig-paren">(</span><em>tonicNote</em>, <em>mingusScales</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.buildSolfegeFromScales"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.buildSolfegeFromScales" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder.buildSolfegeFromScales">
+<code class="descname">buildSolfegeFromScales</code><span class="sig-paren">(</span><em>tonicNote</em>, <em>mingusScales</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder.buildSolfegeFromScales"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder.buildSolfegeFromScales" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build a parallel list containing the scale degrees for a scale exercise.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="musicworkbook.WorkbookBuilder.getChordTonesInRange">
-<code class="descname">getChordTonesInRange</code><span class="sig-paren">(</span><em>chordTones</em>, <em>lowerLimit</em>, <em>upperLimit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.getChordTonesInRange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.getChordTonesInRange" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder.getChordTonesInRange">
+<code class="descname">getChordTonesInRange</code><span class="sig-paren">(</span><em>chordTones</em>, <em>lowerLimit</em>, <em>upperLimit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder.getChordTonesInRange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder.getChordTonesInRange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets all instances of the specified chord tones within the lower and upper limits.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="musicworkbook.WorkbookBuilder.getClosestChordToneUp">
-<code class="descname">getClosestChordToneUp</code><span class="sig-paren">(</span><em>chordTones</em>, <em>targetNote</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.getClosestChordToneUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.getClosestChordToneUp" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder.getClosestChordToneUp">
+<code class="descname">getClosestChordToneUp</code><span class="sig-paren">(</span><em>chordTones</em>, <em>targetNote</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder.getClosestChordToneUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder.getClosestChordToneUp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starting from a target note, gets the next chord tone above the pivotNote.
 For example, if the target note is B5 and the chordTones are [C, E, G], this function would return C6</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="musicworkbook.WorkbookBuilder.getNextNoteDown">
-<code class="descname">getNextNoteDown</code><span class="sig-paren">(</span><em>targetNote</em>, <em>pivotNote</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.getNextNoteDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.getNextNoteDown" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder.getNextNoteDown">
+<code class="descname">getNextNoteDown</code><span class="sig-paren">(</span><em>targetNote</em>, <em>pivotNote</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder.getNextNoteDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder.getNextNoteDown" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starting from a pivot note, gets the next instance of the target note below the pivot note.
 For example, if the pivot note is C4 and target note is G, this function would return G3.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="musicworkbook.WorkbookBuilder.getNextNoteUp">
-<code class="descname">getNextNoteUp</code><span class="sig-paren">(</span><em>targetNote</em>, <em>pivotNote</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/musicworkbook/workbookbuilder.html#WorkbookBuilder.getNextNoteUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#musicworkbook.WorkbookBuilder.getNextNoteUp" title="Permalink to this definition">¶</a></dt>
+<dt id="etudegen.WorkbookBuilder.getNextNoteUp">
+<code class="descname">getNextNoteUp</code><span class="sig-paren">(</span><em>targetNote</em>, <em>pivotNote</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/etudegen/workbookbuilder.html#WorkbookBuilder.getNextNoteUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#etudegen.WorkbookBuilder.getNextNoteUp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starting from a pivot note, gets the next instance of the target note above the pivot note.
 For example, if the pivot nNote is C4 and target note is G, this function would return G4.</p>
 </dd></dl>
@@ -169,12 +169,12 @@ For example, if the pivot nNote is C4 and target note is G, this function would 
         <li class="right" >
           <a href="lilypondfilebuilder.html" title="LilypondFileBuilder"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">musicworkbook 0.0.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">etudegen 0.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, RJ Salvador.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
     </div>
   </body>
 </html>

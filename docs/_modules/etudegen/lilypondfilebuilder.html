@@ -1,12 +1,12 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>musicworkbook.lilypondfilebuilder &#8212; musicworkbook 0.0.1 documentation</title>
+    <title>etudegen.lilypondfilebuilder &#8212; etudegen 0.0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -27,14 +27,14 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">musicworkbook 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">etudegen 0.0.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
@@ -58,7 +58,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Source code for musicworkbook.lilypondfilebuilder</h1><div class="highlight"><pre>
+  <h1>Source code for etudegen.lilypondfilebuilder</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
@@ -67,7 +67,7 @@
 <span class="c1"># TODO - add metadata to the generated files. Build version, and possibly date.</span>
 <span class="c1">#        Look into semantic versioning through this stuff.</span>
 
-<div class="viewcode-block" id="LilypondFileBuilder"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder">[docs]</a><span class="k">class</span> <span class="nc">LilypondFileBuilder</span><span class="p">:</span>
+<div class="viewcode-block" id="LilypondFileBuilder"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder">[docs]</a><span class="k">class</span> <span class="nc">LilypondFileBuilder</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Builds up étude content for a Lilypond file, using data from the WorkbookBuilder.</span>
 <span class="sd">    When the content is ready, this class can create a Lilypond file with that content.</span>
@@ -92,7 +92,7 @@
     <span class="n">accidentalMarking</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span>
     <span class="n">accidentalMarking</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ss&quot;</span>
 
-<div class="viewcode-block" id="LilypondFileBuilder.__init__"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder.__init__"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Basic Constructor</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -104,13 +104,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">showSolfege</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 
-<div class="viewcode-block" id="LilypondFileBuilder.resetData"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder.resetData">[docs]</a>    <span class="k">def</span> <span class="nf">resetData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder.resetData"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder.resetData">[docs]</a>    <span class="k">def</span> <span class="nf">resetData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Resets data after a file gets generated.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lilypondBlocks</span> <span class="o">=</span> <span class="p">[]</span></div>
 
-<div class="viewcode-block" id="LilypondFileBuilder._getTimeSignature"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder._getTimeSignature">[docs]</a>    <span class="k">def</span> <span class="nf">_getTimeSignature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">melodyLength</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder._getTimeSignature"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder._getTimeSignature">[docs]</a>    <span class="k">def</span> <span class="nf">_getTimeSignature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">melodyLength</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finds the best time signature for displaying scales.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -129,7 +129,7 @@
                 <span class="k">return</span> <span class="mi">3</span></div>
 
 
-<div class="viewcode-block" id="LilypondFileBuilder._convertMingusNoteToLilypond"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder._convertMingusNoteToLilypond">[docs]</a>    <span class="k">def</span> <span class="nf">_convertMingusNoteToLilypond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder._convertMingusNoteToLilypond"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder._convertMingusNoteToLilypond">[docs]</a>    <span class="k">def</span> <span class="nf">_convertMingusNoteToLilypond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Converts a Mingus note object to a Lilypond note string.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -147,7 +147,7 @@
         <span class="k">return</span> <span class="n">noteString</span></div>
 
 
-<div class="viewcode-block" id="LilypondFileBuilder.addLilypondKeyBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder.addLilypondKeyBlock">[docs]</a>    <span class="k">def</span> <span class="nf">addLilypondKeyBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyData</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder.addLilypondKeyBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder.addLilypondKeyBlock">[docs]</a>    <span class="k">def</span> <span class="nf">addLilypondKeyBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyData</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        From the given key data, build a Lilypond /score block for that key. That block represents</span>
 <span class="sd">        scale and arpeggio info for a specific key</span>
@@ -175,7 +175,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">lilypondBlocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newBlock</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="LilypondFileBuilder._buildLilypondMainHeaderBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder._buildLilypondMainHeaderBlock">[docs]</a>    <span class="k">def</span> <span class="nf">_buildLilypondMainHeaderBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder._buildLilypondMainHeaderBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder._buildLilypondMainHeaderBlock">[docs]</a>    <span class="k">def</span> <span class="nf">_buildLilypondMainHeaderBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Builds the main header block for a Lilypond file. This contains information like composer, subtitle, and title.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -185,7 +185,7 @@
         <span class="k">return</span> <span class="n">headerBlock</span></div>
 
 
-<div class="viewcode-block" id="LilypondFileBuilder._buildLilypondArpeggioBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder._buildLilypondArpeggioBlock">[docs]</a>    <span class="k">def</span> <span class="nf">_buildLilypondArpeggioBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">melody</span><span class="p">,</span> <span class="n">melodySolfege</span><span class="p">,</span> <span class="n">keyData</span><span class="p">,</span> <span class="n">headerBlock</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder._buildLilypondArpeggioBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder._buildLilypondArpeggioBlock">[docs]</a>    <span class="k">def</span> <span class="nf">_buildLilypondArpeggioBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">melody</span><span class="p">,</span> <span class="n">melodySolfege</span><span class="p">,</span> <span class="n">keyData</span><span class="p">,</span> <span class="n">headerBlock</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        From a given melody, build a Lilypond block.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -218,7 +218,7 @@
         <span class="k">return</span> <span class="n">newBlock</span></div>
 
 
-<div class="viewcode-block" id="LilypondFileBuilder._buildLilypondScaleBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder._buildLilypondScaleBlock">[docs]</a>    <span class="k">def</span> <span class="nf">_buildLilypondScaleBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">scaleSolfege</span><span class="p">,</span> <span class="n">keyData</span><span class="p">,</span> <span class="n">headerBlock</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder._buildLilypondScaleBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder._buildLilypondScaleBlock">[docs]</a>    <span class="k">def</span> <span class="nf">_buildLilypondScaleBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">scaleSolfege</span><span class="p">,</span> <span class="n">keyData</span><span class="p">,</span> <span class="n">headerBlock</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        From a given scale, build a Lilypond scale block.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -241,7 +241,7 @@
         <span class="k">return</span> <span class="n">newBlock</span></div>
 
 
-<div class="viewcode-block" id="LilypondFileBuilder._getCleanString"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder._getCleanString">[docs]</a>    <span class="k">def</span> <span class="nf">_getCleanString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder._getCleanString"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder._getCleanString">[docs]</a>    <span class="k">def</span> <span class="nf">_getCleanString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Cleans up accidental signs. Converts &quot;b&quot; and &quot;#&quot; to &quot;♭&quot; and &quot;♯&quot;, respectively. Also accounts for double-sharps or double-flats</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -262,7 +262,7 @@
 
         <span class="k">return</span> <span class="n">cleanStr</span></div>
 
-<div class="viewcode-block" id="LilypondFileBuilder._buildLilypondHeadingBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder._buildLilypondHeadingBlock">[docs]</a>    <span class="k">def</span> <span class="nf">_buildLilypondHeadingBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder._buildLilypondHeadingBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder._buildLilypondHeadingBlock">[docs]</a>    <span class="k">def</span> <span class="nf">_buildLilypondHeadingBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Using the given text, build a Lilypond heading block. This heading is for each key.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -271,7 +271,7 @@
         <span class="k">return</span> <span class="n">newBlock</span></div>
 
 
-<div class="viewcode-block" id="LilypondFileBuilder._buildLilypondSubheadingBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder._buildLilypondSubheadingBlock">[docs]</a>    <span class="k">def</span> <span class="nf">_buildLilypondSubheadingBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder._buildLilypondSubheadingBlock"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder._buildLilypondSubheadingBlock">[docs]</a>    <span class="k">def</span> <span class="nf">_buildLilypondSubheadingBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Using the given text, build a Lilypond subheading block. This subheading will be used for each scale/arpeggio within a key.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -280,7 +280,7 @@
         <span class="k">return</span> <span class="n">newBlock</span></div>
 
 
-<div class="viewcode-block" id="LilypondFileBuilder.writeLilypondFile"><a class="viewcode-back" href="../../lilypondfilebuilder.html#musicworkbook.LilypondFileBuilder.writeLilypondFile">[docs]</a>    <span class="k">def</span> <span class="nf">writeLilypondFile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LilypondFileBuilder.writeLilypondFile"><a class="viewcode-back" href="../../lilypondfilebuilder.html#etudegen.LilypondFileBuilder.writeLilypondFile">[docs]</a>    <span class="k">def</span> <span class="nf">writeLilypondFile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes the content to a Lilypond file.</span>
 <span class="sd">        If Lilypond is available for use, creates a PDF and shows it to the user.</span>
@@ -322,13 +322,13 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">musicworkbook 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">etudegen 0.0.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, RJ Salvador.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
     </div>
   </body>
 </html>

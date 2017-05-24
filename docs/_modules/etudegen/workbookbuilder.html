@@ -1,12 +1,12 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>musicworkbook.workbookbuilder &#8212; musicworkbook 0.0.1 documentation</title>
+    <title>etudegen.workbookbuilder &#8212; etudegen 0.0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -27,14 +27,14 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">musicworkbook 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">etudegen 0.0.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
@@ -58,7 +58,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Source code for musicworkbook.workbookbuilder</h1><div class="highlight"><pre>
+  <h1>Source code for etudegen.workbookbuilder</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="c1"># TODO: This may need a cleanup. Remove any unused imports</span>
 
@@ -74,7 +74,7 @@
 <span class="kn">from</span> <span class="nn">keydata</span> <span class="k">import</span> <span class="n">KeyData</span>
 <span class="kn">from</span> <span class="nn">instrumentdata</span> <span class="k">import</span> <span class="n">InstrumentData</span>
 
-<div class="viewcode-block" id="WorkbookBuilder"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder">[docs]</a><span class="k">class</span> <span class="nc">WorkbookBuilder</span><span class="p">:</span>
+<div class="viewcode-block" id="WorkbookBuilder"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder">[docs]</a><span class="k">class</span> <span class="nc">WorkbookBuilder</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Builds up étude data for a Lilypond file, which is ultimately used by the LilypondFileBuilder to create the document(s).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -104,7 +104,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">upperLimit</span> <span class="o">=</span> <span class="n">upperLimit</span> <span class="k">if</span> <span class="n">upperLimit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Note</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="WorkbookBuilder.getNextNoteUp"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.getNextNoteUp">[docs]</a>    <span class="k">def</span> <span class="nf">getNextNoteUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">,</span> <span class="n">pivotNote</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkbookBuilder.getNextNoteUp"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder.getNextNoteUp">[docs]</a>    <span class="k">def</span> <span class="nf">getNextNoteUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">,</span> <span class="n">pivotNote</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Starting from a pivot note, gets the next instance of the target note above the pivot note.</span>
 <span class="sd">        For example, if the pivot nNote is C4 and target note is G, this function would return G4.</span>
@@ -120,7 +120,7 @@
                 <span class="k">return</span> <span class="n">testNote</span></div>
 
 
-<div class="viewcode-block" id="WorkbookBuilder.getNextNoteDown"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.getNextNoteDown">[docs]</a>    <span class="k">def</span> <span class="nf">getNextNoteDown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">,</span> <span class="n">pivotNote</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkbookBuilder.getNextNoteDown"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder.getNextNoteDown">[docs]</a>    <span class="k">def</span> <span class="nf">getNextNoteDown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">,</span> <span class="n">pivotNote</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Starting from a pivot note, gets the next instance of the target note below the pivot note.</span>
 <span class="sd">        For example, if the pivot note is C4 and target note is G, this function would return G3.</span>
@@ -136,7 +136,7 @@
                 <span class="k">return</span> <span class="n">testNote</span></div>
 
 
-<div class="viewcode-block" id="WorkbookBuilder.getClosestChordToneUp"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.getClosestChordToneUp">[docs]</a>    <span class="k">def</span> <span class="nf">getClosestChordToneUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordTones</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkbookBuilder.getClosestChordToneUp"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder.getClosestChordToneUp">[docs]</a>    <span class="k">def</span> <span class="nf">getClosestChordToneUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordTones</span><span class="p">,</span> <span class="n">targetNote</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Starting from a target note, gets the next chord tone above the pivotNote.</span>
 <span class="sd">        For example, if the target note is B5 and the chordTones are [C, E, G], this function would return C6</span>
@@ -154,7 +154,7 @@
         <span class="k">return</span> <span class="n">ctDict</span><span class="p">[</span><span class="n">minDiff</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="WorkbookBuilder.getChordTonesInRange"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.getChordTonesInRange">[docs]</a>    <span class="k">def</span> <span class="nf">getChordTonesInRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordTones</span><span class="p">,</span> <span class="n">lowerLimit</span><span class="p">,</span> <span class="n">upperLimit</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkbookBuilder.getChordTonesInRange"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder.getChordTonesInRange">[docs]</a>    <span class="k">def</span> <span class="nf">getChordTonesInRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordTones</span><span class="p">,</span> <span class="n">lowerLimit</span><span class="p">,</span> <span class="n">upperLimit</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets all instances of the specified chord tones within the lower and upper limits.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -182,7 +182,7 @@
         <span class="k">return</span> <span class="n">returnNotes</span></div>
 
 
-<div class="viewcode-block" id="WorkbookBuilder._buildArpeggioPattern01"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder._buildArpeggioPattern01">[docs]</a>    <span class="k">def</span> <span class="nf">_buildArpeggioPattern01</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threeNotes</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkbookBuilder._buildArpeggioPattern01"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder._buildArpeggioPattern01">[docs]</a>    <span class="k">def</span> <span class="nf">_buildArpeggioPattern01</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threeNotes</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Builds a basic 8 note arpeggio pattern from 3 notes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -201,7 +201,7 @@
         <span class="k">return</span> <span class="n">noteList</span></div>
 
 
-<div class="viewcode-block" id="WorkbookBuilder._getScaleExercise"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder._getScaleExercise">[docs]</a>    <span class="k">def</span> <span class="nf">_getScaleExercise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rawScale</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkbookBuilder._getScaleExercise"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder._getScaleExercise">[docs]</a>    <span class="k">def</span> <span class="nf">_getScaleExercise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rawScale</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        From a given scale, return a Note array representing an exercise for that scale.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -209,7 +209,7 @@
         <span class="k">return</span> <span class="n">returnScale</span></div>
 
 
-<div class="viewcode-block" id="WorkbookBuilder._getArpeggioExercise"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder._getArpeggioExercise">[docs]</a>    <span class="k">def</span> <span class="nf">_getArpeggioExercise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordToneSet</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkbookBuilder._getArpeggioExercise"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder._getArpeggioExercise">[docs]</a>    <span class="k">def</span> <span class="nf">_getArpeggioExercise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chordToneSet</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        From a given scale, return a Note array representing an exercise for that scale.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -224,7 +224,7 @@
         <span class="k">return</span> <span class="n">noteList</span></div>
 
 
-<div class="viewcode-block" id="WorkbookBuilder.buildSolfegeFromScales"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.buildSolfegeFromScales">[docs]</a>    <span class="k">def</span> <span class="nf">buildSolfegeFromScales</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tonicNote</span><span class="p">,</span> <span class="n">mingusScales</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkbookBuilder.buildSolfegeFromScales"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder.buildSolfegeFromScales">[docs]</a>    <span class="k">def</span> <span class="nf">buildSolfegeFromScales</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tonicNote</span><span class="p">,</span> <span class="n">mingusScales</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Build a parallel list containing the scale degrees for a scale exercise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -245,7 +245,7 @@
         <span class="k">return</span> <span class="n">solfegeScales</span></div>
 
 
-<div class="viewcode-block" id="WorkbookBuilder.buildSolfegeFromArpeggios"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.buildSolfegeFromArpeggios">[docs]</a>    <span class="k">def</span> <span class="nf">buildSolfegeFromArpeggios</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tonicNote</span><span class="p">,</span> <span class="n">mingusArpeggios</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkbookBuilder.buildSolfegeFromArpeggios"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder.buildSolfegeFromArpeggios">[docs]</a>    <span class="k">def</span> <span class="nf">buildSolfegeFromArpeggios</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tonicNote</span><span class="p">,</span> <span class="n">mingusArpeggios</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Build a parallel list containing the scale degrees for arpeggio exercises</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -290,7 +290,7 @@
         <span class="k">return</span> <span class="n">returnList</span>
 
 
-<div class="viewcode-block" id="WorkbookBuilder.buildKeyData"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.buildKeyData">[docs]</a>    <span class="k">def</span> <span class="nf">buildKeyData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">keyType</span><span class="p">):</span>
+<div class="viewcode-block" id="WorkbookBuilder.buildKeyData"><a class="viewcode-back" href="../../workbookbuilder.html#etudegen.WorkbookBuilder.buildKeyData">[docs]</a>    <span class="k">def</span> <span class="nf">buildKeyData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">keyType</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        From a given key, build and return the KeyData for that key.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -367,13 +367,13 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">musicworkbook 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">etudegen 0.0.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, RJ Salvador.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
     </div>
   </body>
 </html>
