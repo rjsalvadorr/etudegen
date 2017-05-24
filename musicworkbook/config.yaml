@@ -17,11 +17,11 @@ instruments:
     # This also determines the order that will be used in the Etude book
     # Recommended major Keys: "C G D A E B F# F Bb Eb Ab Db Gb"
     # Recommended minor Keys: "A E B F# C# G# D# D G C F Bb Eb"
-    majorKeys: "Eb C A"
-    minorKeys: "C A F#"
-    # Default is false. This is done to make it easier to remember which
+    majorKeys: "C G D A E B F# F Bb Eb Ab Db Gb"
+    minorKeys: "A E B F# C# G# D# D G C F Bb Eb"
+    # Default is true. This is done to make it easier to remember which
     # notes are sharpened/flattened in various keys.
-    useKeySignature: false
+    forceAccidentals: true
     # Show solfege syllables over the notes
     showSolfege: false
 
@@ -30,9 +30,9 @@ instruments:
     lowerLimit: E-1
     upperLimit: G-3
     arpeggioPattern: "1 2 3 2 3 2 1 3"
-    majorKeys: "C G D"
-    minorKeys: "A E B"
-    useKeySignature: true
+    majorKeys: "C G D A E B F# F Bb Eb Ab Db Gb"
+    minorKeys: "A E B F# C# G# D# D G C F Bb Eb"
+    forceAccidentals: false
     showSolfege: false
 
   - name: violin
@@ -40,7 +40,7 @@ instruments:
     lowerLimit: G-3
     upperLimit: C-6
     arpeggioPattern: "1 2 3 2 3 2 1 3"
-    majorKeys: "Eb Bb F"
-    minorKeys: "C G D"
-    useKeySignature: false
+    majorKeys: "C G D A E B F# F Bb Eb Ab Db Gb"
+    minorKeys: "A E B F# C# G# D# D G C F Bb Eb"
+    forceAccidentals: true
     showSolfege: true

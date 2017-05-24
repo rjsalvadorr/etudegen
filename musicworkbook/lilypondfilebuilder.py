@@ -39,7 +39,7 @@ class LilypondFileBuilder:
         self.clef = clef if clef is not None else "treble"
         self.instrument = instrument if instrument is not None else ""
         self.filename = filename if filename is not None else "result"
-        self.useKeySignature = False
+        self.forceAccidentals = False
         self.showSolfege = False
 
 
@@ -78,6 +78,10 @@ class LilypondFileBuilder:
         noteString = note.name.replace("b", "").replace("#", "").lower()
         noteString += LilypondFileBuilder.accidentalMarking[accidentalCount]
         noteString += LilypondFileBuilder.octaveMarking[note.octave]
+
+        if self.forceAccidentals and accidentalCount != 0:
+            noteString += "!"
+
         noteString += str(duration)
         return noteString
 
@@ -87,8 +91,6 @@ class LilypondFileBuilder:
         From the given key data, build a Lilypond /score block for that key. That block represents
         scale and arpeggio info for a specific key
         """
-
-        print keyData
 
         newBlock = "\n"
 
@@ -130,12 +132,7 @@ class LilypondFileBuilder:
         totalBars = len(melody) / 8
         barsPerLine = 3
         barCtr = 0
-        # Example of key signature text:
-        # \key d \major
-        if self.useKeySignature:
-            keyString = "\\key " + keyData.keyTonicLily + " \\" + keyData.keyType + " "
-        else:
-            keyString = "\\key c \\major "
+        keyString = "\\key " + keyData.keyTonicLily + " \\" + keyData.keyType + " "
 
         newBlock = "\score {\n    {\\clef " + self.clef + " \\time 4/4 " + keyString
 
@@ -151,6 +148,7 @@ class LilypondFileBuilder:
                 solfegeString = "^\"" + melodySolfege[index] + "\""
             else:
                 solfegeString = ""
+
             # I'm using 8th notes here, so I'm passing "8" to this method.
             newBlock += self._convertMingusNoteToLilypond(note, noteDuration) + solfegeString + " "
 
@@ -165,12 +163,7 @@ class LilypondFileBuilder:
         """
         timeSignatureVal = self._getTimeSignature(len(scale))
         timeSignatureText = " \\time " + str(timeSignatureVal) + "/4 "
-        # Example of key signature text:
-        # \key d \major
-        if self.useKeySignature:
-            keyString = "\\key " + keyData.keyTonicLily + " \\" + keyData.keyType + " "
-        else:
-            keyString = "\\key c \\major "
+        keyString = "\\key " + keyData.keyTonicLily + " \\" + keyData.keyType + " "
 
         newBlock = "\score {\n    {\\clef " + self.clef + timeSignatureText + keyString
 
@@ -179,6 +172,7 @@ class LilypondFileBuilder:
                 solfegeString = "^\"" + scaleSolfege[index] + "\""
             else:
                 solfegeString = ""
+
             # I'm using quarter notes here, so I'm passing "4" to this method.
             newBlock += self._convertMingusNoteToLilypond(note, 4) + solfegeString + " "
 

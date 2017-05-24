@@ -31,8 +31,6 @@ class KeyData:
         repString += "\n  keyTonic=" + self.keyTonic
         repString += ", keyType=" + self.keyType
         repString += ", keyName=" + self.keyName
-        # repString += ", mingusScales=" + " ".join(self.mingusScales)
-        # repString += ", mingusArpeggios=" + " ".join(self.mingusArpeggios)
         repString += ", keyTonicLily=" + self.keyTonicLily
 
         repString += "\n  mingusScales="

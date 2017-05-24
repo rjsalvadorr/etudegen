@@ -75,6 +75,9 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">keyTonicLily</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convertToLilypondPitch</span><span class="p">(</span><span class="n">keyTonic</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">mingusScalesSolfege</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mingusArpeggiosSolfege</span> <span class="o">=</span> <span class="kc">None</span>
+
 <div class="viewcode-block" id="KeyData._convertToLilypondPitch"><a class="viewcode-back" href="../../keydata.html#musicworkbook.KeyData._convertToLilypondPitch">[docs]</a>    <span class="k">def</span> <span class="nf">_convertToLilypondPitch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rawPitch</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Converts a pitch string to the Lilypond format. Turns notes like &quot;Bb&quot; to &quot;bf&quot;, and &quot;C#&quot; to &quot;cs&quot;</span>
@@ -85,11 +88,31 @@
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">repString</span> <span class="o">=</span> <span class="s2">&quot;KeyData(&quot;</span>
-        <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;keyTonic=&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyTonic</span>
+
+        <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  keyTonic=&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyTonic</span>
         <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;, keyType=&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyType</span>
         <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;, keyName=&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyName</span>
+        <span class="c1"># repString += &quot;, mingusScales=&quot; + &quot; &quot;.join(self.mingusScales)</span>
+        <span class="c1"># repString += &quot;, mingusArpeggios=&quot; + &quot; &quot;.join(self.mingusArpeggios)</span>
         <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;, keyTonicLily=&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyTonicLily</span>
-        <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;)&quot;</span>
+
+        <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  mingusScales=&quot;</span>
+        <span class="k">for</span> <span class="n">mScale</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mingusScales</span><span class="p">:</span>
+            <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    &quot;</span> <span class="o">+</span> <span class="n">mScale</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+
+        <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  mingusArpeggios=&quot;</span>
+        <span class="k">for</span> <span class="n">mArpeggio</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mingusArpeggios</span><span class="p">:</span>
+            <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    &quot;</span> <span class="o">+</span> <span class="n">mArpeggio</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+
+        <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  mingusScalesSolfege=&quot;</span>
+        <span class="k">for</span> <span class="n">mScale</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mingusScalesSolfege</span><span class="p">:</span>
+            <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    &quot;</span> <span class="o">+</span> <span class="n">mScale</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+
+        <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  mingusArpeggiosSolfege=&quot;</span>
+        <span class="k">for</span> <span class="n">mArpeggio</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mingusArpeggiosSolfege</span><span class="p">:</span>
+            <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    &quot;</span> <span class="o">+</span> <span class="n">mArpeggio</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+
+        <span class="n">repString</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">)&quot;</span>
 
         <span class="k">return</span> <span class="n">repString</span>
 

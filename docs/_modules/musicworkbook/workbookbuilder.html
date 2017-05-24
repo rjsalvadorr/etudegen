@@ -96,6 +96,8 @@
     <span class="n">romanChordNames</span><span class="p">[</span><span class="s2">&quot;harmonicMinor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;vii°&#39;</span><span class="p">,</span> <span class="s2">&quot;iv&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;ii°&quot;</span><span class="p">,</span> <span class="s2">&quot;VI&quot;</span><span class="p">,</span> <span class="s2">&quot;III+&quot;</span><span class="p">]</span>
     <span class="n">romanChordNames</span><span class="p">[</span><span class="s2">&quot;fused&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;vii°&#39;</span><span class="p">,</span> <span class="s2">&quot;VII&quot;</span><span class="p">,</span> <span class="s2">&quot;iv&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;ii°&quot;</span><span class="p">,</span> <span class="s2">&quot;VI&quot;</span><span class="p">,</span> <span class="s2">&quot;III+&quot;</span><span class="p">,</span> <span class="s2">&quot;III&quot;</span><span class="p">]</span>
 
+    <span class="c1"># Index number = semitones away from the tonic, upwards</span>
+    <span class="n">solfegeSyllables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;do&quot;</span><span class="p">,</span> <span class="s2">&quot;ra&quot;</span><span class="p">,</span> <span class="s2">&quot;re&quot;</span><span class="p">,</span> <span class="s2">&quot;me&quot;</span><span class="p">,</span> <span class="s2">&quot;mi&quot;</span><span class="p">,</span> <span class="s2">&quot;fa&quot;</span><span class="p">,</span> <span class="s2">&quot;se&quot;</span><span class="p">,</span> <span class="s2">&quot;sol&quot;</span><span class="p">,</span> <span class="s2">&quot;le&quot;</span><span class="p">,</span> <span class="s2">&quot;la&quot;</span><span class="p">,</span> <span class="s2">&quot;te&quot;</span><span class="p">,</span> <span class="s2">&quot;ti&quot;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lowerLimit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">upperLimit</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lowerLimit</span> <span class="o">=</span> <span class="n">lowerLimit</span> <span class="k">if</span> <span class="n">lowerLimit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Note</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
@@ -222,6 +224,48 @@
         <span class="k">return</span> <span class="n">noteList</span></div>
 
 
+<div class="viewcode-block" id="WorkbookBuilder.buildSolfegeFromScales"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.buildSolfegeFromScales">[docs]</a>    <span class="k">def</span> <span class="nf">buildSolfegeFromScales</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tonicNote</span><span class="p">,</span> <span class="n">mingusScales</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Build a parallel list containing the scale degrees for a scale exercise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">solfegeScales</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">mScale</span> <span class="ow">in</span> <span class="n">mingusScales</span><span class="p">:</span>
+            <span class="n">currentSyllables</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">mNote</span> <span class="ow">in</span> <span class="n">mScale</span><span class="p">:</span>
+                <span class="n">comparisonNote</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNextNoteUp</span><span class="p">(</span><span class="n">mNote</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">tonicNote</span><span class="p">)</span>
+                <span class="n">semitoneDiff</span> <span class="o">=</span> <span class="n">tonicNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">comparisonNote</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">semitoneDiff</span> <span class="o">&gt;=</span> <span class="mi">12</span><span class="p">:</span>
+                    <span class="n">semitoneDiff</span> <span class="o">=</span> <span class="n">semitoneDiff</span> <span class="o">-</span> <span class="mi">12</span>
+                <span class="n">currentSyllables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WorkbookBuilder</span><span class="o">.</span><span class="n">solfegeSyllables</span><span class="p">[</span><span class="n">semitoneDiff</span><span class="p">])</span>
+
+            <span class="n">solfegeScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">currentSyllables</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">solfegeScales</span></div>
+
+
+<div class="viewcode-block" id="WorkbookBuilder.buildSolfegeFromArpeggios"><a class="viewcode-back" href="../../workbookbuilder.html#musicworkbook.WorkbookBuilder.buildSolfegeFromArpeggios">[docs]</a>    <span class="k">def</span> <span class="nf">buildSolfegeFromArpeggios</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tonicNote</span><span class="p">,</span> <span class="n">mingusArpeggios</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Build a parallel list containing the scale degrees for arpeggio exercises</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">solfegeScales</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">mArpeggios</span> <span class="ow">in</span> <span class="n">mingusArpeggios</span><span class="p">:</span>
+            <span class="n">currentSyllables</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">mNote</span> <span class="ow">in</span> <span class="n">mArpeggios</span><span class="p">:</span>
+                <span class="n">comparisonNote</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNextNoteUp</span><span class="p">(</span><span class="n">mNote</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">tonicNote</span><span class="p">)</span>
+                <span class="n">semitoneDiff</span> <span class="o">=</span> <span class="n">tonicNote</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">comparisonNote</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">semitoneDiff</span> <span class="o">&gt;=</span> <span class="mi">12</span><span class="p">:</span>
+                    <span class="n">semitoneDiff</span> <span class="o">=</span> <span class="n">semitoneDiff</span> <span class="o">-</span> <span class="mi">12</span>
+                <span class="n">currentSyllables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WorkbookBuilder</span><span class="o">.</span><span class="n">solfegeSyllables</span><span class="p">[</span><span class="n">semitoneDiff</span><span class="p">])</span>
+
+            <span class="n">solfegeScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">currentSyllables</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">solfegeScales</span></div>
+
+
     <span class="k">def</span> <span class="nf">buildDiatonicChords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
         <span class="n">basicChords</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="n">returnList</span> <span class="o">=</span> <span class="p">[]</span>
@@ -261,9 +305,10 @@
             <span class="n">natScale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">NaturalMinor</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()</span>
             <span class="n">harmScale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">HarmonicMinor</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()</span>
 
-            <span class="n">mScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_getScaleExercise</span><span class="p">(</span><span class="n">natScale</span><span class="p">))</span>
-            <span class="n">mScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_getScaleExercise</span><span class="p">(</span><span class="n">harmScale</span><span class="p">))</span>
-
+            <span class="n">natScaleExercise</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getScaleExercise</span><span class="p">(</span><span class="n">natScale</span><span class="p">)</span>
+            <span class="n">harmScaleExercise</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getScaleExercise</span><span class="p">(</span><span class="n">harmScale</span><span class="p">)</span>
+            <span class="n">mScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">natScaleExercise</span><span class="p">)</span>
+            <span class="n">mScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">harmScaleExercise</span><span class="p">)</span>
             <span class="n">natDiatonicChords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buildDiatonicChords</span><span class="p">(</span><span class="n">natScale</span><span class="p">)</span>
             <span class="n">harmDiatonicChords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buildDiatonicChords</span><span class="p">(</span><span class="n">harmScale</span><span class="p">)</span>
 
@@ -284,12 +329,13 @@
                 <span class="n">chordTitle</span> <span class="o">=</span> <span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">WorkbookBuilder</span><span class="o">.</span><span class="n">chordNames</span><span class="p">[</span><span class="s2">&quot;fused&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="n">WorkbookBuilder</span><span class="o">.</span><span class="n">romanChordNames</span><span class="p">[</span><span class="s2">&quot;fused&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
                 <span class="n">cNames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chordTitle</span><span class="p">)</span>
                 <span class="n">diatonicChordTones</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dcInRange</span><span class="p">)</span>
+
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Major key. Fairly straightforward</span>
             <span class="n">rawScale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">Major</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()</span>
 
-            <span class="n">mScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_getScaleExercise</span><span class="p">(</span><span class="n">rawScale</span><span class="p">))</span>
-
+            <span class="n">scaleExercise</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getScaleExercise</span><span class="p">(</span><span class="n">rawScale</span><span class="p">)</span>
+            <span class="n">mScales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scaleExercise</span><span class="p">)</span>
             <span class="n">diatonicChords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buildDiatonicChords</span><span class="p">(</span><span class="n">rawScale</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">chord</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">diatonicChords</span><span class="p">):</span>
@@ -302,6 +348,9 @@
             <span class="n">mArpeggios</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_getArpeggioExercise</span><span class="p">(</span><span class="n">chordToneSet</span><span class="p">))</span>
 
         <span class="n">returnKeyData</span> <span class="o">=</span> <span class="n">KeyData</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">keyType</span><span class="p">,</span> <span class="n">cNames</span><span class="p">,</span> <span class="n">mScales</span><span class="p">,</span> <span class="n">mArpeggios</span><span class="p">)</span>
+        <span class="n">returnKeyData</span><span class="o">.</span><span class="n">mingusScalesSolfege</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buildSolfegeFromScales</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">root</span><span class="p">),</span> <span class="n">mScales</span><span class="p">)</span>
+        <span class="n">returnKeyData</span><span class="o">.</span><span class="n">mingusArpeggiosSolfege</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buildSolfegeFromScales</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">root</span><span class="p">),</span> <span class="n">mArpeggios</span><span class="p">)</span>
+
         <span class="k">return</span> <span class="n">returnKeyData</span></div></div>
 
     <span class="c1">#TODO - implement arpeggiation strategies!</span>

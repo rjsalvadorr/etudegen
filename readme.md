@@ -23,7 +23,7 @@ Say you're working on a piece in an unfamiliar key. Simply reading through a few
     + **Instrument range** - (lowest note and highest note)
 - **Major Keys** - The major keys that will be included in the etude book.
 - **Minor Keys** - Similar to above, but for minor keys.
-- **Displaying Key Signatures** - By default, EtudeGen won't show the key signature. In this setting, every accidental will be shown to the reader.
+- **Force Accidentals** - By default, EtudeGen will show every accidental to the reader. This is meant to reinforce the reader's memory when learning the notes in a key.
 
 ### Parameters not yet configurable
 
@@ -73,12 +73,11 @@ We can also describe the rationale behind certain design decisions in the etudes
 - Lilypond - Required for generating PDFs. Must be installed and usable on the command-line.
 
 ### Virtual Environments
-Fresh setup? On Python 3, run `python -m venv path/to/virtual/env`. In this case, our target folder is `python/` Here's what I did for Python 2 on Windows: `G:\Programming\Web Projects\code-sketches\python>virtualenv -p C:\Python27\python.exe .`
+Fresh setup? On Python 3, run `python -m venv path/to/virtual/env`. In this case, our target folder is `python/`  
+For Python 2 on Windows: `G:\Programming\Web Projects\code-sketches\python>virtualenv -p C:\Python27\python.exe .`
 
 On Windows, just run `project-root\Scripts\activate.bat` to activate the virtual env. Running `deactivate` while in an active environment will do the opposite.  
 On Linux, run `source project-root/bin/activate`. The `deactivate` command remains the same.
-
-For more info, [read the docs](https://docs.python.org/3/library/venv.html).
 
 ### Documentation
 This command should do it: `sphinx-build -b html ./source ./docs`. **Remember to run it from the project root!**

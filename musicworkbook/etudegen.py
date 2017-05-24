@@ -59,7 +59,7 @@ for rawInstrument in yamlData['instruments']:
     workbookBuilder.lowerLimit = instrument.lowerLimit
     workbookBuilder.upperLimit = instrument.upperLimit
 
-    lilypondFileBuilder.useKeySignature = rawInstrument["useKeySignature"]
+    lilypondFileBuilder.forceAccidentals = rawInstrument["forceAccidentals"]
     lilypondFileBuilder.showSolfege = rawInstrument["showSolfege"]
 
     # For each key, create the scale and arpeggio exercises
