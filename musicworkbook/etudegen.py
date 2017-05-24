@@ -7,6 +7,18 @@ from workbookbuilder import WorkbookBuilder
 from lilypondfilebuilder import LilypondFileBuilder
 from instrumentdata import InstrumentData
 
+def cleanFilename(filename):
+    forbiddenChars = ["/", "\\", "?", "%", "*", ":", "\'", "\"", "|", ">", "<", "."]
+
+    cleanName = filename.lower()
+    cleanName = cleanName.replace(" ", "-")
+
+    for fChar in forbiddenChars:
+        cleanName = cleanName.replace(fChar, "")
+
+    return cleanName
+
+
 pPrinter = pprint.PrettyPrinter(indent=2, width=120)
 workbookBuilder = WorkbookBuilder()
 lilypondFileBuilder = LilypondFileBuilder()
@@ -28,10 +40,12 @@ if testMode == False:
 # Loading configuration file
 fileDir = os.path.dirname(os.path.realpath(__file__))
 cfgFilePath = os.path.join(fileDir, 'config.yaml')
+
 try:
     stream = file(cfgFilePath, 'r')
     yamlData = yaml.load(stream)
-    pPrinter.pprint(yamlData)
+    if testMode:
+        pPrinter.pprint(yamlData)
 except:
     print "YAML configuration failed to load!"
     raise
@@ -53,7 +67,7 @@ for rawInstrument in yamlData['instruments']:
     minKeyList = minorKeyListTest if testMode else minorKeyListFull
 
     # Set up file data
-    lilypondFileBuilder.filename = "music-workbook-for-" + instrument.name
+    lilypondFileBuilder.filename = cleanFilename("music-workbook-for-" + instrument.name)
     lilypondFileBuilder.instrument = instrument.name
     lilypondFileBuilder.clef = instrument.clef
     workbookBuilder.lowerLimit = instrument.lowerLimit

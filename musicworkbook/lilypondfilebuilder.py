@@ -145,7 +145,7 @@ class LilypondFileBuilder:
                 barCtr += 1
 
             if self.showSolfege:
-                solfegeString = "^\"" + melodySolfege[index] + "\""
+                solfegeString = "^\\markup { \\magnify #0.8 " + melodySolfege[index] + "}"
             else:
                 solfegeString = ""
 
@@ -169,7 +169,7 @@ class LilypondFileBuilder:
 
         for index, note in enumerate(scale):
             if self.showSolfege:
-                solfegeString = "^\"" + scaleSolfege[index] + "\""
+                solfegeString = "^\\markup { \\magnify #0.8 " + scaleSolfege[index] + "}"
             else:
                 solfegeString = ""
 

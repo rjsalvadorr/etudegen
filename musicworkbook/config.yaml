@@ -43,4 +43,14 @@ instruments:
     majorKeys: "C G D A E B F# F Bb Eb Ab Db Gb"
     minorKeys: "A E B F# C# G# D# D G C F Bb Eb"
     forceAccidentals: true
+    showSolfege: false
+
+  - name: RJ's voice
+    clef: bass
+    lowerLimit: C-3
+    upperLimit: G-4
+    arpeggioPattern: "1 2 3 2 3 2 1 3"
+    majorKeys: "C G D A E B F# F Bb Eb Ab Db Gb"
+    minorKeys: "A E B F# C# G# D# D G C F Bb Eb"
+    forceAccidentals: true
     showSolfege: true
