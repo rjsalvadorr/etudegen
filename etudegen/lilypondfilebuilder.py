@@ -225,26 +225,38 @@ class LilypondFileBuilder:
         If Lilypond is available for use, creates a PDF and shows it to the user.
         """
 
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        inputPath = os.path.join(dir_path, "header.ly")
-        outputPath = os.path.join(dir_path, self.filename + ".ly")
+        module_dir = os.path.dirname(os.path.realpath(__file__))
+        project_dir = os.path.dirname(module_dir)
+        output_dir = os.path.join(project_dir, "etudegen-output")
+
+        inputPath = os.path.join(module_dir, "header.ly")
+        lilypondFilePath = os.path.join(output_dir, self.filename + ".ly")
+
+        # Create output directory if it doesn't exist
+        try:
+            os.makedirs(output_dir)
+        except OSError:
+            if not os.path.isdir(output_dir):
+                raise
 
         self.lilypondBlocks.append(self._buildLilypondMainHeaderBlock())
 
         print "  Creating workbook for " + self.instrument + "..."
 
         try:
-            shutil.copyfile(inputPath, outputPath)
-            with open(outputPath, 'a') as outFile:
+            shutil.copyfile(inputPath, lilypondFilePath)
+            with open(lilypondFilePath, 'a') as outFile:
                 for lilyBlock in self.lilypondBlocks:
                     lilyBlock = lilyBlock.encode('utf-8')
                     outFile.write(lilyBlock)
 
             self.lilypondBlocks = []
+        except IOError, e:
+            print "ERROR! Unable to copy file. %s" % e
         except:
             print "ERROR! Something went wrong with Lilypond file generation."
 
         try:
-            stuff = subprocess.call(["lilypond", "--loglevel=BASIC_PROGRESS", "--output=" + self.filename, "--pdf", outputPath])
+            stuff = subprocess.call(["lilypond", "--loglevel=BASIC_PROGRESS", "--output=" + output_dir, "--pdf", lilypondFilePath])
         except:
             print "ERROR! Something went wrong with Lilypond document generation. Check if you have Lilypond installed and available on the path!"
