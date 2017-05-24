@@ -36,7 +36,7 @@ class WorkbookBuilder:
     romanChordNames["fused"] = ["i", "V", "v", u'vii°', "VII", "iv", u"ii°", "VI", "III+", "III"]
 
     # Index number = semitones away from the tonic, upwards
-    solfegeSyllables = ["Do", "Ra", "Re", "Me", "Mi", "Fa", "Se", "Sol", "Le", "La", "Te", "Ti"]
+    solfegeSyllables = ["do", "ra", "re", "me", "mi", "fa", "se", "sol", "le", "la", "te", "ti"]
 
     def __init__(self, lowerLimit=None, upperLimit=None):
         self.lowerLimit = lowerLimit if lowerLimit is not None else Note('C', 4)

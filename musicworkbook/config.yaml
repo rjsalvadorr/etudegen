@@ -43,4 +43,4 @@ instruments:
     majorKeys: "Eb Bb F"
     minorKeys: "C G D"
     useKeySignature: false
-    showSolfege: false
+    showSolfege: true

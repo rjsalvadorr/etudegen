@@ -94,18 +94,18 @@ class LilypondFileBuilder:
 
         if keyData.keyType == "major":
             headerBlock = self._buildLilypondHeadingBlock(keyData.keyName)
-            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], keyData, headerBlock) + "\n"
+            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], keyData.mingusScalesSolfege[0], keyData, headerBlock) + "\n"
         else:
             headerBlock = self._buildLilypondHeadingBlock(keyData.keyName)
-            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], keyData, headerBlock) + "\n"
+            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[0], keyData.mingusScalesSolfege[0], keyData, headerBlock) + "\n"
 
             harmonicScaleName = keyData.keyName.replace("minor", "harmonic minor") + " scale"
             headerBlock = self._buildLilypondSubheadingBlock(harmonicScaleName)
-            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[1], keyData, headerBlock) + "\n"
+            newBlock += self._buildLilypondScaleBlock(keyData.mingusScales[1], keyData.mingusScalesSolfege[1], keyData, headerBlock) + "\n"
 
         for index, arpeggio in enumerate(keyData.mingusArpeggios):
             headerBlock = self._buildLilypondSubheadingBlock(keyData.chordNames[index])
-            newBlock += self._buildLilypondArpeggioBlock(arpeggio, keyData, headerBlock) + "\n"
+            newBlock += self._buildLilypondArpeggioBlock(arpeggio, keyData.mingusArpeggiosSolfege[index], keyData, headerBlock) + "\n"
 
         newBlock += "\pageBreak\n"
 
@@ -122,7 +122,7 @@ class LilypondFileBuilder:
         return headerBlock
 
 
-    def _buildLilypondArpeggioBlock(self, melody, keyData, headerBlock=""):
+    def _buildLilypondArpeggioBlock(self, melody, melodySolfege, keyData, headerBlock=""):
         """
         From a given melody, build a Lilypond block.
         """
@@ -147,15 +147,19 @@ class LilypondFileBuilder:
                     newBlock += "\\break "
                 barCtr += 1
 
+            if self.showSolfege:
+                solfegeString = "^\"" + melodySolfege[index] + "\""
+            else:
+                solfegeString = ""
             # I'm using 8th notes here, so I'm passing "8" to this method.
-            newBlock += self._convertMingusNoteToLilypond(note, noteDuration) + " "
+            newBlock += self._convertMingusNoteToLilypond(note, noteDuration) + solfegeString + " "
 
         newBlock += "\\bar \"|.\"}\n    " + headerBlock + "\n}\n"
 
         return newBlock
 
 
-    def _buildLilypondScaleBlock(self, scale, keyData, headerBlock=""):
+    def _buildLilypondScaleBlock(self, scale, scaleSolfege, keyData, headerBlock=""):
         """
         From a given scale, build a Lilypond scale block.
         """
@@ -170,9 +174,13 @@ class LilypondFileBuilder:
 
         newBlock = "\score {\n    {\\clef " + self.clef + timeSignatureText + keyString
 
-        for note in scale:
+        for index, note in enumerate(scale):
+            if self.showSolfege:
+                solfegeString = "^\"" + scaleSolfege[index] + "\""
+            else:
+                solfegeString = ""
             # I'm using quarter notes here, so I'm passing "4" to this method.
-            newBlock += self._convertMingusNoteToLilypond(note, 4) + " "
+            newBlock += self._convertMingusNoteToLilypond(note, 4) + solfegeString + " "
 
         newBlock += "\\bar \"|.\"}\n    " + headerBlock + "\n}\n"
         return newBlock
