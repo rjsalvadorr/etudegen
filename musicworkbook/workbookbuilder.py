@@ -35,6 +35,8 @@ class WorkbookBuilder:
     romanChordNames["harmonicMinor"] = ["i", "V", u'vii°', "iv", u"ii°", "VI", "III+"]
     romanChordNames["fused"] = ["i", "V", "v", u'vii°', "VII", "iv", u"ii°", "VI", "III+", "III"]
 
+    # Index number = semitones away from the tonic, upwards
+    solfegeSyllables = ["Do", "Ra", "Re", "Me", "Mi", "Fa", "Se", "Sol", "Le", "La", "Te", "Ti"]
 
     def __init__(self, lowerLimit=None, upperLimit=None):
         self.lowerLimit = lowerLimit if lowerLimit is not None else Note('C', 4)
@@ -161,6 +163,48 @@ class WorkbookBuilder:
         return noteList
 
 
+    def buildSolfegeFromScales(self, tonicNote, mingusScales):
+        """
+        Build a parallel list containing the scale degrees for a scale exercise.
+        """
+        solfegeScales = []
+
+        for mScale in mingusScales:
+            currentSyllables = []
+
+            for mNote in mScale:
+                comparisonNote = self.getNextNoteUp(mNote.name, tonicNote)
+                semitoneDiff = tonicNote.measure(comparisonNote)
+                if semitoneDiff >= 12:
+                    semitoneDiff = semitoneDiff - 12
+                currentSyllables.append(WorkbookBuilder.solfegeSyllables[semitoneDiff])
+
+            solfegeScales.append(currentSyllables)
+
+        return solfegeScales
+
+
+    def buildSolfegeFromArpeggios(self, tonicNote, mingusArpeggios):
+        """
+        Build a parallel list containing the scale degrees for arpeggio exercises
+        """
+        solfegeScales = []
+
+        for mArpeggios in mingusArpeggios:
+            currentSyllables = []
+
+            for mNote in mArpeggios:
+                comparisonNote = self.getNextNoteUp(mNote.name, tonicNote)
+                semitoneDiff = tonicNote.measure(comparisonNote)
+                if semitoneDiff >= 12:
+                    semitoneDiff = semitoneDiff - 12
+                currentSyllables.append(WorkbookBuilder.solfegeSyllables[semitoneDiff])
+
+            solfegeScales.append(currentSyllables)
+
+        return solfegeScales
+
+
     def buildDiatonicChords(self, scale):
         basicChords = dict()
         returnList = []
@@ -200,9 +244,10 @@ class WorkbookBuilder:
             natScale = scales.NaturalMinor(root).ascending()
             harmScale = scales.HarmonicMinor(root).ascending()
 
-            mScales.append(self._getScaleExercise(natScale))
-            mScales.append(self._getScaleExercise(harmScale))
-
+            natScaleExercise = self._getScaleExercise(natScale)
+            harmScaleExercise = self._getScaleExercise(harmScale)
+            mScales.append(natScaleExercise)
+            mScales.append(harmScaleExercise)
             natDiatonicChords = self.buildDiatonicChords(natScale)
             harmDiatonicChords = self.buildDiatonicChords(harmScale)
 
@@ -223,12 +268,13 @@ class WorkbookBuilder:
                 chordTitle = chord[0] + WorkbookBuilder.chordNames["fused"][index] + " (" + WorkbookBuilder.romanChordNames["fused"][index] + ")"
                 cNames.append(chordTitle)
                 diatonicChordTones.append(dcInRange)
+
         else:
             # Major key. Fairly straightforward
             rawScale = scales.Major(root).ascending()
 
-            mScales.append(self._getScaleExercise(rawScale))
-
+            scaleExercise = self._getScaleExercise(rawScale)
+            mScales.append(scaleExercise)
             diatonicChords = self.buildDiatonicChords(rawScale)
 
             for index, chord in enumerate(diatonicChords):
@@ -241,6 +287,9 @@ class WorkbookBuilder:
             mArpeggios.append(self._getArpeggioExercise(chordToneSet))
 
         returnKeyData = KeyData(root, keyType, cNames, mScales, mArpeggios)
+        returnKeyData.mingusScalesSolfege = self.buildSolfegeFromScales(Note(root), mScales)
+        returnKeyData.mingusArpeggiosSolfege = self.buildSolfegeFromScales(Note(root), mArpeggios)
+
         return returnKeyData
 
     #TODO - implement arpeggiation strategies!

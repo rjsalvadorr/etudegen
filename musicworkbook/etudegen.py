@@ -38,8 +38,8 @@ except:
 
 
 # Define the list of keys
-majorKeyListTest = ['C', 'A', 'Eb']
-minorKeyListTest = ['A', 'F#', 'C',]
+majorKeyListTest = ['A', 'Eb']
+minorKeyListTest = ['F#', 'C',]
 
 
 # Create the etudes!

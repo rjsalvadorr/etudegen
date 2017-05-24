@@ -14,6 +14,9 @@ class KeyData:
 
         self.keyTonicLily = self._convertToLilypondPitch(keyTonic)
 
+        self.mingusScalesSolfege = None
+        self.mingusArpeggiosSolfege = None
+
     def _convertToLilypondPitch(self, rawPitch):
         """
         Converts a pitch string to the Lilypond format. Turns notes like "Bb" to "bf", and "C#" to "cs"
@@ -24,11 +27,31 @@ class KeyData:
 
     def __repr__(self):
         repString = "KeyData("
-        repString += "keyTonic=" + self.keyTonic
+
+        repString += "\n  keyTonic=" + self.keyTonic
         repString += ", keyType=" + self.keyType
         repString += ", keyName=" + self.keyName
+        # repString += ", mingusScales=" + " ".join(self.mingusScales)
+        # repString += ", mingusArpeggios=" + " ".join(self.mingusArpeggios)
         repString += ", keyTonicLily=" + self.keyTonicLily
-        repString += ")"
+
+        repString += "\n  mingusScales="
+        for mScale in self.mingusScales:
+            repString += "\n    " + mScale.__repr__()
+
+        repString += "\n  mingusArpeggios="
+        for mArpeggio in self.mingusArpeggios:
+            repString += "\n    " + mArpeggio.__repr__()
+
+        repString += "\n  mingusScalesSolfege="
+        for mScale in self.mingusScalesSolfege:
+            repString += "\n    " + mScale.__repr__()
+
+        repString += "\n  mingusArpeggiosSolfege="
+        for mArpeggio in self.mingusArpeggiosSolfege:
+            repString += "\n    " + mArpeggio.__repr__()
+
+        repString += "\n)"
 
         return repString
 

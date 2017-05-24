@@ -88,6 +88,8 @@ class LilypondFileBuilder:
         scale and arpeggio info for a specific key
         """
 
+        print keyData
+
         newBlock = "\n"
 
         if keyData.keyType == "major":
