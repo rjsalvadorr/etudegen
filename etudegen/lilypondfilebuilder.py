@@ -31,6 +31,7 @@ class LilypondFileBuilder:
     accidentalMarking[1] = "s"
     accidentalMarking[2] = "ss"
 
+
     def __init__(self, clef=None, instrument=None, filename=None):
         """
         Basic Constructor
@@ -39,8 +40,14 @@ class LilypondFileBuilder:
         self.clef = clef if clef is not None else "treble"
         self.instrument = instrument if instrument is not None else ""
         self.filename = filename if filename is not None else "result"
+
         self.forceAccidentals = False
         self.showSolfege = False
+        self.generatedFilePaths = []
+
+        self.moduleDir = os.path.dirname(os.path.realpath(__file__))
+        self.projectDir = os.path.dirname(self.moduleDir)
+        self.outputDir = os.path.join(self.projectDir, "etudegen-output")
 
 
     def resetData(self):
@@ -225,23 +232,19 @@ class LilypondFileBuilder:
         If Lilypond is available for use, creates a PDF and shows it to the user.
         """
 
-        module_dir = os.path.dirname(os.path.realpath(__file__))
-        project_dir = os.path.dirname(module_dir)
-        output_dir = os.path.join(project_dir, "etudegen-output")
-
-        inputPath = os.path.join(module_dir, "header.ly")
-        lilypondFilePath = os.path.join(output_dir, self.filename + ".ly")
+        inputPath = os.path.join(self.moduleDir, "header.ly")
+        lilypondFilePath = os.path.join(self.outputDir, self.filename + ".ly")
 
         # Create output directory if it doesn't exist
         try:
-            os.makedirs(output_dir)
+            os.makedirs(self.outputDir)
         except OSError:
-            if not os.path.isdir(output_dir):
+            if not os.path.isdir(self.outputDir):
                 raise
 
         self.lilypondBlocks.append(self._buildLilypondMainHeaderBlock())
 
-        print "  Creating workbook for " + self.instrument + "..."
+        print "Creating workbook for " + self.instrument + "..."
 
         try:
             shutil.copyfile(inputPath, lilypondFilePath)
@@ -251,12 +254,24 @@ class LilypondFileBuilder:
                     outFile.write(lilyBlock)
 
             self.lilypondBlocks = []
+
         except IOError, e:
             print "ERROR! Unable to copy file. %s" % e
         except:
             print "ERROR! Something went wrong with Lilypond file generation."
 
-        try:
-            stuff = subprocess.call(["lilypond", "--loglevel=BASIC_PROGRESS", "--output=" + output_dir, "--pdf", lilypondFilePath])
-        except:
-            print "ERROR! Something went wrong with Lilypond document generation. Check if you have Lilypond installed and available on the path!"
+        self.generatedFilePaths.append(lilypondFilePath)
+
+        print "Lilypond file generated!\n"
+
+
+    def buildEtudeDocuments(self):
+        """
+        If Lilypond is available for use, creates a PDF of all the etudes and shows it to the user.
+        """
+
+        for filePath in self.generatedFilePaths:
+            try:
+                stuff = subprocess.call(["lilypond", "--loglevel=BASIC_PROGRESS", "--output=" + self.outputDir, "--pdf", filePath])
+            except:
+                print "ERROR! Something went wrong with Lilypond document generation. Check if you have Lilypond installed and available on the path!"

@@ -23,18 +23,22 @@ pPrinter = pprint.PrettyPrinter(indent=2, width=120)
 workbookBuilder = WorkbookBuilder()
 lilypondFileBuilder = LilypondFileBuilder()
 
+print " _____ _         _     _____         "
+print "|   __| |_ _ _ _| |___|   __|___ ___ "
+print "|   __|  _| | | . | -_|  |  | -_|   |"
+print "|_____|_| |___|___|___|_____|___|_|_|\n"
 
 # Determine if we're using Test mode
 testMode = False
 if len(sys.argv) > 0:
     for arg in sys.argv:
         if(arg.lower() == "test"):
-            print "  Creating documents in Test mode..."
+            print "Creating documents in Test mode..."
             testMode = True
             break
 
 if testMode == False:
-    print "  Creating documents in Normal mode..."
+    print "Creating documents in Normal mode..."
 
 
 # Loading configuration file
@@ -45,7 +49,9 @@ try:
     stream = file(cfgFilePath, 'r')
     yamlData = yaml.load(stream)
     if testMode:
+        print "\nCONFIGURATION SETTINGS:"
         pPrinter.pprint(yamlData)
+        print ""
 except:
     print "YAML configuration failed to load!"
     raise
@@ -86,5 +92,7 @@ for rawInstrument in yamlData['instruments']:
         lilypondFileBuilder.addLilypondKeyBlock(keyData)
 
     # Write the results to files, using Lilypond
-    print "  Writing file..."
+    print "Writing file..."
     lilypondFileBuilder.writeLilypondFile()
+
+lilypondFileBuilder.buildEtudeDocuments()
